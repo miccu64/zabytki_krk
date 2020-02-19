@@ -13,8 +13,8 @@ mymap.on('click', function(e) {
         mymap.removeLayer(marker);
     }
     marker = L.marker([lat, lng]).addTo(mymap);
-    document.getElementById("wspx").value = Math.round((lat + Number.EPSILON) * 10000) / 10000;
-    document.getElementById("wspy").value = Math.round((lng + Number.EPSILON) * 10000) / 10000;
+    document.getElementById("wspx").value = Math.round((lat + Number.EPSILON) * 100000) / 100000;
+    document.getElementById("wspy").value = Math.round((lng + Number.EPSILON) * 100000) / 100000;
 
     function simpleReverseGeocoding(lon, lat) {
         fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + lng + '&lat=' + lat).then(function(response) {

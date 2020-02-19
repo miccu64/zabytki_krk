@@ -12,8 +12,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/skrypty/bootstrap.min.css">
-    <script src="/skrypty/jquery-3.4.1.slim.min.js"></script>
+    <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
+    <script src="/skrypty/jquery.serializejson.min.js"></script>
 
     <title>Dodaj zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
@@ -64,37 +65,37 @@
                 <h3>W celu przesłania danych należy kliknąć w przycisk "Prześlij" znajdujący się na dole strony pod mapą.</h3>
                 <h4>Wszystkie pola (poza zdjęciem i opisem) należy obowiązkowo wypełnić.</h4>
                 <div class="col-12 odstep"></div>
-                <form class="needs-validation" novalidate>
+                <form id="add-form" class="needs-validation" method="post" novalidate>
                     <div class="form-row">
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" name="nazwa" required>
                             </div>
                             <div class="form-group">
-                                <label class="tekst odstep2" for="ulica">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="ulica" required>
+                                <label class="tekst odstep2" for="street">Ulica</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspx">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" required>
+                                    <label class="tekst odstep2" for="latitude">Współrzędna X</label>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="latitude" name="latitude" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" required>
+                                    <label class="tekst odstep2" for="longitude">Współrzędna Y</label>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="longitude" name="longitude" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="numer">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="numer" required>
+                                    <label class="tekst odstep2" for="building">Numer budynku</label>
+                                    <input type="text" class="form-control form-control-lg tekst" id="building" name="building" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="typ">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="typ" required>
+                                    <input type="text" class="form-control form-control-lg tekst" id="typ" name="typ" required>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +111,7 @@
                     </div>
                     <div class="form-group">
                         <label class="tekst" for="poleTekstowe">(Opcjonalnie) Opis zabytku</label>
-                        <textarea class="form-control tekst" id="poleTekstowe" rows="6"></textarea>
+                        <textarea class="form-control tekst" id="poleTekstowe" name="poleTekstowe" rows="6"></textarea>
                     </div>
                     <div class="odstep3"></div>
                     <div class="custom-file">
@@ -124,10 +125,30 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block przycisk"><b>Prześlij</b></button>
                     <script src="przycisk.js"></script>
                     <div class="odstep3"></div>
+                    <script>
+                        $('#add-form').submit(function() {
+                            var obj = $('#add-form').serializeJSON();
+                            var jsonString = JSON.stringify(obj);
+                            console.log(jsonString);
+                        });
+
+                        var obj = $('#add-form').serializeJSON();
+                        var jsonString = JSON.stringify(obj);
+                        console.log(jsonString);
+                        $.ajax({
+                            type: 'POST',
+                            url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts',
+                            dataType: 'json',
+                            data: JSON.stringify(obj),
+                            contentType: 'application/json',
+                            success: function(data) {
+                                alert(data)
+                            }
+                        });
+                    </script>
                 </form>
             </div>
         </div>
-
     </div>
     <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
 </body>
