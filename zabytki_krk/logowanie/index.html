@@ -102,7 +102,7 @@
 
                                 http.onreadystatechange = function() { //Call a function when the state changes.
                                     if (http.readyState == 4 && http.status == 200) {
-                                        localStorage.setItem('token', http.responseText.split(' ')[1]);
+                                        localStorage.setItem('token', http.responseText);
                                         console.log(localStorage.getItem('token'));
 
                                         alert('Zalogowano pomyślnie!');

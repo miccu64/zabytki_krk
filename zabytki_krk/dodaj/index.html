@@ -151,6 +151,10 @@
                                     type: 'POST',
                                     url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts',
                                     dataType: 'json',
+                                    headers: {
+                                        'content-Type': 'application/json',
+                                        'Authorization': localStorage.getItem('token')
+                                    },
                                     data: JSON.stringify(obj),
                                     contentType: 'application/json',
                                     success: function(data) {
