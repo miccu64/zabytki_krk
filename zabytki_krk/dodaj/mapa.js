@@ -13,8 +13,8 @@ mymap.on('click', function(e) {
         mymap.removeLayer(marker);
     }
     marker = L.marker([lat, lng]).addTo(mymap);
-    document.getElementById("wspx").value = Math.round((lat + Number.EPSILON) * 100000) / 100000;
-    document.getElementById("wspy").value = Math.round((lng + Number.EPSILON) * 100000) / 100000;
+    document.getElementById("latitude").value = Math.round((lat + Number.EPSILON) * 100000) / 100000;
+    document.getElementById("longitude").value = Math.round((lng + Number.EPSILON) * 100000) / 100000;
 
     function simpleReverseGeocoding(lon, lat) {
         fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + lng + '&lat=' + lat).then(function(response) {
@@ -22,11 +22,11 @@ mymap.on('click', function(e) {
         }).then(function(json) {
             //console.log(json.display_name);
             if ((json.address.road) != undefined) {
-                document.getElementById("ulica").value = json.address.road;
-            } else document.getElementById("ulica").value = null;
+                document.getElementById("street").value = json.address.road;
+            } else document.getElementById("street").value = null;
             if ((json.address.house_number) != undefined) {
-                document.getElementById("numer").value = json.address.house_number;
-            } else document.getElementById("numer").value = null;
+                document.getElementById("building").value = json.address.house_number;
+            } else document.getElementById("building").value = null;
         })
     }
     simpleReverseGeocoding(lng, lat);
