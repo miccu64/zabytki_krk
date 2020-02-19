@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/skrypty/bootstrap.min.css">
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
+    <script src="/skrypty/jwt-decode.min.js"></script>
 
     <title>Krakowskie zabytki</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
@@ -101,6 +102,13 @@
                                     if (http.readyState == 4 && http.status == 200) {
                                         localStorage.setItem('token', http.responseText.split(' ')[1]);
                                         console.log(localStorage.getItem('token'));
+
+                                        var decoded = jwt_decode(localStorage.getItem('token'));
+
+                                        localStorage.setItem('sub', decoded.sub);
+                                        localStorage.setItem('userId', decoded.userId);
+                                        localStorage.setItem('tokenDecoded', decoded.token);
+
                                     } else if (http.readyState == 4) {
                                         alert('Złe dane logowania!');
                                     }
