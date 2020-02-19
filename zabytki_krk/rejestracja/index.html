@@ -91,8 +91,6 @@
                         </div>
                     </div>
                     <div class="odstep2"></div>
-                    <h3 id="komunikat" class="mb-5"></h3>
-                    <div class="odstep2"></div>
                     <div class="row justify-content-center">
                         <div class="col-12 ">
                             <button type="submit" class="btn btn-primary btn-lg przycisk" id="zarejestruj"><b>Zarejestruj</b></button>
@@ -114,11 +112,12 @@
                                         type: "POST",
                                         success: function(response) {
                                             console.log(response);
-                                            document.getElementById('komunikat').innerHTML = "Zarejestrowano! Teraz możesz się zalogować.";
+                                            alert('Zarejestrowano! Teraz możesz się zalogować.');
+                                            window.location.replace("/logowanie/");
                                         },
                                         error: function(error) {
                                             console.log("Something went wrong", error);
-                                            document.getElementById('komunikat').innerHTML = 'Taki login lub e-mail jest już zarejestrowany. Podaj inny.';
+                                            alert('Taki login lub e-mail jest już zarejestrowany. Podaj inny.');
                                         }
                                     });
                                 }

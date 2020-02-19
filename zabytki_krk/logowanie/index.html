@@ -38,14 +38,18 @@
                     <a class="nav-link linki" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/logowanie">Logowanie</a>
+                    <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/rejestracja">Rejestracja</a>
+                    <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
+                <li class="nav-item">
+                    <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
+                </li>
+                <script src="/skrypty/navbar.js"></script>
             </ul>
         </div>
     </nav>
@@ -84,14 +88,12 @@
                                 });
 
                             function klik() {
-
                                 var poczta = document.getElementById("poczta").value;
                                 var haslo = document.getElementById("haslo").value;
                                 var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/user/login';
                                 console.log(url2);
 
                                 var http = new XMLHttpRequest();
-
 
                                 http.open('POST', url2, true);
 
@@ -103,11 +105,8 @@
                                         localStorage.setItem('token', http.responseText.split(' ')[1]);
                                         console.log(localStorage.getItem('token'));
 
-                                        var decoded = jwt_decode(localStorage.getItem('token'));
-
-                                        localStorage.setItem('sub', decoded.sub);
-                                        localStorage.setItem('userId', decoded.userId);
-                                        localStorage.setItem('tokenDecoded', decoded.token);
+                                        alert('Zalogowano pomyślnie!');
+                                        window.location.replace("/");
 
                                     } else if (http.readyState == 4) {
                                         alert('Złe dane logowania!');
@@ -116,7 +115,11 @@
                                 http.send('email=' + poczta + '&password=' + haslo);
                             }
 
-                            //document.getElementById("my-profile").addEventListener("click", getMe);
+
+
+                            /* chyba niepotrzebne
+
+                            document.getElementById("my-profile").addEventListener("click", getMe);
 
                             function getMe(e) {
                                 e.preventDefault();
@@ -138,6 +141,7 @@
                                         console.log(err)
                                     })
                             }
+                            */
                         });
                     </script>
 
