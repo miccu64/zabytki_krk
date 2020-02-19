@@ -122,27 +122,38 @@
                     <div class="odstep3"></div>
                     <div class="blad" id="blad2"></div>
                     <div class="odstep"></div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block przycisk"><b>Prześlij</b></button>
+                    <button id="but" type="submit" class="btn btn-primary btn-lg btn-block przycisk"><b>Prześlij</b></button>
                     <script src="przycisk.js"></script>
                     <div class="odstep3"></div>
                     <script>
-                        $('#add-form').submit(function() {
-                            var obj = $('#add-form').serializeJSON();
-                            var jsonString = JSON.stringify(obj);
-                            console.log(jsonString);
-                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.
+                            getElementById('but')
+                                .addEventListener('click', e => {
+                                    e.preventDefault();
+                                    klik();
+                                });
 
-                        var obj = $('#add-form').serializeJSON();
-                        var jsonString = JSON.stringify(obj);
-                        console.log(jsonString);
-                        $.ajax({
-                            type: 'POST',
-                            url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts',
-                            dataType: 'json',
-                            data: JSON.stringify(obj),
-                            contentType: 'application/json',
-                            success: function(data) {
-                                alert(data)
+                            function klik() {
+                                $('#add-form').submit(function() {
+                                    var obj = $('#add-form').serializeJSON();
+                                    var jsonString = JSON.stringify(obj);
+                                    console.log(jsonString);
+                                });
+
+                                var obj = $('#add-form').serializeJSON();
+                                var jsonString = JSON.stringify(obj);
+                                console.log(jsonString);
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts',
+                                    dataType: 'json',
+                                    data: JSON.stringify(obj),
+                                    contentType: 'application/json',
+                                    success: function(data) {
+                                        alert(data)
+                                    }
+                                });
                             }
                         });
                     </script>
