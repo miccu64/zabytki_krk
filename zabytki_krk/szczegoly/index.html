@@ -68,7 +68,7 @@
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" value="JakaśNazwa" disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" disabled>
                             </div>
                             <div class="form-group">
                                 <label class="tekst odstep2" for="ulica">Ulica</label>
@@ -79,11 +79,11 @@
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="wspx">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" value="50.0557" disabled>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" disabled>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" value="19.9371" disabled>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -99,24 +99,6 @@
                         </div>
                     </div>
                     <div class="odstep3"></div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-12 px-5">
-                            <div id="mapid">
-                                <script src="mapa.js"></script>
-                            </div>
-                        </div>
-                        <div class="col-12 odstep"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="tekst" for="poleTekstowe">Opis zabytku</label>
-                        <textarea class="form-control tekst" id="poleTekstowe" rows="6" disabled></textarea>
-                    </div>
-                    <div class="odstep3"></div>
-
-                    <div class="blad" id="blad2"></div>
-                    <div class="odstep"></div>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="edycja()"><b>Edytuj</b></button>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
                     <script>
                         function wstecz() {
                             window.history.back();
@@ -148,14 +130,7 @@
                             });
                         }
 
-
-
-
-
-
-
                         function wypisz(myArr) {
-
 
                             document.getElementById('street').value = myArr.street;
                             document.getElementById('wspx').value = myArr.latitude;
@@ -165,8 +140,38 @@
                             document.getElementById('typ').value = myArr.type;
                             document.getElementById('poleTekstowe').value = myArr.description;
 
+                            var lat = document.getElementById("wspx").value;
+                            var lng = document.getElementById("wspy").value;
+
+                            var mymap = L.map('mapid').setView([lat, lng], 18);
+
+                            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(mymap);
+
+                            var marker = L.marker([lat, lng]).addTo(mymap);
+                            marker.bindPopup(document.getElementById("nazwa").value).openPopup();
+
                         }
                     </script>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-12 px-5">
+                            <div id="mapid">
+                            </div>
+                        </div>
+                        <div class="col-12 odstep"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="tekst" for="poleTekstowe">Opis zabytku</label>
+                        <textarea class="form-control tekst" id="poleTekstowe" rows="6" disabled></textarea>
+                    </div>
+                    <div class="odstep3"></div>
+
+                    <div class="blad" id="blad2"></div>
+                    <div class="odstep"></div>
+                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="edycja()"><b>Edytuj</b></button>
+                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+
                     <div class="odstep3"></div>
                 </form>
             </div>
