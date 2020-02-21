@@ -107,7 +107,10 @@
                             type: "GET",
                             success: function(response) {
                                 console.log(response);
-
+                                localStorage.setItem('tablica2', JSON.stringify(response.content));
+                                localStorage.setItem('iloscKart2', response.totalElements);
+                                localStorage.setItem('iloscStron2', response.totalPages);
+                                location.href = "znalezione/";
                             },
                             error: function(error) {
 

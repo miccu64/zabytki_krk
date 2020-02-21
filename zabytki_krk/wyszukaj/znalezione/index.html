@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-12 odstep"></div>
             <div class="col-12 text-center">
-                <h1><b>Ostatnio dodane zabytki</b></h1>
+                <h1><b>Znalezione zabytki</b></h1>
             </div>
         </div>
         <div class="col-12 odstep"></div>
@@ -367,7 +367,7 @@
             </div>
             <script>
                 function szczegoly(liczba) {
-                    var tablica = localStorage.getItem('tablica');
+                    var tablica = localStorage.getItem('tablica2');
                     var tablica2 = JSON.parse(tablica);
                     localStorage.setItem('id', tablica2[liczba].id);
                     location.href = "/szczegoly/";
@@ -405,7 +405,11 @@
         </div>
         <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
         <script>
-            wyslij(0);
+            var tablica = localStorage.getItem('tablica2');
+            tablica = JSON.parse(tablica);
+            console.log(tablica);
+            wypisz(tablica, 1); //STRONA
+
 
             function wyslij(strona) {
                 var rozmiar = '12';
@@ -434,8 +438,8 @@
 
             //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
             function wypisz(myArr, strona) {
-                var iloscKart = parseInt(localStorage.getItem('iloscKart'));
-                var iloscStron = parseInt(localStorage.getItem('iloscStron'));
+                var iloscKart = parseInt(localStorage.getItem('iloscKart2'));
+                var iloscStron = parseInt(localStorage.getItem('iloscStron2'));
                 iloscKart = iloscKart % 12;
                 var link;
 
@@ -446,14 +450,14 @@
 
                 if (strona * 12 < iloscLacznie) {
                     var max = 12;
-                } else var max = iloscStron;
+                } else var max = iloscKart;
 
                 for (i = 0; i < max; i++) {
                     var pomocnicza0 = 'nazwa' + i;
                     var pomocnicza1 = 'ulica' + i;
                     var pomocnicza2 = 'numer' + i;
                     var pomocnicza3 = 'typ' + i;
-
+                    console.log(max);
                     document.getElementById(pomocnicza0).innerHTML = myArr[i].name;
                     document.getElementById(pomocnicza1).innerHTML = myArr[i].street;
                     document.getElementById(pomocnicza2).innerHTML = myArr[i].building;
