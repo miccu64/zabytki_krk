@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/skrypty/bootstrap.min.css">
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
+    <script src="/skrypty/jquery.serializejson.min.js"></script>
 
     <title>Szczegóły zabytku</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
@@ -63,37 +64,37 @@
                 <div class="naglowek"><b>Szczegóły zabytku</b></div>
                 <div class="col-12 odstep2">Tu jakieś zdjęcia</div>
                 <div class="col-12 odstep2"></div>
-                <form>
+                <form id="add-form" class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
-                                <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" value="JakaśNazwa">
+                                <label class="tekst odstep2" for="name">Nazwa obiektu</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label class="tekst odstep2" for="ulica">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="street">
+                                <label class="tekst odstep2" for="street">Ulica</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspx">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" value="50.0557">
+                                    <label class="tekst odstep2" for="latitude">Współrzędna X</label>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="latitude" name="latitude" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" value="19.9371">
+                                    <label class="tekst odstep2" for="longitude">Współrzędna Y</label>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="longitude" name="longitude" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="numer">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="numer">
+                                    <label class="tekst odstep2" for="building">Numer budynku</label>
+                                    <input type="text" class="form-control form-control-lg tekst" id="building" name="building" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="typ">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="typ">
+                                    <label class="tekst odstep2" for="type">Typ obiektu</label>
+                                    <input type="text" class="form-control form-control-lg tekst" id="type" name="type" required>
                                 </div>
                             </div>
                         </div>
@@ -108,8 +109,8 @@
                         <div class="col-12 odstep"></div>
                     </div>
                     <div class="form-group">
-                        <label class="tekst" for="poleTekstowe">Opis zabytku</label>
-                        <textarea class="form-control tekst" id="poleTekstowe" rows="6"></textarea>
+                        <label class="tekst" for="description">(Opcjonalnie) Opis zabytku</label>
+                        <textarea class="form-control tekst" id="description" name="description" rows="6"></textarea>
                     </div>
                     <div class="odstep3"></div>
 
@@ -123,7 +124,32 @@
                         }
 
                         function edycja() {
-                            location.href = "/edytuj/";
+
+
+                            var obj = $('#add-form').serializeJSON();
+                            console.log(JSON.stringify(obj));
+                            var id = localStorage.getItem("id");
+                            var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+                            $.ajax({
+                                url: url2,
+                                dataType: 'json',
+                                type: "PUT",
+                                headers: {
+                                    'content-Type': 'application/json',
+                                    'Authorization': localStorage.getItem('token')
+                                },
+                                data: JSON.stringify(obj),
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    alert('Pomyślnie edytowano zabytek.')
+                                    window.location.replace("/ostatnie");
+                                },
+                                error: function(error) {
+                                    console.log("Something went wrong", error);
+                                    alert('Wystąpił błąd!')
+                                }
+                            });
+
                         }
                         wyslij();
 
@@ -150,12 +176,12 @@
 
 
                             document.getElementById('street').value = myArr.street;
-                            document.getElementById('wspx').value = myArr.latitude;
-                            document.getElementById('wspy').value = myArr.longitude;
-                            document.getElementById('numer').value = myArr.building;
-                            document.getElementById('nazwa').value = myArr.name;
-                            document.getElementById('typ').value = myArr.type;
-                            document.getElementById('poleTekstowe').value = myArr.description;
+                            document.getElementById('latitude').value = myArr.latitude;
+                            document.getElementById('longitude').value = myArr.longitude;
+                            document.getElementById('building').value = myArr.building;
+                            document.getElementById('name').value = myArr.name;
+                            document.getElementById('type').value = myArr.type;
+                            document.getElementById('description').value = myArr.description;
 
                             var lat = myArr.latitude;
                             var lng = myArr.longitude;

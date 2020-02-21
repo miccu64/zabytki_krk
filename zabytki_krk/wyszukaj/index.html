@@ -64,34 +64,57 @@
                     <div class="form-row">
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
-                                <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" placeholder="Np. Kościół Mariacki">
+                                <label class="tekst odstep2" for="name">Nazwa obiektu</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name" placeholder="Np. Kościół Mariacki">
                             </div>
                             <div class="form-group">
-                                <label class="tekst odstep2" for="ulica">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="ulica" placeholder="Np. Szewska">
+                                <label class="tekst odstep2" for="street">Ulica</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" placeholder="Np. Szewska">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 ">
                             <div class="form-group">
-                                <label class="tekst odstep2" for="numerEwid">Numer ewidencyjny</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="numerEwid" placeholder="Np. A-230/M">
+                                <label class="tekst odstep2" for="type">Typ obiektu</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="type" name="type" placeholder="Np. Kościół">
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="numer">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="numer" placeholder="Np. 20">
-                                </div>
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="typ">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="typ" placeholder="Np. Kościół">
-                                </div>
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="building">Numer budynku</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="building" name="building" placeholder="Np. 56">
                             </div>
                         </div>
                     </div>
                     <div class="odstep3"></div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block przycisk"><b>Wyszukaj</b></button>
+                    <button type="submit" id="but" class="btn btn-primary btn-lg btn-block przycisk"><b>Wyszukaj</b></button>
                 </form>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.
+                        getElementById('but')
+                            .addEventListener('click', e => {
+                                e.preventDefault();
+                                Wyszukaj();
+                            });
+                    });
+
+                    function Wyszukaj() {
+                        var name = document.getElementById("name").value;
+                        var street = document.getElementById("street").value;
+                        var type = document.getElementById("type").value;
+                        var building = document.getElementById("building").value;
+                        var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building;
+                        $.ajax({
+                            url: url2,
+                            type: "GET",
+                            success: function(response) {
+                                console.log(response);
+
+                            },
+                            error: function(error) {
+
+                            }
+                        });
+                    }
+                </script>
             </div>
         </div>
     </div>

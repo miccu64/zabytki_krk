@@ -114,35 +114,34 @@
                                 }
                                 http.send('email=' + poczta + '&password=' + haslo);
                             }
-
-
-
-                            /* chyba niepotrzebne
-
-                            document.getElementById("my-profile").addEventListener("click", getMe);
-
-                            function getMe(e) {
-                                e.preventDefault();
-                                var token = JSON.parse(localStorage.getItem('token'));
-                                console.log(`Authorization=Bearer ${token}`)
-                                fetch('/users/me', {
-                                        method: 'GET',
-                                        headers: {
-                                            'Authorization': 'Bearer ' + token
-                                        }
-                                    })
-                                    .then(res => res.json())
-                                    .then(data => {
-                                        localStorage.setItem('token', data);
-
-                                        // window.location.href = 'http://localhost:3000/dashboard';
-                                    })
-                                    .catch(err => {
-                                        console.log(err)
-                                    })
-                            }
-                            */
                         });
+
+
+                        /* chyba niepotrzebne
+
+                        document.getElementById("my-profile").addEventListener("click", getMe);
+
+                        function getMe(e) {
+                            e.preventDefault();
+                            var token = JSON.parse(localStorage.getItem('token'));
+                            console.log(`Authorization=Bearer ${token}`)
+                            fetch('/users/me', {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': 'Bearer ' + token
+                                    }
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    localStorage.setItem('token', data);
+
+                                    // window.location.href = 'http://localhost:3000/dashboard';
+                                })
+                                .catch(err => {
+                                    console.log(err)
+                                })
+                        }
+                        */
                     </script>
 
                 </form>
