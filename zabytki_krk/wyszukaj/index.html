@@ -92,31 +92,13 @@
                         getElementById('but')
                             .addEventListener('click', e => {
                                 e.preventDefault();
-                                Wyszukaj();
+                                localStorage.setItem('name', document.getElementById("name").value);
+                                localStorage.setItem('street', document.getElementById("street").value);
+                                localStorage.setItem('type', document.getElementById("type").value);
+                                localStorage.setItem('building', document.getElementById("building").value);
+                                location.href = "znalezione/";
                             });
                     });
-
-                    function Wyszukaj() {
-                        var name = document.getElementById("name").value;
-                        var street = document.getElementById("street").value;
-                        var type = document.getElementById("type").value;
-                        var building = document.getElementById("building").value;
-                        var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building;
-                        $.ajax({
-                            url: url2,
-                            type: "GET",
-                            success: function(response) {
-                                console.log(response);
-                                localStorage.setItem('tablica2', JSON.stringify(response.content));
-                                localStorage.setItem('iloscKart2', response.totalElements);
-                                localStorage.setItem('iloscStron2', response.totalPages);
-                                location.href = "znalezione/";
-                            },
-                            error: function(error) {
-
-                            }
-                        });
-                    }
                 </script>
             </div>
         </div>

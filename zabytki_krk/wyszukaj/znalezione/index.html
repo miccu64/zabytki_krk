@@ -408,12 +408,15 @@
             var tablica = localStorage.getItem('tablica2');
             tablica = JSON.parse(tablica);
             console.log(tablica);
-            wypisz(tablica, 1); //STRONA
-
+            wyslij(0);
 
             function wyslij(strona) {
                 var rozmiar = '12';
-                var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
+                var name = localStorage.getItem('name');
+                var street = localStorage.getItem('street');
+                var building = localStorage.getItem('building');
+                var type = localStorage.getItem('type');
+                var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
                 var http = new XMLHttpRequest();
                 http.open('GET', url2, true);
                 //Send the proper header information along with the request
@@ -422,9 +425,9 @@
                     if (http.readyState == 4 && http.status == 200) {
                         var myArr = this.responseText;
                         myArr = JSON.parse(this.responseText);
-                        localStorage.setItem('tablica', JSON.stringify(myArr.content));
-                        localStorage.setItem('iloscKart', myArr.totalElements);
-                        localStorage.setItem('iloscStron', myArr.totalPages);
+                        localStorage.setItem('tablica2', JSON.stringify(myArr.content));
+                        localStorage.setItem('iloscKart2', myArr.totalElements);
+                        localStorage.setItem('iloscStron2', myArr.totalPages);
 
                         console.log(myArr.content);
                         wypisz(myArr.content, strona + 1);
