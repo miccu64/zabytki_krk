@@ -16,7 +16,7 @@
 
     <title>Szczegóły zabytku</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
-    <link rel="stylesheet" href="szczegoly.css">
+    <link rel="stylesheet" href="edytuj.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
     <link rel="manifest" href="/manifest.json">
 
@@ -68,32 +68,32 @@
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" value="JakaśNazwa" disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" value="JakaśNazwa">
                             </div>
                             <div class="form-group">
                                 <label class="tekst odstep2" for="ulica">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="street" disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="street">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="wspx">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" value="50.0557" disabled>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" value="50.0557">
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" value="19.9371" disabled>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" value="19.9371">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="numer">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="numer" disabled>
+                                    <input type="text" class="form-control form-control-lg tekst" id="numer">
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="typ">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="typ" disabled>
+                                    <input type="text" class="form-control form-control-lg tekst" id="typ">
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="form-group">
                         <label class="tekst" for="poleTekstowe">Opis zabytku</label>
-                        <textarea class="form-control tekst" id="poleTekstowe" rows="6" disabled></textarea>
+                        <textarea class="form-control tekst" id="poleTekstowe" rows="6"></textarea>
                     </div>
                     <div class="odstep3"></div>
 
@@ -137,9 +137,6 @@
                                 success: function(response) {
                                     console.log(response);
                                     wypisz(response);
-
-
-
                                 },
                                 error: function(error) {
                                     console.log("Something went wrong", error);
@@ -148,12 +145,6 @@
 
                             });
                         }
-
-
-
-
-
-
 
                         function wypisz(myArr) {
 
@@ -166,6 +157,12 @@
                             document.getElementById('typ').value = myArr.type;
                             document.getElementById('poleTekstowe').value = myArr.description;
 
+                            var lat = myArr.latitude;
+                            var lng = myArr.longitude;
+                            if (marker !== null) {
+                                mymap.removeLayer(marker);
+                            }
+                            marker = L.marker([lat, lng]).addTo(mymap);
                         }
                     </script>
                     <div class="odstep3"></div>

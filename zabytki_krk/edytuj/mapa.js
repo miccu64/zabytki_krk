@@ -22,8 +22,8 @@ mymap.on('click', function(e) {
         }).then(function(json) {
             //console.log(json.display_name);
             if ((json.address.road) != undefined) {
-                document.getElementById("ulica").value = json.address.road;
-            } else document.getElementById("ulica").value = null;
+                document.getElementById("street").value = json.address.road;
+            } else document.getElementById("street").value = null;
             if ((json.address.house_number) != undefined) {
                 document.getElementById("numer").value = json.address.house_number;
             } else document.getElementById("numer").value = null;
