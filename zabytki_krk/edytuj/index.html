@@ -113,86 +113,143 @@
                         <textarea class="form-control tekst" id="description" name="description" rows="6"></textarea>
                     </div>
                     <div class="odstep3"></div>
-
-                    <div class="blad" id="blad2"></div>
-                    <div class="odstep"></div>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="edycja()"><b>Edytuj</b></button>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
-                    <script>
-                        function wstecz() {
-                            window.history.back();
-                        }
-
-                        function edycja() {
-
-
-                            var obj = $('#add-form').serializeJSON();
-                            console.log(JSON.stringify(obj));
-                            var id = localStorage.getItem("id");
-                            var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
-                            $.ajax({
-                                url: url2,
-                                dataType: 'json',
-                                type: "PUT",
-                                headers: {
-                                    'content-Type': 'application/json',
-                                    'Authorization': localStorage.getItem('token')
-                                },
-                                data: JSON.stringify(obj),
-                                contentType: 'application/json',
-                                success: function(response) {
-                                    alert('Pomyślnie edytowano zabytek.')
-                                    window.location.replace("/ostatnie");
-                                },
-                                error: function(error) {
-                                    console.log("Something went wrong", error);
-                                    alert('Wystąpił błąd!')
-                                }
-                            });
-
-                        }
-                        wyslij();
-
-                        function wyslij() {
-                            var id = localStorage.getItem("id");
-                            console.log(id);
-                            var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
-                            $.ajax({
-                                url: url2,
-                                type: "GET",
-                                success: function(response) {
-                                    console.log(response);
-                                    wypisz(response);
-                                },
-                                error: function(error) {
-                                    console.log("Something went wrong", error);
-
-                                }
-
-                            });
-                        }
-
-                        function wypisz(myArr) {
-
-
-                            document.getElementById('street').value = myArr.street;
-                            document.getElementById('latitude').value = myArr.latitude;
-                            document.getElementById('longitude').value = myArr.longitude;
-                            document.getElementById('building').value = myArr.building;
-                            document.getElementById('name').value = myArr.name;
-                            document.getElementById('type').value = myArr.type;
-                            document.getElementById('description').value = myArr.description;
-
-                            var lat = myArr.latitude;
-                            var lng = myArr.longitude;
-                            if (marker !== null) {
-                                mymap.removeLayer(marker);
-                            }
-                            marker = L.marker([lat, lng]).addTo(mymap);
-                        }
-                    </script>
-                    <div class="odstep3"></div>
                 </form>
+
+                <form id="file-form" class="custom-file">
+                    <div>
+                        <input type="file" class="custom-file-input" id="recentPhotos" name="recentPhotos">
+                        <label class="custom-file-label" for="recentPhotos">(Opcjonalnie) Wybierz plik ze zdjęciem...</label>
+                        <script>
+                            function checkextension() {
+                                var file = document.querySelector("#recentPhotos");
+                                //console.log(file.files[0]);
+                                if (/\.(jpe?g|png|gif)$/i.test(file.files[0].name) === false) {
+
+                                    alert("To nie jest zdjęcie lub niewłaściwy format!");
+                                    return false;
+                                } else return true;
+                            }
+
+                            $('.custom-file-input').on('change', function() {
+                                if (checkextension() == true) {
+                                    let fileName = $(this).val().split('\\').pop();
+                                    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+                                } else {
+                                    $(this).next('.custom-file-label').addClass("selected").html('Wybierz plik...');
+                                    document.getElementById("recentPhotos").value = null;
+                                }
+                            });
+                        </script>
+                    </div>
+                    <div class="odstep"></div>
+                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wyslijZdj()"><b>Edytuj</b></button>
+                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+
+
+
+                </form>
+                <script>
+                    function wstecz() {
+                        window.history.back();
+                    }
+
+
+                    function wyslijZdj() {
+
+                        var form = document.getElementById('file-form');
+                        var formData = new FormData(form);
+                        console.log(formData.get("recentPhotos"));
+                        id = localStorage.getItem('id');
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo',
+                            headers: {
+                                'content-Type': 'multipart/form-data',
+                                'Authorization': localStorage.getItem('token'),
+                                'file': 'nazwa.png'
+                            },
+                            data: formData,
+
+                            contentType: false,
+                            processData: false,
+                            success: function(data) {
+                                alert('Pomyślnie dodano zabytek.')
+                            },
+                            error: function(data) {
+                                alert('Błąd - nie dodano zabytku.');
+                            }
+                        });
+                    }
+
+
+
+                    function edycja() {
+                        var obj = $('#add-form').serializeJSON();
+                        console.log(JSON.stringify(obj));
+                        var id = localStorage.getItem("id");
+                        var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+                        $.ajax({
+                            url: url2,
+                            dataType: 'json',
+                            type: "PUT",
+                            headers: {
+                                'content-Type': 'application/json',
+                                'Authorization': localStorage.getItem('token')
+                            },
+                            data: JSON.stringify(obj),
+                            contentType: 'application/json',
+                            success: function(response) {
+                                alert('Pomyślnie edytowano zabytek.')
+                                window.location.replace("/ostatnie");
+                            },
+                            error: function(error) {
+                                console.log("Something went wrong", error);
+                                alert('Wystąpił błąd!')
+                            }
+                        });
+                    }
+
+                    wyslij();
+
+                    function wyslij() {
+                        var id = localStorage.getItem("id");
+                        console.log(id);
+                        var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+                        $.ajax({
+                            url: url2,
+                            type: "GET",
+                            success: function(response) {
+                                console.log(response);
+                                wypisz(response);
+                            },
+                            error: function(error) {
+                                console.log("Something went wrong", error);
+
+                            }
+
+                        });
+                    }
+
+                    function wypisz(myArr) {
+
+
+                        document.getElementById('street').value = myArr.street;
+                        document.getElementById('latitude').value = myArr.latitude;
+                        document.getElementById('longitude').value = myArr.longitude;
+                        document.getElementById('building').value = myArr.building;
+                        document.getElementById('name').value = myArr.name;
+                        document.getElementById('type').value = myArr.type;
+                        document.getElementById('description').value = myArr.description;
+
+                        var lat = myArr.latitude;
+                        var lng = myArr.longitude;
+                        if (marker !== null) {
+                            mymap.removeLayer(marker);
+                        }
+                        marker = L.marker([lat, lng]).addTo(mymap);
+                    }
+                </script>
             </div>
         </div>
 
