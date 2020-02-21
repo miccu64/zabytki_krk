@@ -1,5 +1,5 @@
 function wyloguj() {
-    localStorage.clear();
+    localStorage.removeItem('token');
     alert('Wylogowano pomyślnie.');
 }
 if (localStorage.getItem('token') == null) {
