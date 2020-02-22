@@ -156,23 +156,23 @@
 
                     function wyslijZdj() {
 
-                        var form = document.getElementById('file-form');
-                        var formData = new FormData(form);
-                        console.log(formData.get("recentPhotos"));
+                        let formData = new FormData();
+                        //var formData = new FormData();
+                        formData.append('file', document.getElementById('recentPhotos').files[0]);
+                        //console.log(formData.get("recentPhotos"));
                         id = localStorage.getItem('id');
 
                         $.ajax({
                             type: 'POST',
                             url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo',
-                            headers: {
-                                'content-Type': 'multipart/form-data',
-                                'Authorization': localStorage.getItem('token'),
-                                'file': 'nazwa.png'
-                            },
                             data: formData,
-
                             contentType: false,
                             processData: false,
+                            headers: {
+                                'archival': true,
+                                'Authorization': localStorage.getItem('token')
+                            },
+                            archival: true,
                             success: function(data) {
                                 alert('Pomyślnie dodano zabytek.')
                             },

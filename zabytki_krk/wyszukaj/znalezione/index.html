@@ -14,7 +14,7 @@
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
 
-    <title>Ostatnio dodane zabytki</title>
+    <title>Znalezione zabytki</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="ostatnie.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
@@ -53,7 +53,7 @@
     </nav>
 
     <div class="container-xl justify-content-center align-items-center">
-        <div class="row">
+        <div class="row h-100">
             <div class="col-12 odstep"></div>
             <div class="col-12 text-center">
                 <h1><b>Znalezione zabytki</b></h1>
@@ -61,15 +61,15 @@
         </div>
         <div class="col-12 odstep"></div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
-                <div id="k0" class="card border-info text-center tlo">
+            <div class="col-12 col-sm-6 col-lg-4 my-2 d-flex align-items-stretch">
+                <div id="k0" class="card border-info text-center tlo h-100">
                     <div id="nazwa0" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p0" class="mx-auto tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -79,23 +79,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ0" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-
-                                <button class="btn btn-info naglowki" onclick="szczegoly(0)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(0)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
-                <div id="k1" class="card border-info text-center tlo">
+            <div class="col-12 col-sm-6 col-lg-4 my-2 d-flex align-items-stretch">
+                <div id="k1" class="card border-info text-center tlo h-100">
                     <div id="nazwa1" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p1" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -105,22 +104,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ1" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(1)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(1)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2 d-flex align-items-stretch">
                 <div id="k2" class="card border-info text-center tlo">
                     <div id="nazwa2" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p2" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -130,22 +129,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ2" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(2)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(2)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k3" class="card border-info text-center tlo">
                     <div id="nazwa3" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p3" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -155,22 +154,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ3" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(3)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(3)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k4" class="card border-info text-center tlo">
                     <div id="nazwa4" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p4" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -180,22 +179,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ4" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(4)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(4)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k5" class="card border-info text-center tlo">
                     <div id="nazwa5" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p5" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -205,25 +204,25 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ5" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(5)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(5)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k6" class="card border-info text-center tlo">
                     <div id="nazwa6" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p6" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -233,22 +232,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ6" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(6)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(6)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k7" class="card border-info text-center tlo">
                     <div id="nazwa7" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p7" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -258,22 +257,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ7" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(7)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(7)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k8" class="card border-info text-center tlo">
                     <div id="nazwa8" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p8" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -283,22 +282,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ8" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(8)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(8)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k9" class="card border-info text-center tlo">
                     <div id="nazwa9" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p9" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -308,22 +307,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ9" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(9)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(9)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k10" class="card border-info text-center tlo">
                     <div id="nazwa10" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p10" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -333,22 +332,22 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ10" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(10)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(10)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="col-12 col-sm-6 col-lg-4 my-2">
                 <div id="k11" class="card border-info text-center tlo">
                     <div id="nazwa11" class="card-header naglowki bg-info">
                         Nazwa obiektu
                     </div>
-                    <div class="card-body">
+                    <div class="card card-body justify-content-center tlo" style="border: none;">
                         <div class="row">
                             <div class="col-6 image-container my-auto">
-                                <img class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/ostatnie.png" alt="Zdjęcie zabytku">
+                                <img id="p11" class="mx-auto img-fluid tlo zdjecia" src="/zdjecia/brak.png" alt="Zdjęcie zabytku">
                             </div>
                             <div class="col-6 my-auto">
                                 <div class="naglowki2">Ulica</div>
@@ -358,16 +357,16 @@
                                 <div class="naglowki2">Typ obiektu</div>
                                 <div id="typ11" class="tekst">Jakiś typ obiektu</div>
                             </div>
-                            <div class="odstep2 mx-auto">
-                                <button class="btn btn-info naglowki" onclick="szczegoly(11)" type="button">Szczegóły</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="odstep2 mx-auto mb-3">
+                        <button class="btn btn-info naglowki" onclick="szczegoly(11)" type="button">Szczegóły</button>
                     </div>
                 </div>
             </div>
             <script>
                 function szczegoly(liczba) {
-                    var tablica = localStorage.getItem('tablica2');
+                    var tablica = localStorage.getItem('tablica');
                     var tablica2 = JSON.parse(tablica);
                     localStorage.setItem('id', tablica2[liczba].id);
                     location.href = "/szczegoly/";
@@ -460,11 +459,17 @@
                     var pomocnicza1 = 'ulica' + i;
                     var pomocnicza2 = 'numer' + i;
                     var pomocnicza3 = 'typ' + i;
-                    console.log(max);
+                    var pomocnicza4 = 'p' + i;
+
                     document.getElementById(pomocnicza0).innerHTML = myArr[i].name;
                     document.getElementById(pomocnicza1).innerHTML = myArr[i].street;
                     document.getElementById(pomocnicza2).innerHTML = myArr[i].building;
                     document.getElementById(pomocnicza3).innerHTML = myArr[i].type;
+
+                    if (myArr[i].recentPhotos.length != 0) {
+                        var zdj = myArr[i].recentPhotos[0].imageName;
+                        document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
+                    } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
 
                     link = document.getElementById('k' + i);
                     link.style.display = 'inherit';
