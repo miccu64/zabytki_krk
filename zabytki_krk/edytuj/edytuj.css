@@ -10,6 +10,10 @@
     margin-top: calc(20px + 2vw);
 }
 
+.odstep4 {
+    margin-top: calc(15px + 1vw);
+}
+
 .tekst {
     font-size: 130%;
 }

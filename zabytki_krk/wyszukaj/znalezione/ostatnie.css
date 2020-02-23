@@ -12,7 +12,7 @@
 }
 
 .naglowki2 {
-    font-size: calc(90% + .5vw);
+    font-size: calc(110% + .5vw);
     font-weight: 600;
 }
 
@@ -22,5 +22,5 @@
 }
 
 .tekst {
-    font-size: calc(70% + .5vw);
+    font-size: calc(90% + .5vw);
 }

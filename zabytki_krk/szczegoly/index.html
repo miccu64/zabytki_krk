@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/skrypty/bootstrap.min.css">
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
+    <script src="/skrypty/ekko-lightbox.min.js"></script>
 
     <title>Szczegóły zabytku</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
@@ -61,8 +62,15 @@
             <div class="col-12 odstep"></div>
             <div class="col-12 text-center tekst">
                 <div class="naglowek"><b>Szczegóły zabytku</b></div>
-                <div class="col-12 odstep2">Tu jakieś zdjęcia</div>
-                <div class="col-12 odstep2"></div>
+                <script>
+                    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                        event.preventDefault();
+                        $(this).ekkoLightbox();
+                    });
+                </script>
+
+
+                <div class="col-12 odstep"></div>
                 <form>
                     <div class="form-row">
                         <div class="col-12 col-md-6 ">
@@ -119,14 +127,10 @@
                                 success: function(response) {
                                     console.log(response);
                                     wypisz(response);
-
-
                                 },
                                 error: function(error) {
-                                    console.log("Something went wrong", error);
-
+                                    console.log("Błąd sieci!", error);
                                 }
-
                             });
                         }
 
@@ -151,19 +155,51 @@
 
                             var marker = L.marker([lat, lng]).addTo(mymap);
                             marker.bindPopup(document.getElementById("nazwa").value).openPopup();
-
                         }
                     </script>
-                    <div class="row justify-content-center align-items-center">
+
+                    <div class="odstep2">
+                        <h4>(Kliknij zdjęcie, by je powiększyć)</h4>
+                    </div>
+                    <div class="row justify-content-center odstep">
+                        <div class="col-10">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-12">
+                                    <h3>Zdjęcie archiwalne</h3>
+                                </div>
+                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-4 col-6 col-xl-3">
+                                    <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="row justify-content-center align-items-center mt-4">
+                                <div class="col-12">
+                                    <h3>Zdjęcia aktualne</h3>
+                                </div>
+                                <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center odstep3">
                         <div class="col-12 px-5">
                             <div id="mapid">
                             </div>
                         </div>
-                        <div class="col-12 odstep"></div>
+                        <div class="col-12 odstep3"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="tekst" for="poleTekstowe">Opis zabytku</label>
-                        <textarea class="form-control tekst" id="poleTekstowe" rows="6" disabled></textarea>
+                    <div class="form-group row justify-content-center align-items-center">
+                        <div class="col-lg-9">
+                            <label class="tekst" for="poleTekstowe">Opis zabytku</label>
+                            <textarea class="form-control tekst" id="poleTekstowe" rows="6" placeholder="Brak opisu. Dodaj własny!" disabled></textarea>
+                        </div>
                     </div>
                     <div class="odstep3"></div>
 
