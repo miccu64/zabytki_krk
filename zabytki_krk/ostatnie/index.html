@@ -459,8 +459,9 @@
                 document.getElementById(pomocnicza2).innerHTML = myArr[i].building;
                 document.getElementById(pomocnicza3).innerHTML = myArr[i].type;
 
-                if (myArr[i].recentPhotos.length != 0) {
-                    var zdj = myArr[i].recentPhotos[0].imageName;
+                var iloscZdj = myArr[i].recentPhotos.length;
+                if (iloscZdj != 0) {
+                    var zdj = myArr[i].recentPhotos[iloscZdj - 1].imageName;
                     document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
                 } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
 

@@ -107,82 +107,49 @@
                         </div>
                     </div>
                     <div class="odstep3"></div>
-                    <script>
-                        function wstecz() {
-                            window.history.back();
-                        }
 
-                        function edycja() {
-                            location.href = "/edytuj/";
-                        }
-                        wyslij();
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Data dodania:</h3>
+                            <div id="dataDod" class="tekst"></div>
+                            <div class="odstep2"></div>
+                            <h3>Dodano przez:</h3>
+                            <div id="dodal" class="tekst"></div>
+                        </div>
+                        <div class="col-6">
+                            <h3>Data ostatniej edycji:</h3>
+                            <div id="dataEd" class="tekst">-</div>
+                            <div class="odstep2"></div>
+                            <h3>Ostatnio edytowane przez:</h3>
+                            <div id="edytowal" class="tekst">-</div>
+                        </div>
+                    </div>
 
-                        function wyslij() {
-                            var id = localStorage.getItem("id");
-                            console.log(id);
-                            var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
-                            $.ajax({
-                                url: url2,
-                                type: "GET",
-                                success: function(response) {
-                                    console.log(response);
-                                    wypisz(response);
-                                },
-                                error: function(error) {
-                                    console.log("Błąd sieci!", error);
-                                }
-                            });
-                        }
-
-                        function wypisz(myArr) {
-
-                            document.getElementById('street').value = myArr.street;
-                            document.getElementById('wspx').value = myArr.latitude;
-                            document.getElementById('wspy').value = myArr.longitude;
-                            document.getElementById('numer').value = myArr.building;
-                            document.getElementById('nazwa').value = myArr.name;
-                            document.getElementById('typ').value = myArr.type;
-                            document.getElementById('poleTekstowe').value = myArr.description;
-
-                            var lat = document.getElementById("wspx").value;
-                            var lng = document.getElementById("wspy").value;
-
-                            var mymap = L.map('mapid').setView([lat, lng], 18);
-
-                            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            }).addTo(mymap);
-
-                            var marker = L.marker([lat, lng]).addTo(mymap);
-                            marker.bindPopup(document.getElementById("nazwa").value).openPopup();
-                        }
-                    </script>
-
-                    <div class="odstep2">
+                    <div id="opis" class="odstep3">
                         <h4>(Kliknij zdjęcie, by je powiększyć)</h4>
                     </div>
-                    <div class="row justify-content-center odstep">
+                    <div class="row justify-content-center">
                         <div class="col-10">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-12">
+                            <div class="row justify-content-center align-items-center mb-4">
+                                <div id="archNapis" class="col-12 odstep">
                                     <h3>Zdjęcie archiwalne</h3>
                                 </div>
-                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-4 col-6 col-xl-3">
-                                    <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+                                <a id="arch1" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-4 col-6 col-xl-3">
+                                    <img id="arch11" class="img-fluid">
                                 </a>
                             </div>
-                            <div class="row justify-content-center align-items-center mt-4">
-                                <div class="col-12">
+                            <div class="row justify-content-center align-items-center">
+                                <div id="recentNapis" class="col-12">
                                     <h3>Zdjęcia aktualne</h3>
                                 </div>
-                                <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
+                                <a id="recent2" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img id="recent22" class="img-fluid">
                                 </a>
-                                <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
+                                <a id="recent1" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img id="recent11" class="img-fluid">
                                 </a>
-                                <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid">
+                                <a id="recent0" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
+                                    <img id="recent00" class="img-fluid">
                                 </a>
                             </div>
                         </div>
@@ -190,6 +157,9 @@
 
                     <div class="row justify-content-center align-items-center odstep3">
                         <div class="col-12 px-5">
+                            <div>
+                                <h3>Mapa</h3>
+                            </div>
                             <div id="mapid">
                             </div>
                         </div>
@@ -209,6 +179,7 @@
                     <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
 
                     <div class="odstep3"></div>
+                    <script src="skryptySzczeg.js"></script>
                 </form>
             </div>
         </div>
