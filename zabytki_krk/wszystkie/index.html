@@ -2,7 +2,6 @@
 <html lang="pl">
 
 <head>
-    <!-- Required meta tags -->
     <link rel="apple-touch-icon" href="/zdjecia/ikona/192.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,13 +14,17 @@
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
 
-    <title>Krakowskie zabytki</title>
+    <title>Wszystkie zabytki - mapa</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
-    <link rel="stylesheet" href="regulamin.css">
+    <link rel="stylesheet" href="wszystkie.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
     <link rel="manifest" href="/manifest.json">
 
+    <link rel="stylesheet" href="/skrypty/leaflet.css" />
+    <script src="/skrypty/leaflet.js"></script>
+
 </head>
+<!-- DODAĆ CAPTCHA -->
 
 <body>
     <nav class="navbar navbar-expand-sm bg-custom justify-content-left navbar-dark">
@@ -53,8 +56,27 @@
         </button>
     </nav>
 
-    <div class="container-xl justify-content-center align-items-center">
-        Jakiś regulamin
+    <div class="container-bg justify-content-center align-items-center p-4">
+        <div class="row">
+            <div class="col-12 odstep"></div>
+            <div class="col-12 text-center tekst">
+                <div class="naglowek"><b>Wszystkie zabytki zaznaczone na mapie</b></div>
+                <div class="odstep"></div>
+                <h3>Kliknij w zaznaczony obiekt, aby poznać jego szczegóły.</h3>
+                <div class="odstep3"></div>
+                <div class="row justify-content-center align-items-center odstep3">
+                    <div class="col-12 px-5">
+                        <div id="mapid">
+                        </div>
+                    </div>
+                    <div class="col-12 odstep3"></div>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+                <div class="odstep3"></div>
+                <script src="skryptyWszystk.js"></script>
+            </div>
+        </div>
+
     </div>
     <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
 </body>

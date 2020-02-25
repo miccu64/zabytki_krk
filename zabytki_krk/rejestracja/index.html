@@ -29,25 +29,29 @@
         <a class="navbar-brand" href="/">
             <img class="img-fluid" src="/zdjecia/logo_male.jpg" style="width:60px;" alt="logoWUOZ">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" ></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+            </li>
+            <li class="nav-item">
+                <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
+            </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
                     <a class="nav-link linki" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/logowanie">Logowanie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link linki" href="/rejestracja">Rejestracja</a>
+                    <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
-            </ul>
-        </div>
+                <script src="/skrypty/navbar.js"></script>
+            </div>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </nav>
 
     <div class="container-xl justify-content-center align-items-center">

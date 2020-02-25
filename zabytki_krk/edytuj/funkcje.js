@@ -3,6 +3,16 @@ $('#add-form').submit(function() {
     return false;
 });
 
+czyZalogowany();
+
+function czyZalogowany() {
+    var token = localStorage.getItem('token');
+    if (token == null) {
+        alert("Musisz się zalogować, aby edytować zabytek!");
+        window.location.replace("/logowanie");
+    }
+}
+
 function wstecz() {
     window.history.back();
 }

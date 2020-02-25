@@ -9,17 +9,15 @@ wyslij();
 
 function wyslij() {
     var id = localStorage.getItem("id");
-    console.log(id);
     var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
     $.ajax({
         url: url2,
         type: "GET",
         success: function(response) {
-            console.log(response);
             wypisz(response);
         },
         error: function(error) {
-            console.log("Błąd sieci!", error);
+            alert("Błąd sieci!", error);
         }
     });
 }
