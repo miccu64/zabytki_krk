@@ -8,7 +8,7 @@ function edycja() {
 wyslij();
 
 function wyslij() {
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts?page=0&size=9999';
+    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/in_area?lat1=50&lat2=50.15&lon1=19.75&lon2=20.15';
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -21,7 +21,7 @@ function wyslij() {
             localStorage.setItem('iloscKart', myArr.totalElements);
             localStorage.setItem('iloscStron', myArr.totalPages);
 
-            wypisz(myArr.content);
+            wypisz(myArr);
 
         } else if (http.readyState == 4) {
             alert('Błąd!');
@@ -42,6 +42,6 @@ function wypisz(myArr) {
         }).addTo(mymap);
 
         var marker = L.marker([lat, lng]).addTo(mymap);
-        marker.bindPopup("Nazwa: " + myArr[a].name + "<br>Typ: " + myArr[a].type + "<br>Ulica: " + myArr[a].street + "<br>Nr budynku: " + myArr[a].building);
+        marker.bindPopup("<p class='myCss'><b>Typ:</b> " + myArr[a].type + "<b><br>ID:</b> " + myArr[a].id);
     }
 }
