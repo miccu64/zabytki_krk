@@ -19,7 +19,7 @@ function wstecz() {
 
 function edycja() {
     var obj = $('#add-form').serializeJSON();
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/';
+    var url2 = server + '/api/v1/artifacts/';
     $.ajax({
         url: url2,
         dataType: 'json',
@@ -42,7 +42,7 @@ function edycja() {
                 var id = localStorage.getItem('idDodane');
                 $.ajax({
                     type: 'POST',
-                    url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
+                    url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -65,7 +65,7 @@ function edycja() {
                 var id = localStorage.getItem('idDodane');
                 $.ajax({
                     type: 'POST',
-                    url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
+                    url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
                     data: formData2,
                     contentType: false,
                     processData: false,

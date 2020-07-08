@@ -1,3 +1,7 @@
+//link to server :-)
+//var server = 'https://polar-chamber-44010.herokuapp.com';
+var server = 'http://127.0.0.1:8090';
+
 function wyloguj() {
     localStorage.removeItem('token');
     alert('Wylogowano pomyślnie.');

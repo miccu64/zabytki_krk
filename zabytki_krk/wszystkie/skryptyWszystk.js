@@ -8,7 +8,7 @@ function edycja() {
 wyslij();
 
 function wyslij() {
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/in_area?lat1=50&lat2=50.15&lon1=19.75&lon2=20.15';
+    var url2 = server + '/api/v1/artifacts/in_area?lat1=50&lat2=50.15&lon1=19.75&lon2=20.15';
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request

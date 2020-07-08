@@ -2,7 +2,7 @@ wyslij(0);
 
 function wyslij(strona) {
     var rozmiar = '12';
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
+    var url2 = server + '/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -55,10 +55,10 @@ function wypisz(myArr, strona) {
         var iloscZdj = myArr[i].recentPhotos.length;
         if (iloscZdj != 0) {
             var zdj = myArr[i].recentPhotos[iloscZdj - 1].imageName;
-            document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
+            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
         } else if (myArr[i].archivalPhoto != null) {
             var zdj = myArr[i].archivalPhoto.imageName;
-            document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
+            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
         } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
 
         link = document.getElementById('k' + i);

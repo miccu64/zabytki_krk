@@ -8,7 +8,7 @@ function wyslij(strona) {
     var street = localStorage.getItem('street');
     var building = localStorage.getItem('building');
     var type = localStorage.getItem('type');
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
+    var url2 = server + '/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -42,6 +42,10 @@ function wypisz(myArr, strona) {
     } else var iloscLacznie = iloscStron * 12; //tyle mamy mozliwych do pobrania kart
     var iloscMiejsc = iloscStron * 12;
 
+    if(iloscLacznie!=0) {
+        link = document.getElementById('nieZnaleziono').style.display = 'none';
+    }
+
     if (strona * 12 < iloscLacznie) {
         var max = 12;
     } else var max = iloscKart;
@@ -61,10 +65,10 @@ function wypisz(myArr, strona) {
         var iloscZdj = myArr[i].recentPhotos.length;
         if (iloscZdj != 0) {
             var zdj = myArr[i].recentPhotos[iloscZdj - 1].imageName;
-            document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
+            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
         } else if (myArr[i].archivalPhoto != null) {
             var zdj = myArr[i].archivalPhoto.imageName;
-            document.getElementById(pomocnicza4).src = 'https://polar-chamber-44010.herokuapp.com/assets/' + zdj;
+            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
         } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
 
         link = document.getElementById('k' + i);

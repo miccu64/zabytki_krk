@@ -109,7 +109,7 @@
                                     var poczta = document.getElementById("poczta").value;
                                     var login = document.getElementById("login").value;
                                     var haslo = document.getElementById("haslo").value;
-                                    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/user/register?email=' + poczta + '&password=' + haslo + '&name=' + login;
+                                    var url2 = server + '/api/v1/user/register?email=' + poczta + '&password=' + haslo + '&name=' + login;
                                     console.log(url2);
                                     $.ajax({
                                         url: url2,

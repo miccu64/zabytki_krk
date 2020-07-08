@@ -27,7 +27,7 @@ function wyslijZdj() {
         var id = localStorage.getItem('id');
         $.ajax({
             type: 'POST',
-            url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
+            url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
             data: formData,
             contentType: false,
             processData: false,
@@ -52,7 +52,7 @@ function wyslijZdjArchiw() {
         var id = localStorage.getItem('id');
         $.ajax({
             type: 'POST',
-            url: 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
+            url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
             data: formData,
             contentType: false,
             processData: false,
@@ -73,7 +73,7 @@ function edycja() {
     var obj = $('#add-form').serializeJSON();
     console.log(JSON.stringify(obj));
     var id = localStorage.getItem("id");
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+    var url2 = server + '/api/v1/artifacts/by_id/' + id;
     $.ajax({
         url: url2,
         dataType: 'json',
@@ -98,7 +98,7 @@ pobierz();
 
 function pobierz() {
     var id = localStorage.getItem("id");
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+    var url2 = server + '/api/v1/artifacts/by_id/' + id;
     $.ajax({
         url: url2,
         type: "GET",

@@ -9,7 +9,7 @@ wyslij();
 
 function wyslij() {
     var id = localStorage.getItem("id");
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/artifacts/by_id/' + id;
+    var url2 = server + '/api/v1/artifacts/by_id/' + id;
     $.ajax({
         url: url2,
         type: "GET",
@@ -45,7 +45,7 @@ function wypisz(myArr) {
     marker.bindPopup(document.getElementById("nazwa").value).openPopup();
 
     //ukrywanie zdjec
-    var doZdj = 'https://polar-chamber-44010.herokuapp.com/assets/';
+    var doZdj = server + '/assets/';
     var zdjArch = myArr.archivalPhoto;
     if (zdjArch == null) {
         document.getElementById('archNapis').style.display = 'none';

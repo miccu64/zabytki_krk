@@ -6,7 +6,7 @@ $('#add-form').submit(function() {
 function klik() {
     var poczta = document.getElementById("poczta").value;
     var haslo = document.getElementById("haslo").value;
-    var url2 = 'https://polar-chamber-44010.herokuapp.com/api/v1/user/login';
+    var url2 = server + '/api/v1/user/login';
 
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
