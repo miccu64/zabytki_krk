@@ -5,14 +5,6 @@ $('#add-form').submit(function() {
 
 czyZalogowany();
 
-function czyZalogowany() {
-    var token = localStorage.getItem('token');
-    if (token == null) {
-        alert("Musisz się zalogować, aby dodać zabytek!");
-        window.location.replace("/logowanie");
-    }
-}
-
 function wstecz() {
     window.history.back();
 }

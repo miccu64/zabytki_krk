@@ -24,3 +24,7 @@
 .tekst {
     font-size: calc(90% + .5vw);
 }
+
+#ukryj {
+    visibility: hidden;
+}

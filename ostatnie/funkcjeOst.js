@@ -80,4 +80,7 @@ function wypisz(myArr, strona) {
         link = document.getElementById('b' + d);
         link.style.display = 'none';
     }
+
+    //pokazuje po wypelnieniu
+    document.getElementById("ukryj").style.visibility = "visible";
 }

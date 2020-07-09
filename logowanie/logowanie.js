@@ -3,6 +3,8 @@ $('#add-form').submit(function() {
     return false;
 });
 
+czyNiezalogowany();
+
 function klik() {
     var poczta = document.getElementById("poczta").value;
     var haslo = document.getElementById("haslo").value;
