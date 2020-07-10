@@ -29,16 +29,19 @@
         <a class="navbar-brand" href="/">
             <img class="img-fluid" src="/zdjecia/logo_male.jpg" style="width:60px;" alt="logoWUOZ">
         </a>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto flex-row">
             <li class="nav-item">
-                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+                <a class="nav-link linki" href="/">Strona główna</a>
             </li>
             <li class="nav-item">
                 <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
             </li>
+            <li class="nav-item">
+                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+            </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/">Strona główna</a>
+                    <a id="niezalogowany2" class="nav-link linki" href="/konto">Konto</a>
                 </li>
                 <li class="nav-item">
                     <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
@@ -46,45 +49,62 @@
                 <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
-                <script src="/skrypty/navbar.js"></script>
             </div>
         </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <script src="/skrypty/navbar.js"></script>
     </nav>
 
     <div class="container-xl justify-content-center align-items-center">
         <div class="row justify-content-center">
-            <div class="col-12 odstep3"></div>
+            <div class="col-12 odstep"></div>
             <div class="col-12 col-md-6 text-center tekst">
                 <div class="naglowek"><b>Informacje o koncie</b></div>
-
                 <div class="col-12 odstep"></div>
-                <form id="add-form">
-                    <div class="form-row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="tekst odstep2" for="stareHaslo">Stare hasło</label>
-                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="stareHaslo" required>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="tekst odstep2" for="noweHaslo">Nowe hasło</label>
-                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="noweHaslo" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="odstep3"></div>
-                    <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Zaloguj</b></button>
-                    <script src="konto.js"></script>
-                </form>
-                <div class="odstep4"></div>
-                <div class="col-12 tekst">
-                    Nie posiadasz konta? <a href="/rejestracja/">Zarejestruj się!</a>
+                <div class="col-12 odstep naglowek2">
+                    <b>Nazwa użytkownika:</b>
+                    <p id="nazwa"></p>
                 </div>
-                <div class="odstep5"></div>
+                <div class="col-12 odstep naglowek2">
+                    <b>Adres e-mail:</b>
+                    <p id="mail"></p>
+                </div>
+                <div>       
+                    <b><a id="wybor" class="naglowek odstep3" href="">Zmień hasło</a></b>
+                </div>
+                <script>
+                    document.getElementById("wybor").addEventListener("click", function() {event.preventDefault(); document.getElementById("zmienHaslo").style.visibility = "visible"}, false);
+                </script>
+                <div id="zmienHaslo" style="visibility: hidden;">
+                    <form id="add-form">
+                        <div class="form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="tekst odstep2" for="stareHaslo">Stare hasło</label>
+                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="stareHaslo" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="tekst odstep2" for="noweHaslo">Nowe hasło</label>
+                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="noweHaslo" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="tekst odstep2" for="noweHaslo2">Powtórz nowe hasło</label>
+                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="noweHaslo2" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="odstep"></div>
+                        <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Zmień hasło</b></button>
+                        <script src="konto.js"></script>
+                    </form>
+                </div>
+                <div class="odstep3"></div>
             </div>
         </div>
     </div>

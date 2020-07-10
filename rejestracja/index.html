@@ -29,16 +29,19 @@
         <a class="navbar-brand" href="/">
             <img class="img-fluid" src="/zdjecia/logo_male.jpg" style="width:60px;" alt="logoWUOZ">
         </a>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto flex-row">
             <li class="nav-item">
-                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+                <a class="nav-link linki" href="/">Strona główna</a>
             </li>
             <li class="nav-item">
                 <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
             </li>
+            <li class="nav-item">
+                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+            </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/">Strona główna</a>
+                    <a id="niezalogowany2" class="nav-link linki" href="/konto">Konto</a>
                 </li>
                 <li class="nav-item">
                     <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
@@ -46,17 +49,17 @@
                 <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
-                <script src="/skrypty/navbar.js"></script>
             </div>
         </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <script src="/skrypty/navbar.js"></script>
     </nav>
 
     <div class="container-xl justify-content-center align-items-center">
         <div class="row justify-content-center">
-            <div class="col-12 odstep3"></div>
+            <div class="col-12 odstep"></div>
             <div class="col-12 col-md-6 text-center tekst">
                 <div class="naglowek"><b>Rejestracja</b></div>
 
@@ -81,14 +84,20 @@
                                 <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="haslo" name="haslo" required>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="haslo2">Powtórz hasło</label>
+                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="haslo2" name="haslo2" required>
+                            </div>
+                        </div>
 
                         <div class="col-12">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input my_checkbox" id="zaznacz" required>
                                 <div class="odstep2">
-                                    <p>s</p>
+                                    <p><br></p>
                                     <label class="form-check-label tekst" for="zaznacz">Oznajmiam, że zapoznałem/am się z 
-                                <a href="regulamin">Regulaminem</a>
+                                <a href="regulamin"><b>Regulaminem</b></a>
                                  i go akceptuję.</label>
                                 </div>
                             </div>
@@ -98,35 +107,7 @@
                     <div class="row justify-content-center">
                         <div class="col-12 ">
                             <button type="submit" class="btn btn-primary btn-lg przycisk" id="zarejestruj"><b>Zarejestruj</b></button>
-                            <script>
-                                czyNiezalogowany();
-                                $('#add-form').submit(function() {
-                                    klik();
-                                    return false;
-                                });
-
-                                function klik() {
-
-                                    var poczta = document.getElementById("poczta").value;
-                                    var login = document.getElementById("login").value;
-                                    var haslo = document.getElementById("haslo").value;
-                                    var url2 = server + '/api/v1/user/register?email=' + poczta + '&password=' + haslo + '&name=' + login;
-                                    console.log(url2);
-                                    $.ajax({
-                                        url: url2,
-                                        type: "POST",
-                                        success: function(response) {
-                                            console.log(response);
-                                            alert('Zarejestrowano! Teraz możesz się zalogować.');
-                                            window.location.replace("/logowanie/");
-                                        },
-                                        error: function(error) {
-                                            console.log("Something went wrong", error);
-                                            alert('Taki login lub e-mail jest już zarejestrowany. Podaj inny.');
-                                        }
-                                    });
-                                }
-                            </script>
+                            <script src="rejestracja.js"></script>
                         </div>
                     </div>
                 </form>

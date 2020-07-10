@@ -25,6 +25,10 @@ body {
     font-size: 200%;
 }
 
+.navbar-nav li {
+    padding: 0 3px;
+}
+
 .footer {
     position: absolute;
     left: 0;

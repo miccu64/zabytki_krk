@@ -29,16 +29,19 @@
         <a class="navbar-brand" href="/">
             <img class="img-fluid" src="/zdjecia/logo_male.jpg" style="width:60px;" alt="logoWUOZ">
         </a>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto flex-row">
             <li class="nav-item">
-                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+                <a class="nav-link linki" href="/">Strona główna</a>
             </li>
             <li class="nav-item">
                 <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
             </li>
+            <li class="nav-item">
+                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+            </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
-                    <a class="nav-link linki" href="/">Strona główna</a>
+                    <a id="niezalogowany2" class="nav-link linki" href="/konto">Konto</a>
                 </li>
                 <li class="nav-item">
                     <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
@@ -46,12 +49,12 @@
                 <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
-                <script src="/skrypty/navbar.js"></script>
             </div>
         </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <script src="/skrypty/navbar.js"></script>
     </nav>
 
     <div class="container-xl">

@@ -4,11 +4,24 @@ $('#add-form').submit(function() {
 });
 
 czyZalogowany();
+wyswietl();
+
+function wyswietl() {
+    var token = localStorage.getItem('token');
+    var decoded = jwt_decode(token);
+    document.getElementById("mail").innerHTML = decoded.sub;
+    document.getElementById("nazwa").innerHTML = decoded.name;
+}
 
 function klik() {
     var stareHaslo = document.getElementById("stareHaslo").value;
     var noweHaslo = document.getElementById("noweHaslo").value;
-    var url2 = server + '/api/v1/user/changePass?';
+    var noweHaslo2 = document.getElementById("noweHaslo2").value;
+    if(noweHaslo!=noweHaslo2) {
+        alert("Nowe hasło i jego potwierdzenie są różne, wpisz je ponownie.");
+        return;
+    }
+    var url2 = server + '/api/v1/user/changePass';
     var token = localStorage.getItem('token');
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
