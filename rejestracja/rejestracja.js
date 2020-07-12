@@ -6,7 +6,7 @@ $('#add-form').submit(function () {
 
 function klik() {
 
-    var poczta = document.getElementById("poczta").value;
+    var poczta = document.getElementById("poczta").value; 
     var login = document.getElementById("login").value;
     var haslo = document.getElementById("haslo").value;
     var haslo2 = document.getElementById("haslo2").value;
@@ -24,7 +24,12 @@ function klik() {
             window.location.replace("/logowanie/");
         },
         error: function (error) {
-            alert('Taki login lub e-mail jest już zarejestrowany. Podaj inny.');
+            var err = error.responseText;
+            if(err == 'mail')
+                alert('Taki e-mail jest już zarejestrowany. Podaj inny.');
+            else if(err == 'name')
+                alert('Taki login jest już zarejestrowany. Podaj inny.');
+            else alert('Taki login lub email jest już zarejestrowany. Podaj inny.');
         }
     });
 }

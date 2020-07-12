@@ -67,14 +67,14 @@
                     <div class="form-row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="tekst odstep2" for="poczta">Adres e-mail</label>
-                                <input pattern=".{6,}" title="E-mail musi zawierać co najmniej 6 znaków" type="email" class="form-control form-control-lg tekst" id="poczta" aria-describedby="emailHelp" required>
+                                <label class="tekst odstep2" for="poczta">Adres e-mail lub login</label>
+                                <input minlength="6" maxlength="255" title="Wpisz co najmniej 6 znaków" class="form-control form-control-lg tekst" id="poczta" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="haslo">Hasło</label>
-                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="haslo" required>
+                                <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="haslo" required>
                             </div>
                         </div>
                     </div>

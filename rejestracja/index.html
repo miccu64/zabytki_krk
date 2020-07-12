@@ -69,25 +69,25 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="poczta">Adres e-mail</label>
-                                <input pattern=".{6,}" title="E-mail musi zawierać co najmniej 6 znaków" type="email" class="form-control form-control-lg tekst" id="poczta" name="poczta" aria-describedby="emailHelp" required>
+                                <input pattern="[^@\s]+@[^@\s]+" minlength="6" maxlength="255" title="E-mail musi zawierać co najmniej 6 znaków oraz musi się składać z dozwolonych znaków" type="email" class="form-control form-control-lg tekst" id="poczta" name="poczta" aria-describedby="emailHelp" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="login">Nazwa użytkownika</label>
-                                <input pattern=".{6,40}" title="Nazwa użytkownika musi zawierać od 6 do 40 znaków" type="text" class="form-control form-control-lg tekst" id="login" name="login" required>
+                                <input pattern="[a-zA-Z0-9]+" minlength="6" maxlength="60" title="Nazwa użytkownika musi zawierać od 6 do 60 znaków i nie może zawierać znaków specjalnych" type="text" class="form-control form-control-lg tekst" id="login" name="login" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="haslo">Hasło</label>
-                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="haslo" name="haslo" required>
+                                <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="haslo" name="haslo" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="haslo2">Powtórz hasło</label>
-                                <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="haslo2" name="haslo2" required>
+                                <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="haslo2" name="haslo2" required>
                             </div>
                         </div>
 

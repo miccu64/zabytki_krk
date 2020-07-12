@@ -17,6 +17,10 @@ function klik() {
     var stareHaslo = document.getElementById("stareHaslo").value;
     var noweHaslo = document.getElementById("noweHaslo").value;
     var noweHaslo2 = document.getElementById("noweHaslo2").value;
+    if(noweHaslo==stareHaslo) {
+        alert("Nowe i stare hasło są jednakowe, wpisz inne nowe hasło.");
+        return;
+    }
     if(noweHaslo!=noweHaslo2) {
         alert("Nowe hasło i jego potwierdzenie są różne, wpisz je ponownie.");
         return;

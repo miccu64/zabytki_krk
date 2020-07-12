@@ -83,19 +83,19 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="tekst odstep2" for="stareHaslo">Stare hasło</label>
-                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="stareHaslo" required>
+                                    <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="stareHaslo" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="tekst odstep2" for="noweHaslo">Nowe hasło</label>
-                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="noweHaslo" required>
+                                    <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="noweHaslo" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="tekst odstep2" for="noweHaslo2">Powtórz nowe hasło</label>
-                                    <input pattern=".{8,20}" title="Hasło musi zawierać od 8 do 20 znaków" type="password" class="form-control form-control-lg tekst" id="noweHaslo2" required>
+                                    <input pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="8" maxlength="20" title="Hasło musi zawierać od 8 do 20 znaków oraz zawierać co najmniej jedną dużą i małą literę, a także cyfrę lub znak specjalny" type="password" class="form-control form-control-lg tekst" id="noweHaslo2" required>
                                 </div>
                             </div>
                         </div>
