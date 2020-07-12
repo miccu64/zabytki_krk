@@ -18,7 +18,7 @@ function klik() {
         if (http.readyState == 4 && http.status == 200) {
             localStorage.setItem('token', http.responseText);
             alert('Zalogowano pomyślnie!');
-            window.location.replace("/");
+            window.location.assign("/");
         } else if (http.readyState == 4) {
             alert('Złe dane logowania!');
         }

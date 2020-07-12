@@ -36,7 +36,7 @@ function klik() {
         if (http.readyState == 4 && http.status == 200) {
             if(http.responseText == token) {
                 alert('Pomyślnie zmieniono hasło!');
-                window.location.replace("/");
+                window.location.assign("/");
             }
         } else if (http.readyState == 4) {
             alert('Niewłaściwe stare hasło!');

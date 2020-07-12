@@ -21,7 +21,7 @@ function klik() {
         type: "POST",
         success: function (response) {
             alert('Zarejestrowano! Teraz możesz się zalogować.');
-            window.location.replace("/logowanie/");
+            window.location.assign("/logowanie/");
         },
         error: function (error) {
             var err = error.responseText;

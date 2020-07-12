@@ -20,6 +20,7 @@ function wyslij() {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             localStorage.setItem('iloscKart', myArr.totalElements);
             localStorage.setItem('iloscStron', myArr.totalPages);
+            console.log(myArr);
 
             wypisz(myArr);
 
@@ -30,18 +31,36 @@ function wyslij() {
     http.send();
 }
 
+function przekieruj() {
+    var idw = localStorage.getItem("idw");
+    localStorage.setItem("id", idw);
+    window.location.assign("/szczegoly/");
+}
+
 function wypisz(myArr) {
     var mymap = L.map('mapid').setView([50.0614, 19.9365], 14);
-    for (var a = 0; a < (myArr.length); a++) {
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
 
+    customMarker = L.Marker.extend({
+        options: { 
+        myID: 'Custom data!'
+        }
+    });
+    
+    for (var a = 0; a < (myArr.length); a++) {
         var lat = myArr[a].latitude;
         var lng = myArr[a].longitude;
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-
-        var marker = L.marker([lat, lng]).addTo(mymap);
-        marker.bindPopup("<p class='myCss'><b>Typ:</b> " + myArr[a].type + "<b><br>ID:</b> " + myArr[a].id);
+        var marker = new customMarker([lat, lng], {myID: myArr[a].id}).on('click', onClick).addTo(mymap);
+        
+        var help = "<p class='myCss'><b>Nazwa:</b> " + myArr[a].name + "<br><b>Typ:</b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
+        help += '<br><button type="button" onclick=przekieruj();>Szczegóły zabytku</button>';
+        marker.bindPopup(help);
     }
+}
+
+function onClick(e) {
+    localStorage.setItem("idw", this.options.myID);
 }

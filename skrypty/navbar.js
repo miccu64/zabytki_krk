@@ -7,7 +7,7 @@ function czyZalogowany() {
     var token = localStorage.getItem('token');
     if (token == null) {
         alert("Zaloguj się, aby wykonać tę czynność.");
-        window.location.replace("/logowanie");
+        window.location.assign("/logowanie");
     }
 }
 
