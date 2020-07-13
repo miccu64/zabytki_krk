@@ -1,5 +1,9 @@
 czyNiezalogowany();
 $('#add-form').submit(function () {
+    var button = document.getElementById("zarejestruj");
+    button.style.display = 'none';
+    button = document.getElementById("czekaj");
+    button.style.display = 'initial';
     klik();
     return false;
 });
@@ -24,6 +28,10 @@ function klik() {
             window.location.assign("/logowanie/");
         },
         error: function (error) {
+            var button = document.getElementById("zarejestruj");
+            button.style.display = 'initial';
+            button = document.getElementById("czekaj");
+            button.style.display = 'none';
             var err = error.responseText;
             if(err == 'mail')
                 alert('Taki e-mail jest już zarejestrowany. Podaj inny.');

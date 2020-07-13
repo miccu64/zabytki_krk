@@ -1,4 +1,8 @@
 $('#add-form').submit(function() {
+    var button = document.getElementById("przycisk");
+    button.style.display = 'none';
+    button = document.getElementById("czekaj");
+    button.style.display = 'initial';
     klik();
     return false;
 });
@@ -20,7 +24,11 @@ function klik() {
             alert('Zalogowano pomyślnie!');
             window.location.assign("/");
         } else if (http.readyState == 4) {
-            alert('Złe dane logowania!');
+            var button = document.getElementById("przycisk");
+            button.style.display = 'initial';
+            button = document.getElementById("czekaj");
+            button.style.display = 'none';
+            alert(http.responseText);
         }
     }
     http.send('email=' + poczta + '&password=' + haslo);

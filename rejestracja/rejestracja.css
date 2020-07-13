@@ -30,3 +30,7 @@
 .przycisk {
     font-size: 150%;
 }
+
+#czekaj {
+    display: none;
+}
