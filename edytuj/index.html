@@ -112,8 +112,8 @@
                                 <div class="col-12 odstep3"></div>
                             </div>
                             <div class="form-group">
-                                <label class="tekst" for="description">(Opcjonalnie) Opis zabytku</label>
-                                <textarea class="form-control tekst" id="description" name="description" rows="6"></textarea>
+                                <label class="tekst" for="description">Opis zabytku</label>
+                                <textarea class="form-control tekst" id="description" name="description" rows="6" required></textarea>
                             </div>
                             <div class="odstep3"></div>
 
@@ -141,8 +141,11 @@
                     </div>
                     <div class="odstep"></div>
                     <div class="odstep3"></div>
-                    <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Prześlij</b></button>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+                    <div id="przyciski">
+                        <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Prześlij</b></button>
+                        <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+                    </div>
+                    <h2 id="czekaj">Edycja w toku...</h2>
                     <script src="funkcje.js"></script>
                     <div class="odstep3"></div>
                 </form>

@@ -1,4 +1,6 @@
 $('#add-form').submit(function() {
+    document.getElementById("przyciski").style.display = "none";
+    document.getElementById("czekaj").style.display = "initial";
     edycja();
     return false;
 });
@@ -63,7 +65,6 @@ function edycja() {
     wyslijZdj();
     wyslijZdjArchiw();
     var obj = $('#add-form').serializeJSON();
-    console.log(JSON.stringify(obj));
     var id = localStorage.getItem("id");
     var url2 = server + '/api/v1/artifacts/by_id/' + id;
     $.ajax({
@@ -81,6 +82,8 @@ function edycja() {
             window.location.replace("/ostatnie");
         },
         error: function(error) {
+            document.getElementById("przyciski").style.display = "initial";
+            document.getElementById("czekaj").style.display = "none";
             alert('Wystąpił błąd w edycji!')
         }
     });
@@ -98,8 +101,7 @@ function pobierz() {
             wypisz(response);
         },
         error: function(error) {
-            console.log("Błąd połączenia!", error);
-
+            alert('Błąd połączenia!');            
         }
     });
 }

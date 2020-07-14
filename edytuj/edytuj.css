@@ -40,3 +40,7 @@
 .custom-file-input~.custom-file-label::after {
     content: "Wybierz plik";
 }
+
+#czekaj {
+    display: none;
+}

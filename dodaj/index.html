@@ -54,7 +54,8 @@
                 </li>
             </div>
         </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <script src="/skrypty/navbar.js"></script>
@@ -66,9 +67,11 @@
             <div class="col-12 text-center tekst">
                 <div class="naglowek"><b>Dodaj zabytek</b></div>
                 <div class="col-12 odstep2"></div>
-                <h3><b>Proszę najpierw zaznaczyć miejsce na mapie, w którym znajduje się zabytek - część rubryk zostanie wypełniona automatycznie.</b></h3>
+                <h3><b>Proszę najpierw zaznaczyć miejsce na mapie, w którym znajduje się zabytek - część rubryk zostanie
+                        wypełniona automatycznie.</b></h3>
                 <h3><b>Następnie proszę uzupełnić pozostałe rubryki lub edytować już wypełnione pola.</b></h3>
-                <h3>W celu przesłania danych należy kliknąć w przycisk "Prześlij" znajdujący się na dole strony pod mapą.</h3>
+                <h3>W celu przesłania danych należy kliknąć w przycisk "Prześlij" znajdujący się na dole strony pod
+                    mapą.</h3>
                 <h4>Wszystkie pola (poza zdjęciami) należy obowiązkowo wypełnić.</h4>
                 <div class="col-12 odstep"></div>
                 <form id="add-form">
@@ -76,72 +79,89 @@
                         <div class="col-12 col-md-6 ">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="name">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label class="tekst odstep2" for="street">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street"
+                                    required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="latitude">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="latitude" name="latitude" required>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst"
+                                        id="latitude" name="latitude" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="longitude">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="longitude" name="longitude" required>
+                                    <input type="number" step="any" class="form-control form-control-lg tekst"
+                                        id="longitude" name="longitude" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="building">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="building" name="building" required>
+                                    <input type="text" class="form-control form-control-lg tekst" id="building"
+                                        name="building" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="tekst odstep2" for="type">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="type" name="type" required>
+                                    <input type="text" class="form-control form-control-lg tekst" id="type" name="type"
+                                        required>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="odstep3"></div>
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-12 px-5">
-                            <div id="mapid">
-                                <script src="mapa.js"></script>
+                        <div class="odstep3 col-10 justify-content-center align-items-center">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-12 px-5">
+                                    <div id="mapid">
+                                        <script src="mapa.js"></script>
+                                    </div>
+                                </div>
+                                <div class="col-12 odstep3"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="tekst" for="description">Opis zabytku</label>
+                                <textarea class="form-control tekst" id="description" name="description" rows="6"
+                                    required></textarea>
+                            </div>
+                            <div class="odstep3"></div>
+
+                            <div class="tekst">(Opcjonalnie) Zdjęcia</div>
+                            <div class="odstep"></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="file" class="custom-file-input" id="recentPhotos">
+                                    <label class="custom-file-label" for="recentPhotos">(Opcjonalnie) Wybierz plik z
+                                        aktualnym zdjęciem...</label>
+                                    <script src="plikRecent.js"></script>
+                                </div>
+                            </div>
+                            <div class="odstep4"></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="file" class="custom-file-input yy" id="archivalPhoto">
+                                    <label class="custom-file-label" for="archivalPhoto">(Opcjonalnie) Wybierz plik ze
+                                        zdjęciem archiwalnym...</label>
+                                    <script src="plikArchival.js"></script>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 odstep3"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="tekst" for="description">Opis zabytku</label>
-                        <textarea class="form-control tekst" id="description" name="description" rows="6" required></textarea>
-                    </div>
-                    <div class="odstep3"></div>
-
-                    <div class="tekst">(Opcjonalnie) Zdjęcia</div>
-                    <div class="odstep"></div>
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="file" class="custom-file-input" id="recentPhotos">
-                            <label class="custom-file-label" for="recentPhotos">(Opcjonalnie) Wybierz plik z aktualnym zdjęciem...</label>
-                            <script src="plikRecent.js"></script>
-                        </div>
-                    </div>
-                    <div class="odstep4"></div>
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="file" class="custom-file-input yy" id="archivalPhoto">
-                            <label class="custom-file-label" for="archivalPhoto">(Opcjonalnie) Wybierz plik ze zdjęciem archiwalnym...</label>
-                            <script src="plikArchival.js"></script>
-                        </div>
                     </div>
                     <div class="odstep"></div>
                     <div class="odstep3"></div>
-                    <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Prześlij</b></button>
-                    <button type="button" class="btn btn-primary btn-lg przycisk" onclick="wstecz()"><b>Powrót</b></button>
+                    <div id="przyciski">
+                        <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Prześlij</b></button>
+                        <button type="button" class="btn btn-primary btn-lg przycisk"
+                            onclick="wstecz()"><b>Powrót</b></button>
+                    </div>
+                    <h2 id="czekaj">Trwa dodawanie...</h2>
                     <script src="funkcje.js"></script>
                     <div class="odstep3"></div>
                 </form>

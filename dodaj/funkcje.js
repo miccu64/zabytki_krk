@@ -1,5 +1,7 @@
 $('#add-form').submit(function() {
-    edycja();
+    document.getElementById("przyciski").style.display = "none";
+    document.getElementById("czekaj").style.display = "initial";
+    dodaj();
     return false;
 });
 
@@ -9,7 +11,7 @@ function wstecz() {
     window.history.back();
 }
 
-function edycja() {
+function dodaj() {
     var obj = $('#add-form').serializeJSON();
     var url2 = server + '/api/v1/artifacts/';
     $.ajax({
@@ -71,6 +73,8 @@ function edycja() {
             window.location.replace("/ostatnie");
         },
         error: function(error) {
+            document.getElementById("przyciski").style.display = "initial";
+            document.getElementById("czekaj").style.display = "none";
             alert('Wystąpił błąd!');
         },
     });

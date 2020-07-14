@@ -20,7 +20,6 @@ function wyslij() {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             localStorage.setItem('iloscKart', myArr.totalElements);
             localStorage.setItem('iloscStron', myArr.totalPages);
-            console.log(myArr);
 
             wypisz(myArr);
 
@@ -55,7 +54,7 @@ function wypisz(myArr) {
 
         var marker = new customMarker([lat, lng], {myID: myArr[a].id}).on('click', onClick).addTo(mymap);
         
-        var help = "<p class='myCss'><b>Nazwa:</b> " + myArr[a].name + "<br><b>Typ:</b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
+        var help = "<p class='myCss'><b>Nazwa:</b> " + myArr[a].name + "<br><b>Typ: </b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
         help += '<br><button type="button" onclick=przekieruj();>Szczegóły zabytku</button>';
         marker.bindPopup(help);
     }
