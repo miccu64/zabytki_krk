@@ -109,67 +109,78 @@
                             </div>
                         </div>
                     </div>
-                    <div class="odstep3"></div>
+                    <div class="odstep4"></div>
 
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-6">
-                            <h3>Data dodania:</h3>
-                            <div id="dataDod" class="tekst"></div>
+                            <h5>Data dodania:</h5>
+                            <div id="dataDod"></div>
                             <div class="odstep2"></div>
-                            <h3>Dodano przez:</h3>
-                            <div id="dodal" class="tekst"></div>
+                            <h5>Dodał:</h5>
+                            <div id="dodal"></div>
                         </div>
                         <div class="col-6">
-                            <h3>Data ostatniej edycji:</h3>
-                            <div id="dataEd" class="tekst">-</div>
+                            <h5>Data ostatniej edycji:</h5>
+                            <div id="dataEd">-</div>
                             <div class="odstep2"></div>
-                            <h3>Ostatnio edytowane przez:</h3>
-                            <div id="edytowal" class="tekst">-</div>
+                            <h5>Ostatnio edytowane przez:</h5>
+                            <div id="edytowal">-</div>
                         </div>
                     </div>
 
-                    <div id="opis" class="odstep3">
-                        <h4>(Kliknij zdjęcie, by je powiększyć)</h4>
-                    </div>
+                    <div id="opis"></div>
                     <div class="row justify-content-center">
                         <div class="col-10">
-                            <div class="row justify-content-center align-items-center mb-4">
-                                <div id="archNapis" class="col-12 odstep">
+                            <div class="row justify-content-center align-items-center mb-2">
+                                <div class="col-3" id="archNapis">
                                     <h3>Zdjęcie archiwalne</h3>
                                 </div>
-                                <a id="arch1" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-4 col-6 col-xl-3">
-                                    <img id="arch11" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="row justify-content-center align-items-center">
-                                <div id="recentNapis" class="col-12">
+                                <div class="col-9" id="recentNapis">
                                     <h3>Zdjęcia aktualne</h3>
                                 </div>
-                                <a id="recent2" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img id="recent22" class="img-fluid">
-                                </a>
-                                <a id="recent1" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img id="recent11" class="img-fluid">
-                                </a>
-                                <a id="recent0" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-3 col-4 col-xl-2">
-                                    <img id="recent00" class="img-fluid">
-                                </a>
                             </div>
+                            <div class="row justify-content-center align-items-center mb-4">
+                                <div id="poleArch" class="col-3 justify-content-center align-items-center">
+                                    <a id="arch1" data-toggle="lightbox" data-gallery="example-gallery">
+                                        <img id="arch11" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div id="wszystkieRecent" class="col-9 justify-content-center align-items-center">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div id="poleRec22" class="col-4 justify-content-center align-items-center">
+                                            <a id="recent2" data-toggle="lightbox" data-gallery="example-gallery">
+                                                <img id="recent22" class="img-fluid">
+                                            </a>
+                                        </div>
+                                        <div id="poleRec11" class="col-4 justify-content-center align-items-center">
+                                            <a id="recent1" data-toggle="lightbox" data-gallery="example-gallery">
+                                                <img id="recent11" class="img-fluid">
+                                            </a>
+                                        </div>
+                                        <div id="poleRec00" class="col-4 justify-content-center align-items-center">
+                                            <a id="recent0" data-toggle="lightbox" data-gallery="example-gallery">
+                                                <img id="recent00" class="img-fluid">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
 
-                    <div class="row justify-content-center align-items-center odstep3">
-                        <div class="col-12 px-5">
+                    <div class="row justify-content-center align-items-center odstep2">
+                        <div class="col-10 px-5">
                             <div>
                                 <h3>Mapa</h3>
                             </div>
                             <div id="mapid">
                             </div>
                         </div>
-                        <div class="col-12 odstep3"></div>
+                        <div class="col-12 odstep2"></div>
                     </div>
                     <div class="form-group row justify-content-center align-items-center">
-                        <div class="col-lg-9">
+                        <div class="col-10 px-5">
                             <label class="tekst" for="poleTekstowe">Opis zabytku</label>
                             <textarea class="form-control tekst" id="poleTekstowe" rows="6" placeholder="Brak opisu. Dodaj własny!" disabled></textarea>
                         </div>

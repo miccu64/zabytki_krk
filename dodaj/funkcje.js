@@ -26,9 +26,7 @@ function edycja() {
             localStorage.setItem('idDodane', response.id);
 
             let czyIstnieje = document.getElementById('archivalPhoto').files.length;
-            if (czyIstnieje == 0) {
-                return;
-            } else {
+            if (czyIstnieje > 0) {
                 let formData = new FormData();
                 formData.append('file', document.getElementById('archivalPhoto').files[0]);
                 var id = localStorage.getItem('idDodane');
@@ -49,9 +47,7 @@ function edycja() {
             }
 
             let czyIstnieje2 = document.getElementById('recentPhotos').files.length;
-            if (czyIstnieje2 == 0) {
-                return;
-            } else {
+            if (czyIstnieje2 > 0) {
                 let formData2 = new FormData();
                 formData2.append('file', document.getElementById('recentPhotos').files[0]);
                 var id = localStorage.getItem('idDodane');
@@ -75,7 +71,7 @@ function edycja() {
             window.location.replace("/ostatnie");
         },
         error: function(error) {
-            alert('Wystąpił błąd!')
+            alert('Wystąpił błąd!');
         },
     });
 }
