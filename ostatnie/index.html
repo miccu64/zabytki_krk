@@ -368,10 +368,8 @@
             </div>
             <script>
                 function szczegoly(liczba) {
-                    var tablica = localStorage.getItem('tablica');
-                    var tablica2 = JSON.parse(tablica);
-                    localStorage.setItem('id', tablica2[liczba].id);
-                    location.href = "/szczegoly/";
+                    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
+                    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
                 }
             </script>
 

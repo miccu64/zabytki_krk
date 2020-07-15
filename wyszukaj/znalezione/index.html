@@ -375,8 +375,7 @@
                 function szczegoly(liczba) {
                     var tablica = localStorage.getItem('tablica');
                     var tablica2 = JSON.parse(tablica);
-                    localStorage.setItem('id', tablica2[liczba].id);
-                    location.href = "/szczegoly/";
+                    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
                 }
             </script>
 

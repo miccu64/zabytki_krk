@@ -3,12 +3,16 @@ function wstecz() {
 }
 
 function edycja() {
+    let params = new URLSearchParams(location.search);
+    var id = params.get('id');
+    localStorage.setItem('id', id);
     location.href = "/edytuj/";
 }
 wyslij();
 
 function wyslij() {
-    var id = localStorage.getItem("id");
+    let params = new URLSearchParams(location.search);
+    var id = params.get('id');
     var url2 = server + '/api/v1/artifacts/by_id/' + id;
     $.ajax({
         url: url2,
@@ -17,7 +21,8 @@ function wyslij() {
             wypisz(response);
         },
         error: function(error) {
-            alert("Błąd sieci!", error);
+            alert("Niepoprawne id zabytku!");
+            window.location.assign("/ostatnie/");
         }
     });
 }

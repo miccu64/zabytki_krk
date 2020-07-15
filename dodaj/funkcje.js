@@ -69,8 +69,10 @@ function dodaj() {
                 });
             }
 
+            var id = localStorage.getItem('idDodane');
+            localStorage.removeItem('idDodane');
             alert('Pomyślnie dodano zabytek.');
-            window.location.replace("/ostatnie");
+            window.location.replace("/szczegoly/?id=" + id);
         },
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";

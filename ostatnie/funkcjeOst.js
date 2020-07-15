@@ -34,7 +34,6 @@ function wypisz(myArr, strona) {
     if (iloscKart != 0) {
         var iloscLacznie = (iloscStron - 1) * 12 + iloscKart;
     } else var iloscLacznie = iloscStron * 12; //tyle mamy mozliwych do pobrania kart
-    var iloscMiejsc = iloscStron * 12;
 
     if (strona * 12 < iloscLacznie) {
         var max = 12;
