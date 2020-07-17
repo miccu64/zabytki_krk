@@ -1,4 +1,11 @@
 $('#add-form').submit(function() {
+    var lon = document.getElementById("longitude").value;
+    var lat = document.getElementById("latitude").value;
+    if ((lat < 49.09) || (lat > 50.32) || (lon < 19.04) || (lon > 21.26)) {
+        alert("Zabytek znajduje się poza Małopolską. Wprowadź inne położenie.");
+        location.reload();
+        return;
+    }
     document.getElementById("przyciski").style.display = "none";
     document.getElementById("czekaj").style.display = "initial";
     dodaj();

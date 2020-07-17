@@ -8,7 +8,7 @@ function edycja() {
 wyslij();
 
 function wyslij() {
-    var url2 = server + '/api/v1/artifacts/in_area?lat1=49.09&lat2=50.31&lon1=19.04&lon2=21.25';
+    var url2 = server + '/api/v1/artifacts/in_area?lat1=49.09&lat2=50.32&lon1=19.04&lon2=21.26';
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
