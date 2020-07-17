@@ -8,7 +8,7 @@ function edycja() {
 wyslij();
 
 function wyslij() {
-    var url2 = server + '/api/v1/artifacts/in_area?lat1=50&lat2=50.15&lon1=19.75&lon2=20.15';
+    var url2 = server + '/api/v1/artifacts/in_area?lat1=49.09&lat2=50.31&lon1=19.04&lon2=21.25';
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -31,7 +31,7 @@ function przekieruj() {
 }
 
 function wypisz(myArr) {
-    var mymap = L.map('mapid').setView([50.0614, 19.9365], 14);
+    var mymap = L.map('mapid').setView([49.9, 20,345], 9);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
