@@ -12,10 +12,9 @@ function wyslij(strona) {
             var myArr = this.responseText;
             myArr = JSON.parse(this.responseText);
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
-            localStorage.setItem('iloscKart', myArr.totalElements);
-            localStorage.setItem('iloscStron', myArr.totalPages);
-
-            wypisz(myArr.content, strona + 1);
+            var iloscKart = myArr.totalElements;
+            var iloscStron = myArr.totalPages;
+            wypisz(myArr.content, strona + 1, iloscKart, iloscStron);
 
         } else if (http.readyState == 4) {
             alert('Błąd!');
@@ -25,19 +24,13 @@ function wyslij(strona) {
 }
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
-function wypisz(myArr, strona) {
-    var iloscKart = parseInt(localStorage.getItem('iloscKart'));
-    var iloscStron = parseInt(localStorage.getItem('iloscStron'));
-    iloscKart = iloscKart % 12;
+function wypisz(myArr, strona, iloscKart, iloscStron) {
+    var iloscKartNaStronie = iloscKart % 12;
     var link;
 
-    if (iloscKart != 0) {
-        var iloscLacznie = (iloscStron - 1) * 12 + iloscKart;
-    } else var iloscLacznie = iloscStron * 12; //tyle mamy mozliwych do pobrania kart
-
-    if (strona * 12 < iloscLacznie) {
+    if (strona * 12 <= iloscKart) {
         var max = 12;
-    } else var max = iloscKart;
+    } else var max = iloscKartNaStronie;
 
     for (i = 0; i < max; i++) {
         var pomocnicza0 = 'nazwa' + i;
@@ -66,8 +59,8 @@ function wypisz(myArr, strona) {
 
     if (max < 12) {
         for (max; i < 12; i++) {
-            if (iloscKart < 12) {
-                for (var b = iloscKart; b < 12; b++) {
+            if (iloscKartNaStronie < 12) {
+                for (var b = iloscKartNaStronie; b < 12; b++) {
                     link = document.getElementById('k' + b);
                     link.style.display = 'none';
                 }
