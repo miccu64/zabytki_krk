@@ -22,7 +22,8 @@ body {
 }
 
 .linki {
-    font-size: 200%;
+    font-size: 160%;
+    margin-left: 4px;
 }
 
 .navbar-nav li {

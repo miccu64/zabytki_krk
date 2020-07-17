@@ -28,20 +28,40 @@
 <!-- DODAĆ CAPTCHA -->
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-custom justify-content-left navbar-dark">
+    <nav class="navbar navbar-expand-md bg-custom justify-content-left navbar-dark">
         <a class="navbar-brand" href="/">
-            <img class="img-fluid" src="/zdjecia/logo_male.jpg" style="width:60px;" alt="logoWUOZ">
+            <img class="img-fluid" src="/zdjecia/stronaGlownaNav.png"
+                style="width:34px; margin-left: 5px; margin-right: 5px;" alt="Strona Główna">
         </a>
-        <ul class="navbar-nav mr-auto flex-row">
+        <ul class="navbar-nav flex-row mr-auto">
             <li class="nav-item">
-                <a class="nav-link linki" href="/">Strona główna</a>
+                <a class="nav-link" href="/wyszukaj">
+                    <img src="/zdjecia/wyszukajNav.png" style="width:38px;" alt="Wyszukaj">
+                </a>
             </li>
             <li class="nav-item">
-                <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">Wyloguj</a>
+                <a class="nav-link" href="/dodaj">
+                    <img src="/zdjecia/dodajNav.png" style="width:34px;" alt="Dodaj">
+                </a>
             </li>
             <li class="nav-item">
-                <a id="zalogowany2" class="nav-link linki" href="/logowanie">Logowanie</a>
+                <a class="nav-link" href="/ostatnie">
+                    <img src="/zdjecia/ostatnieNav.png" style="width:34px;" alt="Ostatnie">
+                </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/wszystkie">
+                    <img src="/zdjecia/wszystkieNav.png" style="width:34px;" alt="Wszystkie">
+                </a>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav flex-row ">
+            <li class="nav-item">
+                <a id="zalogowany2" class="nav-link linki" style="margin-left: 10px;" href="/logowanie">Logowanie</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
                     <a id="niezalogowany2" class="nav-link linki" href="/konto">Konto</a>
@@ -50,9 +70,20 @@
                     <a id="zalogowany3" class="nav-link linki" href="/rejestracja">Rejestracja</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link linki" href="/oprojekcie">O projekcie</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link linki" href="/kontakt">Kontakt</a>
                 </li>
             </div>
+        </ul>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item">
+                <a id="niezalogowany" class="nav-link linki" onclick="wyloguj()" href="/">
+                    <img class="img-fluid" src="/zdjecia/wylogujNav.png" style="width:34px; margin-right: 20px; margin-left: 20px;"
+                        alt="Strona Główna">
+                </a>
+            </li>
         </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
