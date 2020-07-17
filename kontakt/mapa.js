@@ -4,4 +4,4 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
 var marker = L.marker([50.0557, 19.9371]).addTo(mymap);
-marker.bindPopup("<b>WUOZ Kraków</b>").openPopup();
+marker.bindPopup("<b>WUOZ Kraków</b><br>ul. Kanonicza 24<br>31-002 Kraków").openPopup();
