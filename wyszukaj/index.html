@@ -93,27 +93,39 @@
             <div class="col-12 text-center tekst">
                 <div class="naglowek"><b>Wyszukaj zabytek</b></div>
                 <div class="col-12 odstep2"></div>
-                <h3>Proszę wpisać przynajmniej jedno kryterium.</h3>
+                <h3>Proszę wypełnić przynajmniej jedno kryterium.</h3>
                 <div class="col-12 odstep"></div>
                 <form>
                     <div class="form-row">
-                        <div class="col-12 col-md-6 ">
+                        <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="name">Nazwa obiektu</label>
                                 <input type="text" class="form-control form-control-lg tekst" id="name" name="name" placeholder="Np. Kościół Mariacki">
                             </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="type">Typ obiektu</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="type" name="type" placeholder="Np. Kościół">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="city">Miejscowość</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city" placeholder="Np. Szewska">
+                             </div>
+                        </div>
+                        <div class="col-8 col-md-4">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="street">Ulica</label>
                                 <input type="text" class="form-control form-control-lg tekst" id="street" name="street" placeholder="Np. Szewska">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 ">
+                        <div class="col-4 col-md-2">
                             <div class="form-group">
-                                <label class="tekst odstep2" for="type">Typ obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="type" name="type" placeholder="Np. Kościół">
-                            </div>
-                            <div class="form-group">
-                                <label class="tekst odstep2" for="building">Numer budynku</label>
+                                <label class="tekst odstep2" for="building">Nr budynku</label>
                                 <input type="text" class="form-control form-control-lg tekst" id="building" name="building" placeholder="Np. 56">
                             </div>
                         </div>
@@ -121,20 +133,7 @@
                     <div class="odstep3"></div>
                     <button type="submit" id="but" class="btn btn-primary btn-lg btn-block przycisk"><b>Wyszukaj</b></button>
                 </form>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        document.
-                        getElementById('but')
-                            .addEventListener('click', e => {
-                                e.preventDefault();
-                                localStorage.setItem('name', document.getElementById("name").value);
-                                localStorage.setItem('street', document.getElementById("street").value);
-                                localStorage.setItem('type', document.getElementById("type").value);
-                                localStorage.setItem('building', document.getElementById("building").value);
-                                location.href = "znalezione/";
-                            });
-                    });
-                </script>
+                <script src="wyszukaj.js"></script>
             </div>
         </div>
     </div>

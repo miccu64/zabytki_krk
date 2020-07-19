@@ -62,6 +62,8 @@ function wyslijZdjArchiw() {
 }
 
 function edycja() {
+    document.getElementById("latitude").disabled = false;
+    document.getElementById("longitude").disabled = false;
     wyslijZdj();
     wyslijZdjArchiw();
     var obj = $('#add-form').serializeJSON();
@@ -114,6 +116,7 @@ function wypisz(myArr) {
     document.getElementById('name').value = myArr.name;
     document.getElementById('type').value = myArr.type;
     document.getElementById('description').value = myArr.description;
+    document.getElementById('city').value = myArr.city;
 
     var lat = myArr.latitude;
     var lng = myArr.longitude;

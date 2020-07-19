@@ -1,4 +1,4 @@
-var mymap = L.map('mapid').setView([50.0614, 19.9365], 13);
+var mymap = L.map('mapid').setView([49.9, 20,345], 9);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -20,13 +20,19 @@ mymap.on('click', function(e) {
         fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + lng + '&lat=' + lat).then(function(response) {
             return response.json();
         }).then(function(json) {
-            //console.log(json.display_name);
             if ((json.address.road) != undefined) {
                 document.getElementById("street").value = json.address.road;
             } else document.getElementById("street").value = null;
             if ((json.address.house_number) != undefined) {
                 document.getElementById("building").value = json.address.house_number;
             } else document.getElementById("building").value = null;
+            if ((json.address.city) != undefined) {
+                document.getElementById("city").value = json.address.city;
+            } else if ((json.address.town) != undefined) {
+                document.getElementById("city").value = json.address.town;
+            } else if ((json.address.village) != undefined) {
+                document.getElementById("city").value = json.address.village;
+            } else document.getElementById("city").value = null;
         })
     }
     simpleReverseGeocoding(lng, lat);

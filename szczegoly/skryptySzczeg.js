@@ -28,7 +28,6 @@ function wyslij() {
 }
 
 function wypisz(myArr) {
-
     document.getElementById('street').value = myArr.street;
     document.getElementById('wspx').value = myArr.latitude;
     document.getElementById('wspy').value = myArr.longitude;
@@ -36,6 +35,7 @@ function wypisz(myArr) {
     document.getElementById('nazwa').value = myArr.name;
     document.getElementById('typ').value = myArr.type;
     document.getElementById('poleTekstowe').value = myArr.description;
+    document.getElementById('city').value = myArr.city;
 
     var lat = document.getElementById("wspx").value;
     var lng = document.getElementById("wspy").value;

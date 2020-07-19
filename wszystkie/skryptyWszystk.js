@@ -48,7 +48,7 @@ function wypisz(myArr) {
 
         var marker = new customMarker([lat, lng], { myID: myArr[a].id }).on('click', onClick).addTo(mymap);
 
-        var help = "<p class='myCss'><b>Nazwa:</b> " + myArr[a].name + "<br><b>Typ: </b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
+        var help = "<p class='myCss'><b>Miejscowość: </b>" + myArr[a].city + "<br><b>Nazwa: </b> " + myArr[a].name + "<br><b>Typ: </b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
         help += '<br><button type="button" onclick=przekieruj();>Szczegóły zabytku</button>';
         marker.bindPopup(help);
     }

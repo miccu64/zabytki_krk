@@ -38,11 +38,13 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         var pomocnicza2 = 'numer' + i;
         var pomocnicza3 = 'typ' + i;
         var pomocnicza4 = 'p' + i;
+        var pomocnicza5 = 'miasto' + i;
 
         document.getElementById(pomocnicza0).innerHTML = myArr[i].name;
         document.getElementById(pomocnicza1).innerHTML = myArr[i].street;
         document.getElementById(pomocnicza2).innerHTML = myArr[i].building;
         document.getElementById(pomocnicza3).innerHTML = myArr[i].type;
+        document.getElementById(pomocnicza5).innerHTML = myArr[i].city;
 
         var iloscZdj = myArr[i].recentPhotos.length;
         if (iloscZdj != 0) {

@@ -19,6 +19,8 @@ function wstecz() {
 }
 
 function dodaj() {
+    document.getElementById("latitude").disabled = false;
+    document.getElementById("longitude").disabled = false;
     var obj = $('#add-form').serializeJSON();
     var url2 = server + '/api/v1/artifacts/';
     $.ajax({

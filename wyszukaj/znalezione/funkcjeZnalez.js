@@ -4,11 +4,13 @@ wyslij(0);
 
 function wyslij(strona) {
     var rozmiar = '12';
-    var name = localStorage.getItem('name');
-    var street = localStorage.getItem('street');
-    var building = localStorage.getItem('building');
-    var type = localStorage.getItem('type');
-    var url2 = server + '/api/v1/artifacts/search?' + '&name=' + name + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
+    let params = new URLSearchParams(location.search);
+    var name = params.get('name');
+    var street = params.get('street');
+    var building = params.get('building');
+    var type = params.get('type');
+    var city = params.get('city');
+    var url2 = server + '/api/v1/artifacts/search?' + 'name=' + name + '&city=' + city + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -44,11 +46,13 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         var pomocnicza2 = 'numer' + i;
         var pomocnicza3 = 'typ' + i;
         var pomocnicza4 = 'p' + i;
+        var pomocnicza5 = 'miasto' + i;
 
         document.getElementById(pomocnicza0).innerHTML = myArr[i].name;
         document.getElementById(pomocnicza1).innerHTML = myArr[i].street;
         document.getElementById(pomocnicza2).innerHTML = myArr[i].building;
         document.getElementById(pomocnicza3).innerHTML = myArr[i].type;
+        document.getElementById(pomocnicza5).innerHTML = myArr[i].city;
 
         var iloscZdj = myArr[i].recentPhotos.length;
         if (iloscZdj != 0) {

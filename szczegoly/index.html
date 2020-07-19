@@ -108,39 +108,57 @@
                 <div class="col-12 odstep"></div>
                 <form>
                     <div class="form-row">
-                        <div class="col-12 col-md-6 ">
+                        <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="nazwa">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label class="tekst odstep2" for="ulica">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="street" disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="nazwa" name="nazwa"
+                                    required disabled>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspx">Współrzędna X</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspx" disabled>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
-                                    <input type="number" step="any" class="form-control form-control-lg tekst" id="wspy" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="numer">Numer budynku</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="numer" disabled>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label class="tekst odstep2" for="typ">Typ obiektu</label>
-                                    <input type="text" class="form-control form-control-lg tekst" id="typ" disabled>
-                                </div>
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="typ">Typ obiektu</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="typ" name="typ"
+                                    required disabled>
                             </div>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="city">Miejscowość</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city"
+                                    required disabled>
+                            </div>
+                        </div>   
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="street">Ulica</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street"
+                                     required disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-4 col-md-6">
+                            <div class="form-group">
+                                <label class="tekst odstep2" for="numer">Numer budynku</label>
+                                <input type="text" class="form-control form-control-lg tekst" id="numer"
+                                    name="numer" required disabled>
+                            </div>
+                        </div>   
+                        <div class="form-group col-4 col-md-3">
+                            <label class="tekst odstep2" for="wspx">Współrzędna X</label>
+                            <input type="number" step="any" class="form-control form-control-lg tekst"
+                                id="wspx" name="wspx" required disabled>
+                        </div>
+                        <div class="form-group col-4 col-md-3">
+                            <label class="tekst odstep2" for="wspy">Współrzędna Y</label>
+                            <input type="number" step="any" class="form-control form-control-lg tekst"
+                                id="wspy" name="wspy" required disabled>
+                        </div>
+                    </div>
+
                     <div class="odstep4"></div>
 
                     <div class="row mb-4">
