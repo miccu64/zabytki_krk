@@ -28,3 +28,8 @@
 #ukryj {
     visibility: hidden;
 }
+
+.strony {
+    font-size: calc(170% + .5vw);
+    color: white;
+}

@@ -423,23 +423,19 @@
                     </div>
                 </div>
             </div>
-            <script>
-                function szczegoly(liczba) {
-                    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
-                    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
-                }
-            </script>
-
         </div>
-        <div class="container-bg justify-content-center align-items-center text-center pt-3 py-2">
+        <div class="container-bg justify-content-center align-items-center text-center py-2">
             <div class="row">
                 <div class="col-12">
-                    <div class="odstep2 pb-5">
-                        <h3 id="nrStrony" class="pb-3">Obecna strona: 1</h3>
-                        <button id="b0" class="btn btn-info naglowki" type="button" onclick=wyslij(-2);>Początek</button>
-                        <button id="b1" class="btn btn-info naglowki ml-4 pl-4 pr-4" type="button" onclick=wyslij(-1);>-1</button>
-                        <button id="b2" class="btn btn-info naglowki ml-4 pl-4 pr-4" type="button" onclick=wyslij(1);>+1</button>
-                        <button id="b3" class="btn btn-info naglowki ml-4" type="button" onclick=wyslij(2);>Koniec</button>
+                    <div class="pb-5">
+                        <h2 id="nrStrony" class="mb-3">Obecna strona: 1</h2>
+                        <button id="b0" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(-2);>1</button>
+                        <p id="przerwa1" class="ml-4"></p>
+                        <button id="b1" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(-1);>-1</button>
+                        <a id="przerwa2" class="ml-4"></a>
+                        <button id="b2" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(1);>+1</button>
+                        <a id="przerwa3" class="ml-4"></a>
+                        <button id="b3" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(2);>2</button>
                     </div>
                 </div>
             </div>

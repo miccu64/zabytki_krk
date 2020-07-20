@@ -1,11 +1,18 @@
+function szczegoly(liczba) {
+    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
+    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
+}
+
 wyslij(0);
 
 function wyslij(oIle) {
     let params = new URLSearchParams(location.search);
     var strona = params.get('page');
     strona = parseInt(strona);
-    if (oIle == -2) strona = 0;
-    else if (oIle == 2) strona = 2; //MAXXXXXXXXXXX
+    if ((oIle == -2) || (oIle == 0))
+        strona = 0;
+    else if (oIle == 2)
+        strona = parseInt(document.getElementById("b3").textContent) - 1;
     else strona += oIle - 1;
     var rozmiar = '12';
     var url2 = server + '/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
@@ -76,6 +83,42 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         }
     }
 
+    document.getElementById("b1").textContent = strona;
+    document.getElementById("b2").textContent = strona + 1;
+    document.getElementById("b3").textContent = iloscStron;
+    if (strona == 1) {
+        document.getElementById("b0").style.display = "none";
+        document.getElementById("b1").style.display = "none";
+        document.getElementById("b2").style.display = "initial";
+        document.getElementById("b3").style.display = "initial";
+        document.getElementById("przerwa1").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
+        document.getElementById("przerwa3").style.display = "initial";
+    } else if (strona == iloscStron) {
+        document.getElementById("b0").style.display = "initial";
+        document.getElementById("b1").style.display = "initial";
+        document.getElementById("b2").style.display = "none";
+        document.getElementById("b3").style.display = "none";
+        document.getElementById("przerwa1").style.display = "initial";
+        document.getElementById("przerwa2").style.display = "initial";
+        document.getElementById("przerwa3").style.display = "none";
+    } else {
+        document.getElementById('b0').style.display = 'initial';
+        document.getElementById('b1').style.display = 'initial';
+        document.getElementById("b2").style.display = "initial";
+        document.getElementById("b3").style.display = "initial";
+        document.getElementById("przerwa1").style.display = "initial";
+        document.getElementById("przerwa2").style.display = "initial";
+        document.getElementById("przerwa3").style.display = "initial";
+    }
+
+    if (strona == iloscStron - 1) {
+        document.getElementById("b3").style.display = "none";
+        document.getElementById("przerwa3").style.display = "none";
+    }
+
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
+    var str = '/ostatnie/?page=' + strona;
+    window.history.pushState(null, '', str);
 }
