@@ -1,6 +1,12 @@
 wyslij(0);
 
-function wyslij(strona) {
+function wyslij(oIle) {
+    let params = new URLSearchParams(location.search);
+    var strona = params.get('page');
+    strona = parseInt(strona);
+    if (oIle == -2) strona = 0;
+    else if (oIle == 2) strona = 2; //MAXXXXXXXXXXX
+    else strona += oIle - 1;
     var rozmiar = '12';
     var url2 = server + '/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
@@ -68,11 +74,6 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
                 }
             }
         }
-    }
-
-    for (var d = iloscStron; d < 20; d++) {
-        link = document.getElementById('b' + d);
-        link.style.display = 'none';
     }
 
     //pokazuje po wypelnieniu
