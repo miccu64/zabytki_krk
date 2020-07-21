@@ -85,11 +85,8 @@
     </nav>
 
     <div class="col-12 odstep2"></div>
-    <div class="row h-100">
-        <div class="col-12 odstep2"></div>
-        <div class="col-12 text-center">
-            <h1><b>Ostatnio dodane zabytki</b></h1>
-        </div>
+    <div class="col-12 text-center odstep2">
+         <h1><b>Ostatnio dodane zabytki</b></h1>
     </div>
     <div id="ukryj" class="container-bg justify-content-center align-items-center p-4">
         <div class="row h-100">
@@ -424,19 +421,28 @@
                 </div>
             </div>
         </div>
-        <div class="container-bg justify-content-center align-items-center text-center py-2">
+        <div class="justify-content-center align-items-center text-center my-2">
             <div class="row">
                 <div class="col-12">
-                    <div class="pb-5">
+                    <div class="pb-3">
                         <h2 id="nrStrony" class="mb-3">Obecna strona: 1</h2>
-                        <button id="b0" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(-2);>1</button>
-                        <p id="przerwa1" class="ml-4"></p>
-                        <button id="b1" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(-1);>-1</button>
+                        <button id="b0" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-2,false);>1</button>
+                        <a id="przerwa1" class="ml-5"></a>
+                        <button id="b1" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-1,false);>-1</button>
                         <a id="przerwa2" class="ml-4"></a>
-                        <button id="b2" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(1);>+1</button>
-                        <a id="przerwa3" class="ml-4"></a>
-                        <button id="b3" class="btn btn-success strony px-5 py-2" type="button" onclick=wyslij(2);>2</button>
+                        <button id="b2" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(1,false);>+1</button>
+                        <a id="przerwa3" class="ml-5"></a>
+                        <button id="b3" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(2,false);>Ost</button>
                     </div>
+                    <form id="add-form" class=mb-5>
+                        <label id="recznie" for="recznie2" class="wieksze"></label>
+                        <br>
+                        <div class="input-group justify-content-center align-items-center text-center">
+                            <input class="mr-2 wieksze3" id="recznie2" style="max-width: 70px;" name="recznie2" type="number" min="1" max="9999" size="4">
+                            <input id="recznie3" class="btn btn-info wieksze" type="submit" value="Przejdź">
+                        </div>
+                    </form>
+                    <input id="glowna" class="btn btn-info wieksze2 mb-4" type="button" value="Powrót do strony głównej" onclick="window.location.assign('/');">
                 </div>
             </div>
         </div>

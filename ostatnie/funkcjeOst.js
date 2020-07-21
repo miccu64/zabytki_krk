@@ -1,19 +1,34 @@
+$('#add-form').submit(function(e) {   
+    var numer = parseInt(document.getElementById("recznie2").value);
+    wyslij(numer, 2);
+
+    e.preventDefault();
+});
+
+$(window).on('popstate', function (e) {
+    let par = new URLSearchParams(location.search);
+    wyslij(parseInt(par.get('page')), true);
+});
+
 function szczegoly(liczba) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     location.href = "/szczegoly/?id=" + tablica2[liczba].id;
 }
 
-wyslij(0);
+let par = new URLSearchParams(location.search);
+wyslij(parseInt(par.get('page')), true);
 
-function wyslij(oIle) {
+function wyslij(oIle, czyRecznie) {
     let params = new URLSearchParams(location.search);
     var strona = params.get('page');
-    strona = parseInt(strona);
-    if ((oIle == -2) || (oIle == 0))
-        strona = 0;
-    else if (oIle == 2)
-        strona = parseInt(document.getElementById("b3").textContent) - 1;
-    else strona += oIle - 1;
+    if (czyRecznie == false) {
+        strona = parseInt(strona);
+        if ((oIle == -2) || (oIle == 0))
+            strona = 0;
+        else if (oIle == 2)
+            strona = parseInt(document.getElementById("b3").textContent) - 1;
+        else strona += oIle - 1;
+    } else strona = oIle - 1;
     var rozmiar = '12';
     var url2 = server + '/api/v1/artifacts?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
@@ -27,17 +42,17 @@ function wyslij(oIle) {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
             var iloscStron = myArr.totalPages;
-            wypisz(myArr.content, strona + 1, iloscKart, iloscStron);
+            wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
 
         } else if (http.readyState == 4) {
-            alert('Błąd!');
+            alert('Niewłaściwy numer strony lub błąd połączenia!');
         }
     }
     http.send();
 }
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
-function wypisz(myArr, strona, iloscKart, iloscStron) {
+function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     var iloscKartNaStronie = iloscKart % 12;
     var link;
 
@@ -83,7 +98,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         }
     }
 
-    document.getElementById("b1").textContent = strona;
+    document.getElementById("b1").textContent = strona - 1;
     document.getElementById("b2").textContent = strona + 1;
     document.getElementById("b3").textContent = iloscStron;
     if (strona == 1) {
@@ -100,7 +115,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         document.getElementById("b2").style.display = "none";
         document.getElementById("b3").style.display = "none";
         document.getElementById("przerwa1").style.display = "initial";
-        document.getElementById("przerwa2").style.display = "initial";
+        document.getElementById("przerwa2").style.display = "none";
         document.getElementById("przerwa3").style.display = "none";
     } else {
         document.getElementById('b0').style.display = 'initial';
@@ -113,12 +128,25 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
     }
 
     if (strona == iloscStron - 1) {
-        document.getElementById("b3").style.display = "none";
-        document.getElementById("przerwa3").style.display = "none";
+        document.getElementById("b2").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
     }
 
+    if (strona == 2) {
+        document.getElementById("b1").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
+    }
+
+    if(zapisHistorii == false || zapisHistorii == 2) {
+        var str = '/ostatnie/?page=' + strona;
+        document.getElementById("nrStrony").textContent = "Obecna strona: " + strona;
+        window.history.pushState(null, '', str);
+    }
+    document.getElementById("recznie").textContent = "Wpisz numer strony (od 1 do " + iloscStron + "):";
+    $("#recznie2").attr({
+        "max" : iloscStron,
+        "min" : 1
+     });
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
-    var str = '/ostatnie/?page=' + strona;
-    window.history.pushState(null, '', str);
 }
