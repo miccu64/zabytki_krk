@@ -1,7 +1,7 @@
 {
-    "name": "Krakowskie Zabytki",
-    "short_name": "Zabytki",
-	"description": "Zabytki w Krakowie",
+    "name": "Zgłoś zabytek",
+    "short_name": "Zgłoś zabytek",
+	"description": "Zgłoś zabytek",
 	"version": "1.0",
     "icons": [
         {

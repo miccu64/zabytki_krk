@@ -14,7 +14,7 @@
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
 
-    <title>Znalezione zabytki</title>
+    <title>Znalezione zabytki - Zgłoś Zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="znalezione.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
@@ -85,16 +85,14 @@
     </nav>
 
     <div class="col-12 odstep2"></div>
-    <div class="row h-100">
-        <div class="col-12 text-center">
-            <div class="col-12 odstep2"></div>
-            <h1><b>Znalezione zabytki</b></h1>
-            <div id="nieZnaleziono" class="odstep">
-                <h2>Nie znaleziono zabytków spełniających kryteria.</h2>
-                <button class="btn btn-info naglowki odstep" type="button" onclick="location.href = '/wyszukaj/';">Powrót do wyszukiwania</button>
-            </div>
+    <div class="col-12 text-center odstep2">
+         <h1><b>Znalezione zabytki</b></h1>
+         <div id="nieZnaleziono" class="odstep">
+            <h2>Nie znaleziono zabytków spełniających kryteria.</h2>
+            <button class="btn btn-info naglowki odstep" type="button" onclick="location.href = '/wyszukaj/';">Powrót do wyszukiwania</button>
         </div>
     </div>
+
     <div id="ukryj" class="container-bg justify-content-center align-items-center p-4">
         <div class="row h-100">
         </div>
@@ -427,39 +425,31 @@
                     </div>
                 </div>
             </div>
-            <script>
-                function szczegoly(liczba) {
-                    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
-                    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
-                }
-            </script>
-
         </div>
-        <div class="container-bg justify-content-center align-items-center text-center pt-3 py-2">
+        <div class="justify-content-center align-items-center text-center my-2">
             <div class="row">
                 <div class="col-12">
-                    <div class="odstep2 pb-5">
-                        <button id="b0" class="btn btn-info naglowki" type="button" onclick=wyslij(0);>1</button>
-                        <button id="b1" class="btn btn-info naglowki" type="button" onclick=wyslij(1);>2</button>
-                        <button id="b2" class="btn btn-info naglowki" type="button" onclick=wyslij(2);>3</button>
-                        <button id="b3" class="btn btn-info naglowki" type="button" onclick=wyslij(3);>4</button>
-                        <button id="b4" class="btn btn-info naglowki" type="button" onclick=wyslij(4);>5</button>
-                        <button id="b5" class="btn btn-info naglowki" type="button" onclick=wyslij(5);>6</button>
-                        <button id="b6" class="btn btn-info naglowki" type="button" onclick=wyslij(6);>7</button>
-                        <button id="b7" class="btn btn-info naglowki" type="button" onclick=wyslij(7);>8</button>
-                        <button id="b8" class="btn btn-info naglowki" type="button" onclick=wyslij(8);>9</button>
-                        <button id="b9" class="btn btn-info naglowki" type="button" onclick=wyslij(9);>10</button>
-                        <button id="b10" class="btn btn-info naglowki" type="button" onclick=wyslij(10);>11</button>
-                        <button id="b11" class="btn btn-info naglowki" type="button" onclick=wyslij(11);>12</button>
-                        <button id="b12" class="btn btn-info naglowki" type="button" onclick=wyslij(12);>13</button>
-                        <button id="b13" class="btn btn-info naglowki" type="button" onclick=wyslij(13);>14</button>
-                        <button id="b14" class="btn btn-info naglowki" type="button" onclick=wyslij(14);>15</button>
-                        <button id="b15" class="btn btn-info naglowki" type="button" onclick=wyslij(15);>16</button>
-                        <button id="b16" class="btn btn-info naglowki" type="button" onclick=wyslij(16);>17</button>
-                        <button id="b17" class="btn btn-info naglowki" type="button" onclick=wyslij(17);>18</button>
-                        <button id="b18" class="btn btn-info naglowki" type="button" onclick=wyslij(18);>19</button>
-                        <button id="b19" class="btn btn-info naglowki" type="button" onclick=wyslij(19);>20</button>
+                    <div id="jednaStrona">
+                        <div class="pb-3">
+                            <h2 id="nrStrony" class="mb-3">Obecna strona: 1</h2>
+                            <button id="b0" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-2,false);>1</button>
+                            <a id="przerwa1" class="ml-5"></a>
+                            <button id="b1" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-1,false);>-1</button>
+                            <a id="przerwa2" class="ml-4"></a>
+                            <button id="b2" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(1,false);>+1</button>
+                            <a id="przerwa3" class="ml-5"></a>
+                            <button id="b3" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(2,false);>Ost</button>
+                        </div>
+                        <form id="add-form" class=mb-5>
+                            <label id="recznie" for="recznie2" class="wieksze"></label>
+                            <br>
+                            <div class="input-group justify-content-center align-items-center text-center">
+                                <input class="mr-2 wieksze3" id="recznie2" style="max-width: 70px;" name="recznie2" type="number" min="1" max="9999" size="4">
+                                <input id="recznie3" class="btn btn-info wieksze" type="submit" value="Przejdź">
+                            </div>
+                        </form>
                     </div>
+                    <input id="glowna" class="btn btn-info przycisk2 mb-4" type="button" value="Powrót do wyszukiwania" onclick="window.location.assign('/wyszukaj/');">
                 </div>
             </div>
         </div>

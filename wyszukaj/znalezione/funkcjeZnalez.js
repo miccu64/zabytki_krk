@@ -1,8 +1,24 @@
-var tablica = localStorage.getItem('tablica2');
-tablica = JSON.parse(tablica);
-wyslij(0);
+$('#add-form').submit(function(e) {   
+    var numer = parseInt(document.getElementById("recznie2").value);
+    wyslij(numer, 2);
 
-function wyslij(strona) {
+    e.preventDefault();
+});
+
+$(window).on('popstate', function (e) {
+    let par = new URLSearchParams(location.search);
+    wyslij(parseInt(par.get('page')), true);
+});
+
+function szczegoly(liczba) {
+    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
+    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
+}
+
+let par = new URLSearchParams(location.search);
+wyslij(parseInt(par.get('page')), true);
+
+function wyslij(oIle, czyRecznie) {
     var rozmiar = '12';
     let params = new URLSearchParams(location.search);
     var name = params.get('name');
@@ -10,6 +26,15 @@ function wyslij(strona) {
     var building = params.get('building');
     var type = params.get('type');
     var city = params.get('city');
+    var strona = params.get('page');
+    if (czyRecznie == false) {
+        strona = parseInt(strona);
+        if ((oIle == -2) || (oIle == 0))
+            strona = 0;
+        else if (oIle == 2)
+            strona = parseInt(document.getElementById("b3").textContent) - 1;
+        else strona += oIle - 1;
+    } else strona = oIle - 1;
     var url2 = server + '/api/v1/artifacts/search?' + 'name=' + name + '&city=' + city + '&street=' + street + '&type=' + type + '&building=' + building + '&page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
@@ -22,7 +47,10 @@ function wyslij(strona) {
             localStorage.setItem('tablica2', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
             var iloscStron = myArr.totalPages;
-            wypisz(myArr.content, strona + 1, iloscKart, iloscStron);
+            if(myArr.empty == true) {
+                alert('Niewłaściwy numer strony!');
+                window.history.back();
+            } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
 
         } else if (http.readyState == 4) {
             alert('Błąd!');
@@ -32,7 +60,7 @@ function wyslij(strona) {
 }
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
-function wypisz(myArr, strona, iloscKart, iloscStron) {
+function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     var iloscKartNaStronie = iloscKart % 12;
     var link;
 
@@ -78,11 +106,68 @@ function wypisz(myArr, strona, iloscKart, iloscStron) {
         }
     }
 
-    for (var d = iloscStron; d < 20; d++) {
-        link = document.getElementById('b' + d);
-        link.style.display = 'none';
+    document.getElementById("b1").textContent = strona - 1;
+    document.getElementById("b2").textContent = strona + 1;
+    document.getElementById("b3").textContent = iloscStron;
+    if (strona == 1) {
+        document.getElementById("b0").style.display = "none";
+        document.getElementById("b1").style.display = "none";
+        document.getElementById("b2").style.display = "initial";
+        document.getElementById("b3").style.display = "initial";
+        document.getElementById("przerwa1").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
+        document.getElementById("przerwa3").style.display = "initial";
+    } else if (strona == iloscStron) {
+        document.getElementById("b0").style.display = "initial";
+        document.getElementById("b1").style.display = "initial";
+        document.getElementById("b2").style.display = "none";
+        document.getElementById("b3").style.display = "none";
+        document.getElementById("przerwa1").style.display = "initial";
+        document.getElementById("przerwa2").style.display = "none";
+        document.getElementById("przerwa3").style.display = "none";
+    } else {
+        document.getElementById('b0').style.display = 'initial';
+        document.getElementById('b1').style.display = 'initial';
+        document.getElementById("b2").style.display = "initial";
+        document.getElementById("b3").style.display = "initial";
+        document.getElementById("przerwa1").style.display = "initial";
+        document.getElementById("przerwa2").style.display = "initial";
+        document.getElementById("przerwa3").style.display = "initial";
     }
+
+    if (strona == iloscStron - 1) {
+        document.getElementById("b2").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
+    }
+
+    if (strona == 2) {
+        document.getElementById("b1").style.display = "none";
+        document.getElementById("przerwa2").style.display = "none";
+    }
+
+    let params = new URLSearchParams(location.search);
+    var name = params.get('name');
+    var street = params.get('street');
+    var building = params.get('building');
+    var type = params.get('type');
+    var city = params.get('city');
+    if(zapisHistorii == false || zapisHistorii == 2) {
+        var str = "/wyszukaj/znalezione/?name=" + name + "&city=" + city + "&type=" + type + "&street=" + street + "&building=" + building + "&page=" + strona;
+        document.getElementById("nrStrony").textContent = "Obecna strona: " + strona;
+        window.history.pushState(null, '', str);
+    }
+    document.getElementById("recznie").textContent = "Wpisz numer strony (od 1 do " + iloscStron + "):";
+    $("#recznie2").attr({
+        "max" : iloscStron,
+        "min" : 1
+    });
+
+    if(iloscStron<2)
+        document.getElementById("jednaStrona").style.display = 'none';
 
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
+
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

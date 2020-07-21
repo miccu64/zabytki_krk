@@ -14,7 +14,7 @@
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
 
-    <title>Wyszukaj zabytek</title>
+    <title>Wyszukiwanie - Zgłoś Zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="wyszukaj.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
@@ -92,7 +92,7 @@
                 <div class="col-12 odstep2"></div>
                 <h3>Proszę wypełnić przynajmniej jedno kryterium.</h3>
                 <div class="col-12 odstep"></div>
-                <form>
+                <form class="mb-5">
                     <div class="form-row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
@@ -111,7 +111,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="city">Miejscowość</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city" placeholder="Np. Szewska">
+                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city" placeholder="Np. Kraków">
                             </div>
                         </div>
                         <div class="col-8 col-md-4">
@@ -128,8 +128,9 @@
                         </div>
                     </div>
                     <div class="odstep3"></div>
-                    <button type="submit" id="but" class="btn btn-primary btn-lg btn-block przycisk"><b>Wyszukaj</b></button>
+                    <button type="submit" id="but" class="btn btn-info btn-lg btn-block przycisk"><b>Wyszukaj</b></button>
                 </form>
+                <input id="glowna" class="btn btn-info przycisk2 mb-4" type="button" value="Powrót do strony głównej" onclick="window.location.assign('/');">
                 <script src="wyszukaj.js"></script>
             </div>
         </div>

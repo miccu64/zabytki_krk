@@ -42,7 +42,10 @@ function wyslij(oIle, czyRecznie) {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
             var iloscStron = myArr.totalPages;
-            wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
+            if(myArr.empty == true) {
+                alert('Niewłaściwy numer strony!');
+                window.history.back();
+            } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
 
         } else if (http.readyState == 4) {
             alert('Niewłaściwy numer strony lub błąd połączenia!');
@@ -146,7 +149,11 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     $("#recznie2").attr({
         "max" : iloscStron,
         "min" : 1
-     });
+    });
+     
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
+
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

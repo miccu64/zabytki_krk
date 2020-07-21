@@ -32,3 +32,16 @@
 #nieZnaleziono {
     display: none;
 }
+
+.strony {
+    font-size: calc(170% + .5vw);
+    color: white;
+}
+
+.wieksze {
+    font-size: calc(120% + .5vw);
+}
+
+.wieksze3 {
+    font-size: calc(140% + .5vw);
+}

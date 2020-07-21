@@ -1,5 +1,5 @@
 function wstecz() {
-    window.history.back();
+    window.location.assign("/");
 }
 
 function edycja() {

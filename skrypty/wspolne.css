@@ -39,3 +39,7 @@ body {
     color: white;
     text-align: center;
 }
+
+.przycisk2 {
+    font-size: calc(80% + .5vw);
+}

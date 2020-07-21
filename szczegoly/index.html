@@ -15,7 +15,7 @@
     <script src="/skrypty/bootstrap.min.js"></script>
     <script src="/skrypty/ekko-lightbox.min.js"></script>
 
-    <title>Szczegóły zabytku</title>
+    <title>Szczegóły zabytku - Zgłoś Zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="szczegoly.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
@@ -94,14 +94,6 @@
             <div class="col-12 odstep"></div>
             <div class="col-12 text-center tekst">
                 <div class="naglowek"><b>Szczegóły zabytku</b></div>
-                <script>
-                    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                        event.preventDefault();
-                        $(this).ekkoLightbox();
-                    });
-                </script>
-
-
                 <div class="col-12 odstep"></div>
                 <form>
                     <div class="form-row">
@@ -170,7 +162,7 @@
 
                     <div id="opis"></div>
                     <div class="row justify-content-center">
-                        <div class="col-10">
+                        <div class="col-12 col-md-10">
                             <div class="row justify-content-center align-items-center mb-2">
                                 <div class="col-3" id="archNapis">
                                     <h3>Zdjęcie archiwalne</h3>
@@ -205,12 +197,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="row justify-content-center align-items-center odstep2">
-                        <div class="col-10 px-5">
+                        <div class="col-12 col-md-10 px-5">
                             <div>
                                 <h3>Mapa</h3>
                             </div>
@@ -220,7 +211,7 @@
                         <div class="col-12 odstep2"></div>
                     </div>
                     <div class="form-group row justify-content-center align-items-center">
-                        <div class="col-10 px-5">
+                        <div class="col-12 col-md-10 px-5">
                             <label class="tekst" for="poleTekstowe">Opis zabytku</label>
                             <textarea class="form-control tekst" id="poleTekstowe" rows="6" placeholder="Brak opisu. Dodaj własny!" disabled></textarea>
                         </div>
@@ -237,7 +228,6 @@
                 </form>
             </div>
         </div>
-
     </div>
     <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
 </body>

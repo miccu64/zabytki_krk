@@ -16,7 +16,7 @@
     <script src="/skrypty/bootstrap.min.js"></script>
     <script src="/skrypty/jwt-decode.min.js"></script>
 
-    <title>Moje konto</title>
+    <title>Moje konto - Zgłoś Zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="konto.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
@@ -106,10 +106,10 @@
                 <script>
                     document.getElementById("wybor").addEventListener("click", function() {
                         event.preventDefault();
-                        document.getElementById("zmienHaslo").style.visibility = "visible"
+                        document.getElementById("zmienHaslo").style.display = "initial";
                     }, false);
                 </script>
-                <div id="zmienHaslo" style="visibility: hidden;">
+                <div id="zmienHaslo" style="display: none;">
                     <form id="add-form">
                         <div class="form-row">
                             <div class="col-12">
@@ -135,10 +135,11 @@
                             </div>
                         </div>
                         <div class="odstep"></div>
-                        <button type="submit" class="btn btn-primary btn-lg przycisk"><b>Zmień hasło</b></button>
+                        <button type="submit" class="btn btn-primary btn-lg przycisk mb-3"><b>Zmień hasło</b></button>
                         <script src="konto.js"></script>
                     </form>
                 </div>
+                <input id="glowna" class="btn btn-info przycisk2 mb-4 mt-3" type="button" value="Powrót do strony głównej" onclick="window.location.assign('/');">
                 <div class="odstep3"></div>
             </div>
         </div>
