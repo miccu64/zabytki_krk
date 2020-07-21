@@ -1,7 +1,3 @@
-function wstecz() {
-    window.location.assign("/");
-}
-
 function edycja() {
     location.href = "/edytuj/";
 }
@@ -46,7 +42,10 @@ function wypisz(myArr) {
         var lat = myArr[a].latitude;
         var lng = myArr[a].longitude;
 
-        var marker = new customMarker([lat, lng], { myID: myArr[a].id }).on('click', onClick).addTo(mymap);
+        //wylaczenie cieni
+        var myicon = new L.Icon.Default();
+        myicon.options.shadowSize = [0,0];
+        var marker = new customMarker([lat, lng], {icon : myicon, myID: myArr[a].id}).on('click', onClick).addTo(mymap);
 
         var help = "<p class='myCss'><b>Miejscowość: </b>" + myArr[a].city + "<br><b>Nazwa: </b> " + myArr[a].name + "<br><b>Typ: </b>" + myArr[a].type + "<b><br>Ulica:</b> " + myArr[a].street;
         help += '<br><button type="button" onclick=przekieruj();>Szczegóły zabytku</button>';
