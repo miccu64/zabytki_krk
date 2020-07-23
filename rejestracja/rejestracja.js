@@ -24,7 +24,7 @@ function klik() {
         url: url2,
         type: "POST",
         success: function (response) {
-            alert('Zarejestrowano! Teraz możesz się zalogować.');
+            alert('Zarejestrowano! Na Twój adres e-mail została wysłana wiadomość z linkiem aktywacyjnym. Proszę w niego kliknąć w celu zakończenia rejestracji.');
             window.location.assign("/logowanie/");
         },
         error: function (error) {
