@@ -1,7 +1,17 @@
+//do wyswietlania obrazow
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 });
+
+//rozwijanie historii
+document.getElementById("rozwin").addEventListener("click", function() {
+    event.preventDefault();
+    var widoczne = document.getElementById("poleTekstowe2").style.display;
+    if (widoczne == 'none')
+        document.getElementById("poleTekstowe2").style.display = 'initial';
+    else document.getElementById("poleTekstowe2").style.display = 'none';
+}, false);
 
 function wstecz() {
     window.history.back();
@@ -39,8 +49,21 @@ function wypisz(myArr) {
     document.getElementById('numer').value = myArr.building;
     document.getElementById('nazwa').value = myArr.name;
     document.getElementById('typ').value = myArr.type;
-    document.getElementById('poleTekstowe').value = myArr.description;
+    document.getElementById('poleTekstowe').textContent = myArr.description[0].description;
     document.getElementById('city').value = myArr.city;
+
+    var ilosc = myArr.description.length;
+    if(ilosc>1) {
+        var tekst = "";
+        for(var a=1; a<ilosc; a++) {
+            tekst += myArr.description[a].createdAt.slice(0, 10);
+            tekst += '\n';
+            tekst += myArr.description[a].description;
+            tekst += '\n\n';
+        }
+        document.getElementById('poleTekstowe2').textContent = tekst;
+        document.getElementById('historia').style.display = 'initial'; 
+    }
 
     var lat = document.getElementById("wspx").value;
     var lng = document.getElementById("wspy").value;

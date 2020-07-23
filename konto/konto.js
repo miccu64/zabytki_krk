@@ -3,6 +3,14 @@ $('#add-form').submit(function() {
     return false;
 });
 
+document.getElementById("wybor").addEventListener("click", function() {
+    event.preventDefault();
+    var widoczne = document.getElementById("zmienHaslo").style.display;
+    if (widoczne == 'none')
+        document.getElementById("zmienHaslo").style.display = 'initial';
+    else document.getElementById("zmienHaslo").style.display = 'none';
+}, false);
+
 czyZalogowany();
 wyswietl();
 

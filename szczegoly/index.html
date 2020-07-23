@@ -171,7 +171,7 @@
                                     <h3>Zdjęcia aktualne</h3>
                                 </div>
                             </div>
-                            <div class="row justify-content-center align-items-center mb-4">
+                            <div class="row justify-content-center align-items-center mb-3">
                                 <div id="poleArch" class="col-3 justify-content-center align-items-center">
                                     <a id="arch1" data-toggle="lightbox" data-gallery="example-gallery">
                                         <img id="arch11" class="img-fluid">
@@ -200,7 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="row justify-content-center align-items-center odstep2">
+                    <div class="row justify-content-center align-items-center">
                         <div class="col-12 col-md-10 px-5">
                             <div>
                                 <h3>Mapa</h3>
@@ -210,14 +210,20 @@
                         </div>
                         <div class="col-12 odstep2"></div>
                     </div>
-                    <div class="form-group row justify-content-center align-items-center">
+                    <div class="row justify-content-center align-items-center text-center mt-2">
                         <div class="col-12 col-md-10 px-5">
-                            <label class="tekst" for="poleTekstowe">Opis zabytku</label>
-                            <textarea class="form-control tekst" id="poleTekstowe" rows="6" placeholder="Brak opisu. Dodaj własny!" disabled></textarea>
+                            <h3>Opis zabytku</h3>   
+                            <p class="tekst text-justify" id="poleTekstowe"></p> 
                         </div>
                     </div>
-                    <div class="odstep3"></div>
-
+                    <div class="row justify-content-center align-items-center">
+                        <div id="historia" class="odstep3 col-12 col-md-10 px-5 mb-5" style="display: none;">
+                            <a id="rozwin" href=""><h5>Historia opisów zabytku</h5></a>
+                            <div class="text-justify">
+                                <div id="poleTekstowe2" class="text-justify" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="blad" id="blad2"></div>
                     <div class="odstep"></div>
                     <button type="button" class="btn btn-primary btn-lg przycisk" onclick="edycja()"><b>Edytuj</b></button>

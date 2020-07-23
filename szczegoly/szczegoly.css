@@ -32,3 +32,8 @@
     color: red;
     font-weight: 700;
 }
+
+#poleTekstowe2
+{
+    white-space:pre-wrap;
+}
