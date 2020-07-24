@@ -8,6 +8,11 @@ $('#add-form').submit(function() {
     }
     document.getElementById("przyciski").style.display = "none";
     document.getElementById("czekaj").style.display = "initial";
+    if (confirm('Jesteś pewien, że chcesz dodać zabytek?') == false) {
+        document.getElementById("przyciski").style.display = "initial";
+        document.getElementById("czekaj").style.display = "none";
+        return false;
+    }
     dodaj();
     return false;
 });

@@ -1,6 +1,11 @@
 $('#add-form').submit(function () {
     document.getElementById("przyciski").style.display = "none";
     document.getElementById("czekaj").style.display = "initial";
+    if (confirm('Jesteś pewien, że chcesz przesłać zdjęcie?') == false) {
+        document.getElementById("przyciski").style.display = "initial";
+        document.getElementById("czekaj").style.display = "none";
+        return false;
+    }
     edycja();
     return false;
 });

@@ -1,6 +1,11 @@
 $('#add-form').submit(function() {
     document.getElementById("przyciski").style.display = "none";
     document.getElementById("czekaj").style.display = "initial";
+    if (confirm('Jesteś pewien, że chcesz przesłać poprawkę?') == false) {
+        document.getElementById("przyciski").style.display = "initial";
+        document.getElementById("czekaj").style.display = "none";
+        return false;
+    }
     edycja();
     return false;
 });
@@ -23,7 +28,7 @@ function edycja() {
         contentType: 'application/json',
         success: function(response) {
             alert('Pomyślnie edytowano zabytek. Edytowane wartości pojawią się po akceptacji przez administratora.');
-            window.location.replace("/ostatnie/?page=1");
+            window.history.back();
         },
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";

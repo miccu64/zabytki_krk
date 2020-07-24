@@ -94,19 +94,23 @@
             <div class="col-12 odstep"></div>
             <div class="col-12 text-center tekst justify-content-center align-items-center">
                 <div class="naglowek"><b>Edytuj zabytek</b></div>
+                <div>
+                    <h4>Edytować można numer budynku, nazwę, typ oraz opis obiektu.</h4>
+                    <h4>Zaktualizowane dane pojawią się po zaakceptowaniu przez administratora.</h4>
+                </div>
                 <div class="col-12 odstep2 justify-content-center align-items-center"></div>
                 <form id="add-form">
                     <div class="form-row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="name">Nazwa obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="name" name="name" maxlength="255" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="type">Typ obiektu</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="type" name="type" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="type" name="type" maxlength="255" required>
                             </div>
                         </div>
                     </div>
@@ -114,13 +118,13 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="city">Miejscowość</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city" required disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="city" name="city" maxlength="255" required disabled>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="street">Ulica</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" required disabled>
+                                <input type="text" class="form-control form-control-lg tekst" id="street" name="street" maxlength="255" required disabled>
                             </div>
                         </div>
                     </div>
@@ -128,7 +132,7 @@
                         <div class="col-4 col-md-6">
                             <div class="form-group">
                                 <label class="tekst odstep2" for="building">Numer budynku</label>
-                                <input type="text" class="form-control form-control-lg tekst" id="building" name="building" required>
+                                <input type="text" class="form-control form-control-lg tekst" id="building" name="building" maxlength="255" required>
                             </div>
                         </div>
                         <div class="form-group col-4 col-md-3">
@@ -144,7 +148,7 @@
                         <div class="odstep3 col-10 justify-content-center align-items-center">
                             <div class="form-group">
                                 <label class="tekst" for="description">Opis zabytku</label>
-                                <textarea class="form-control tekst" id="description" name="description" rows="6" required></textarea>
+                                <textarea class="form-control tekst" id="description" name="description" rows="6" maxlength="10000" required></textarea>
                             </div>
                             <div class="odstep3"></div>
                         </div>
