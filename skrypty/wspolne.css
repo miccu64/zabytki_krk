@@ -43,3 +43,31 @@ body {
 .przycisk2 {
     font-size: calc(80% + .5vw);
 }
+
+.odstep {
+    margin-top: calc(5px + 1vw);
+}
+
+.odstep2 {
+    margin-top: calc(5px + .5vw);
+}
+
+.odstep3 {
+    margin-top: calc(20px + 2vw);
+}
+
+.odstep4 {
+    margin-top: calc(20px + 0.5vw);
+}
+
+.odstep5 {
+    margin-top: calc(60px + 0.5vw);
+}
+
+.tekst {
+    font-size: 130%;
+}
+
+.naglowek {
+    font-size: 200%;
+}

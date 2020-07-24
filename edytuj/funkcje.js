@@ -111,13 +111,6 @@ function wypisz(myArr) {
     document.getElementById('building').value = myArr.building;
     document.getElementById('name').value = myArr.name;
     document.getElementById('type').value = myArr.type;
-    document.getElementById('description').value = myArr.description;
+    document.getElementById('description').value = myArr.description[0].description;
     document.getElementById('city').value = myArr.city;
-
-    var lat = myArr.latitude;
-    var lng = myArr.longitude;
-    if (marker !== null) {
-        mymap.removeLayer(marker);
-    }
-    marker = L.marker([lat, lng]).addTo(mymap);
 }

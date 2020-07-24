@@ -1,34 +1,6 @@
-.tekst {
-    font-size: 130%;
-}
-
-.odstep {
-    margin-top: calc(5px + 1vw);
-}
-
-.odstep2 {
-    margin-top: calc(5px + .5vw);
-}
-
-.odstep3 {
-    margin-top: calc(20px + 2vw);
-}
-
-.odstep4 {
-    margin-top: calc(20px + 0.5vw);
-}
 
 .odstepDuzy {
     margin-top: calc(150px + 10vw);
-}
-
-.naglowek {
-    font-size: 200%;
-}
-
-.my_checkbox {
-    width: 20px;
-    height: 20px;
 }
 
 .przycisk {
