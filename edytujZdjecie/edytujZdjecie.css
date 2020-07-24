@@ -1,0 +1,23 @@
+
+.przycisk {
+    font-size: 150%;
+}
+
+.blad {
+    font-size: 180%;
+    color: red;
+    font-weight: 700;
+}
+
+.custom-file-input~.custom-file-label::after {
+    content: "Wybierz plik";
+}
+
+#czekaj {
+    display: none;
+}
+
+#archiwalne {
+    width: 20px;
+    height: 20px;
+}

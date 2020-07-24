@@ -150,6 +150,9 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         "max" : iloscStron,
         "min" : 1
     });
+    
+    if(iloscStron<2)
+        document.getElementById("jednaStrona").style.display = 'none';
      
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";

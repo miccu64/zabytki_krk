@@ -7,61 +7,7 @@ $('#add-form').submit(function() {
 
 czyZalogowany();
 
-function wyslijZdj() {
-    let czyIstnieje = document.getElementById('recentPhotos').files.length;
-    if (czyIstnieje == 0) {
-        return;
-    } else {
-        let formData = new FormData();
-        formData.append('file', document.getElementById('recentPhotos').files[0]);
-        var id = localStorage.getItem('id');
-        $.ajax({
-            type: 'POST',
-            url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
-            data: formData,
-            contentType: false,
-            processData: false,
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
-            success: function(data) {},
-            error: function(data) {
-                alert('Błąd - nie dodano zdjęcia.');
-            }
-        });
-    }
-}
-
-function wyslijZdjArchiw() {
-    let czyIstnieje = document.getElementById('archivalPhoto').files.length;
-    if (czyIstnieje == 0) {
-        return;
-    } else {
-        let formData = new FormData();
-        formData.append('file', document.getElementById('archivalPhoto').files[0]);
-        var id = localStorage.getItem('id');
-        $.ajax({
-            type: 'POST',
-            url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
-            data: formData,
-            contentType: false,
-            processData: false,
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
-            success: function(data) {},
-            error: function(data) {
-                alert('Błąd - nie dodano zdjęcia archiwalnego.');
-            }
-        });
-    }
-}
-
 function edycja() {
-    document.getElementById("latitude").disabled = false;
-    document.getElementById("longitude").disabled = false;
-    wyslijZdj();
-    wyslijZdjArchiw();
     var obj = $('#add-form').serializeJSON();
     var id = localStorage.getItem("id");
     var url2 = server + '/api/v1/artifacts/by_id/' + id;
@@ -76,13 +22,13 @@ function edycja() {
         data: JSON.stringify(obj),
         contentType: 'application/json',
         success: function(response) {
-            alert('Pomyślnie edytowano zabytek.')
-            window.location.replace("/ostatnie");
+            alert('Pomyślnie edytowano zabytek. Edytowane wartości pojawią się po akceptacji przez administratora.');
+            window.location.replace("/ostatnie/?page=1");
         },
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";
             document.getElementById("czekaj").style.display = "none";
-            alert('Wystąpił błąd w edycji!')
+            alert('Wystąpił błąd w edycji!');
         }
     });
 }

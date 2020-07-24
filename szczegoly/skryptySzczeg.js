@@ -19,6 +19,14 @@ function edycja() {
     localStorage.setItem('id', id);
     location.href = "/edytuj/";
 }
+
+function dodajZdjecie() {
+    let params = new URLSearchParams(location.search);
+    var id = params.get('id');
+    localStorage.setItem('id', id);
+    location.href = "/edytujZdjecie/";
+}
+
 wyslij();
 
 function wyslij() {
