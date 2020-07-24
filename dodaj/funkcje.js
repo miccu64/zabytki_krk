@@ -14,10 +14,6 @@ $('#add-form').submit(function() {
 
 czyZalogowany();
 
-function wstecz() {
-    window.history.back();
-}
-
 function dodaj() {
     document.getElementById("latitude").disabled = false;
     document.getElementById("longitude").disabled = false;

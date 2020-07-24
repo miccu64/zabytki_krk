@@ -3,6 +3,10 @@
 //var server = 'http://127.0.0.1:8090';
 var server = 'http://192.168.2.6:8090';
 
+function wstecz() {
+    window.history.back();
+}
+
 function czyZalogowany() {
     var token = localStorage.getItem('token');
     if (token == null) {

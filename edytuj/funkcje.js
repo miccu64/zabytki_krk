@@ -7,10 +7,6 @@ $('#add-form').submit(function() {
 
 czyZalogowany();
 
-function wstecz() {
-    window.history.back();
-}
-
 function wyslijZdj() {
     let czyIstnieje = document.getElementById('recentPhotos').files.length;
     if (czyIstnieje == 0) {

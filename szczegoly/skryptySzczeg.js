@@ -13,10 +13,6 @@ document.getElementById("rozwin").addEventListener("click", function() {
     else document.getElementById("poleTekstowe2").style.display = 'none';
 }, false);
 
-function wstecz() {
-    window.history.back();
-}
-
 function edycja() {
     let params = new URLSearchParams(location.search);
     var id = params.get('id');
