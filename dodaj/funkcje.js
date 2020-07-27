@@ -35,7 +35,7 @@ function dodaj() {
         data: JSON.stringify(obj),
         contentType: 'application/json',
         success: function(response) {
-            localStorage.setItem('idDodane', response.id);
+            localStorage.setItem('idDodane', id);
 
             let czyIstnieje = document.getElementById('archivalPhoto').files.length;
             if (czyIstnieje > 0) {
