@@ -1,9 +1,27 @@
+//do wyswietlania obrazow
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
+
 $('#add-form').submit(function(e) {   
     var numer = parseInt(document.getElementById("recznie2").value);
     wyslij(numer, 2);
 
     e.preventDefault();
 });
+
+for(var i=0; i<1; i++) {
+    var wart = 'zdj' + i;
+    document.getElementById(wart).addEventListener("click", function() {
+        event.preventDefault();
+        var widoczne = document.getElementById("zmienHaslo").style.display;
+        if (widoczne == 'none')
+            document.getElementById("zmienHaslo").style.display = 'initial';
+        else document.getElementById("zmienHaslo").style.display = 'none';
+    }, false);
+}
+
 
 $(window).on('popstate', function (e) {
     let par = new URLSearchParams(location.search);
@@ -64,14 +82,20 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         var max = 12;
     } else var max = iloscKartNaStronie;
 
-    for (i = 0; i < max; i++) {
+    for (i = 0; i < 1; i++) {
+        var pomocnicza00 = 'nazwa' + i;
         var pomocnicza0 = 'wypisz' + i;
         var pomocnicza1 = 'opis' + i;
-        var wypisz = "Nazwa: " + myArr[i].name + ", Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
+        var nazwa = "Nazwa: " + myArr[i].name + ", ID zabytku: " + myArr[i].id;
+        var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
         wypisz += ", Ulica: " + myArr[i].street + ", Numer budynku: " + myArr[i].building;
-        var opis = "Opis: " + myArr.description[0];
+        var opis = "Opis: " + myArr[i].description[0].description;
         document.getElementById(pomocnicza0).innerHTML = wypisz;
         document.getElementById(pomocnicza1).innerHTML = opis;
+        document.getElementById(pomocnicza00).innerHTML = nazwa;
+        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
+        var pomocnicza2 = 'utworzyl' + i;
+        document.getElementById(pomocnicza2).innerHTML = dodal;
 /*
         var iloscZdj = myArr[i].recentPhotos.length;
         if (iloscZdj != 0) {
@@ -81,7 +105,20 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             var zdj = myArr[i].archivalPhoto.imageName;
             document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
         } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
+
+        
 */
+        var lat = myArr[i].latitude;
+        var lng = myArr[i].longitude;
+
+        var mymap = L.map('mapid').setView([lat, lng], 18);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+        var marker = L.marker([lat, lng]).addTo(mymap);
+
+
         link = document.getElementById('k' + i);
         link.style.display = 'inherit';
     }

@@ -16,6 +16,11 @@
     font-weight: 600;
 }
 
+.naglowki3 {
+    font-size: calc(200% + .5vw);
+    font-weight: 600;
+}
+
 .zdjecia {
     width: calc(100% + 1vw);
     height: calc(100% + 1vw);
@@ -40,4 +45,10 @@
 
 .wieksze3 {
     font-size: calc(140% + .5vw);
+}
+
+
+#mapid {
+    height: calc(300px + 10vw);
+    width: 100%;
 }

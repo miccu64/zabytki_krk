@@ -34,14 +34,12 @@ function dodaj() {
         },
         data: JSON.stringify(obj),
         contentType: 'application/json',
-        success: function(response) {
-            localStorage.setItem('idDodane', id);
+        success: function(id) {
 
             let czyIstnieje = document.getElementById('archivalPhoto').files.length;
             if (czyIstnieje > 0) {
                 let formData = new FormData();
                 formData.append('file', document.getElementById('archivalPhoto').files[0]);
-                var id = localStorage.getItem('idDodane');
                 $.ajax({
                     type: 'POST',
                     url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=true',
@@ -62,7 +60,6 @@ function dodaj() {
             if (czyIstnieje2 > 0) {
                 let formData2 = new FormData();
                 formData2.append('file', document.getElementById('recentPhotos').files[0]);
-                var id = localStorage.getItem('idDodane');
                 $.ajax({
                     type: 'POST',
                     url: server + '/api/v1/artifacts/by_id/' + id + '/photo' + '?archival=false',
@@ -82,7 +79,9 @@ function dodaj() {
             var id = localStorage.getItem('idDodane');
             localStorage.removeItem('idDodane');
             alert('Pomyślnie dodano zabytek.');
-            window.location.replace("/szczegoly/?id=" + id);
+            //window.location.replace("/szczegoly/?id=" + id);
+            document.getElementById("przyciski").style.display = "initial";
+            document.getElementById("czekaj").style.display = "none";
         },
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";

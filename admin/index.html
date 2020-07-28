@@ -13,12 +13,16 @@
     <link rel="stylesheet" href="/skrypty/bootstrap.min.css">
     <script src="/skrypty/jquery-3.4.1.min.js"></script>
     <script src="/skrypty/bootstrap.min.js"></script>
+    <script src="/skrypty/ekko-lightbox.min.js"></script>
 
     <title>Ostatnio dodane zabytki - Zgłoś Zabytek</title>
     <link rel="icon" href="/zdjecia/ikona/16.png">
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="/skrypty/wspolne.css">
     <link rel="manifest" href="/manifest.json">
+
+    <link rel="stylesheet" href="/skrypty/leaflet.css">
+    <script src="/skrypty/leaflet.js"></script>
 
 </head>
 
@@ -93,7 +97,7 @@
         </div>
         <div class="row">
             <div class="card-group">
-                <div class="col-12 my-2 d-flex align-items-stretch">
+                <div class="col-12 my-2  align-items-stretch">
                     <div id="k0" class="card border-info text-left tlo h-100">
                         <div id="nazwa0" class="card-header naglowki bg-info">
                             Nazwa obiektu
@@ -101,13 +105,67 @@
                         <div class="card card-body justify-content-left tlo" style="border: none;">
                             <div class="row">
                                 <div class="col-12">
-                                    <div id="wypisz0" class="naglowki2">Miejscowość</div>
-                                    <div id="opis0" class="naglowki2">Opis</div>
+                                    <div id="utworzyl0" class="naglowki2"></div>
+                                    <div id="wypisz0" class="naglowki2"></div>
+                                    <div id="opis0" class="naglowki2"></div>
+                                    <div class="text-center">
+                                        <a id="zdj0" href="" class="naglowki3 mr-3">Zdjęcia</a>
+                                        <a id="mapa0" href="" class="naglowki3 ml-3">Mapa</a>
+                                    </div>
+                                    <div id="pokaZdj">
+                                        <div class="row justify-content-center">
+                                            <div class="col-12 col-md-10">
+                                                <div class="row justify-content-center align-items-center mb-2 mt-4">
+                                                    <div class="col-3" id="archNapis">
+                                                        <h3>Zdjęcie archiwalne</h3>
+                                                    </div>
+                                                    <div class="col-9" id="recentNapis">
+                                                        <h3>Zdjęcia aktualne</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center align-items-center mb-3">
+                                                    <div id="poleArch" class="col-3 justify-content-center align-items-center">
+                                                        <a id="arch1" data-toggle="lightbox" data-gallery="example-gallery">
+                                                            <img id="arch11" class="img-fluid">
+                                                        </a>
+                                                    </div>
+                                                    <div id="wszystkieRecent" class="col-9 justify-content-center align-items-center">
+                                                        <div class="row justify-content-center align-items-center">
+                                                            <div id="poleRec22" class="col-4 justify-content-center align-items-center">
+                                                                <a id="recent2" data-toggle="lightbox" data-gallery="example-gallery">
+                                                                    <img id="recent22" class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                            <div id="poleRec11" class="col-4 justify-content-center align-items-center">
+                                                                <a id="recent1" data-toggle="lightbox" data-gallery="example-gallery">
+                                                                    <img id="recent11" class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                            <div id="poleRec00" class="col-4 justify-content-center align-items-center">
+                                                                <a id="recent0" data-toggle="lightbox" data-gallery="example-gallery">
+                                                                    <img id="recent00" class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="pokaMapa">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-12 col-md-10 px-5 mt-4">
+                                                <div id="mapid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="odstep2 mx-auto mb-3">
-                            <button class="btn btn-info naglowki" onclick="szczegoly(0)" type="button">Szczegóły</button>
+                        <div class="odstep2 text-center mx-auto mb-3">
+                            <button class="btn btn-success naglowki mx-5" onclick="akceptuj(0)" type="button">Akceptuj</button>
+                            <button class="btn btn-danger naglowki" onclick="odrzuc(0)" type="button">Odrzuć</button>
                         </div>
                     </div>
                 </div>
