@@ -11,15 +11,39 @@ $('#add-form').submit(function(e) {
     e.preventDefault();
 });
 
+function akceptuj (el, add) {
+    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
+    var url2 = server + '/api/v1/admin/acceptArtifact';
+    var token = localStorage.getItem('token');
+    var http = new XMLHttpRequest();
+    http.open('POST', url2, true);
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.setRequestHeader('Authorization', token);
+    http.onreadystatechange = function() { //Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+            alert(http.response);
+        } else if (http.readyState == 4) {
+            alert(http.response);
+        }
+    }
+    http.send('id=' + tablica2[el].id + '&accept=' + add);
+}
+
+function afterClick(i) {
+    event.preventDefault();
+            var wart2 = 'pokaZdj' + i;
+            var widoczne = document.getElementById(wart2).style.display;
+            if (widoczne == 'none')
+                document.getElementById(wart2).style.display = 'initial';
+            else document.getElementById(wart2).style.display = 'none';
+}
+
 for(var i=0; i<1; i++) {
-    var wart = 'zdj' + i;
-    document.getElementById(wart).addEventListener("click", function() {
-        event.preventDefault();
-        var widoczne = document.getElementById("zmienHaslo").style.display;
-        if (widoczne == 'none')
-            document.getElementById("zmienHaslo").style.display = 'initial';
-        else document.getElementById("zmienHaslo").style.display = 'none';
-    }, false);
+    
+        var wart = 'zdj' + i;
+        document.getElementById(wart).addEventListener("click", afterClick.bind(this, i), false);
+    
 }
 
 
@@ -28,10 +52,6 @@ $(window).on('popstate', function (e) {
     wyslij(parseInt(par.get('page')), true);
 });
 
-function szczegoly(liczba) {
-    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
-    location.href = "/szczegoly/?id=" + tablica2[liczba].id;
-}
 
 let par = new URLSearchParams(location.search);
 wyslij(parseInt(par.get('page')), true);
@@ -62,8 +82,7 @@ function wyslij(oIle, czyRecznie) {
             var iloscStron = myArr.totalPages;
             console.log(myArr);
             if(myArr.empty == true) {
-                alert('Niewłaściwy numer strony!');
-                window.history.back();
+                document.getElementById('pusto').style.display = 'initial';
             } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
 
         } else if (http.readyState == 4) {
@@ -96,18 +115,48 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
         var pomocnicza2 = 'utworzyl' + i;
         document.getElementById(pomocnicza2).innerHTML = dodal;
-/*
-        var iloscZdj = myArr[i].recentPhotos.length;
-        if (iloscZdj != 0) {
-            var zdj = myArr[i].recentPhotos[iloscZdj - 1].imageName;
-            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
-        } else if (myArr[i].archivalPhoto != null) {
-            var zdj = myArr[i].archivalPhoto.imageName;
-            document.getElementById(pomocnicza4).src = server + '/assets/' + zdj;
-        } else document.getElementById(pomocnicza4).src = "/zdjecia/brak.png";
+
+        //ukrywanie zdjec
+        var doZdj = server + '/admin/assets/';
+        var zdjArch = myArr[i].archivalPhoto;
+        if (zdjArch != null) {
+            zdjArch = zdjArch.imageName;
+            zdjArch = doZdj + zdjArch;
+            var arch = 'arch';
+            console.log(zdjArch);
+            document.getElementById(arch + i + i).src = zdjArch;
+            document.getElementById(arch + i).href = zdjArch;
+        }
+        var zdj0 = myArr[i].recentPhotos[0];
+        var zdj1 = myArr[i].recentPhotos[1];
+        var zdj2 = myArr[i].recentPhotos[2];
+
+        if (zdj0 != undefined) {
+            zdj0 = zdj0.imageName;
+            zdj0 = doZdj + zdj0;
+            var rec = 'recent2'
+            document.getElementById(rec + i + i).src = zdj0;
+            document.getElementById(rec + i).href = zdj0;
+        }
+
+        if (zdj1 != undefined) {
+            zdj1 = zdj1.imageName;
+            zdj1 = doZdj + zdj1;
+            var rec = 'recent1'
+            document.getElementById(rec + i + i).src = zdj1;
+            document.getElementById(rec + i).href = zdj1;
+        }
+
+        if (zdj2 != undefined) {
+            zdj2 = zdj2.imageName;
+            zdj2 = doZdj + zdj2;
+            var rec = 'recent0'
+            document.getElementById(rec + i + i).src = zdj1;
+            document.getElementById(rec + i).href = zdj1;
+        }
+
 
         
-*/
         var lat = myArr[i].latitude;
         var lng = myArr[i].longitude;
 
@@ -117,6 +166,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mymap);
         var marker = L.marker([lat, lng]).addTo(mymap);
+
 
 
         link = document.getElementById('k' + i);

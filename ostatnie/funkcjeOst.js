@@ -42,6 +42,7 @@ function wyslij(oIle, czyRecznie) {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
             var iloscStron = myArr.totalPages;
+            console.log(myArr);
             if(myArr.empty == true) {
                 alert('Niewłaściwy numer strony!');
                 window.history.back();
