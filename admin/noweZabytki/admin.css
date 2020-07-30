@@ -48,7 +48,11 @@
 }
 
 
-#mapid {
+.mapid {
     height: calc(300px + 10vw);
     width: 100%;
+}
+
+.brakZdjecNapis {
+    font-size: calc(170% + .5vw);
 }

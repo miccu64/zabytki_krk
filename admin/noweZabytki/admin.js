@@ -11,6 +11,8 @@ $('#add-form').submit(function(e) {
     e.preventDefault();
 });
 
+var maps = new Array();
+
 function akceptuj (el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptArtifact';
@@ -23,6 +25,7 @@ function akceptuj (el, add) {
     http.onreadystatechange = function() { //Call a function when the state changes.
         if (http.readyState == 4 && http.status == 200) {
             alert(http.response);
+            location.reload();
         } else if (http.readyState == 4) {
             alert(http.response);
         }
@@ -30,21 +33,6 @@ function akceptuj (el, add) {
     http.send('id=' + tablica2[el].id + '&accept=' + add);
 }
 
-function afterClick(i) {
-    event.preventDefault();
-            var wart2 = 'pokaZdj' + i;
-            var widoczne = document.getElementById(wart2).style.display;
-            if (widoczne == 'none')
-                document.getElementById(wart2).style.display = 'initial';
-            else document.getElementById(wart2).style.display = 'none';
-}
-
-for(var i=0; i<1; i++) {
-    
-        var wart = 'zdj' + i;
-        document.getElementById(wart).addEventListener("click", afterClick.bind(this, i), false);
-    
-}
 
 
 $(window).on('popstate', function (e) {
@@ -80,7 +68,6 @@ function wyslij(oIle, czyRecznie) {
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
             var iloscStron = myArr.totalPages;
-            console.log(myArr);
             if(myArr.empty == true) {
                 document.getElementById('pusto').style.display = 'initial';
             } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
@@ -101,20 +88,39 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         var max = 12;
     } else var max = iloscKartNaStronie;
 
-    for (i = 0; i < 1; i++) {
-        var pomocnicza00 = 'nazwa' + i;
-        var pomocnicza0 = 'wypisz' + i;
-        var pomocnicza1 = 'opis' + i;
+    for (a in maps){
+        maps[a].remove();
+    }
+    maps = [];
+        
+    var pomocnicza00 = document.getElementsByClassName('nazwa');
+    var pomocnicza0 = document.getElementsByClassName('wypisz');
+    var pomocnicza1 = document.getElementsByClassName('opis');
+    var pomocnicza2 = document.getElementsByClassName('utworzyl');
+    var arch = document.getElementsByClassName('arch');
+    var arch0 = document.getElementsByClassName('arch0');
+    var rec2 = document.getElementsByClassName('recent2');
+    var rec1 = document.getElementsByClassName('recent1');
+    var rec0 = document.getElementsByClassName('recent0');
+    var rec22 = document.getElementsByClassName('recent22');
+    var rec11 = document.getElementsByClassName('recent11');
+    var rec00 = document.getElementsByClassName('recent00');
+    var karty = document.getElementsByClassName('k');
+    var mymap = document.getElementsByClassName('mapid');
+    var brakZdjecNapis = document.getElementsByClassName('brakZdjecNapis');
+
+    for (i = 0; i < max; i++) {
+        
         var nazwa = "Nazwa: " + myArr[i].name + ", ID zabytku: " + myArr[i].id;
         var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
         wypisz += ", Ulica: " + myArr[i].street + ", Numer budynku: " + myArr[i].building;
         var opis = "Opis: " + myArr[i].description[0].description;
-        document.getElementById(pomocnicza0).innerHTML = wypisz;
-        document.getElementById(pomocnicza1).innerHTML = opis;
-        document.getElementById(pomocnicza00).innerHTML = nazwa;
+        pomocnicza0[i].innerHTML = wypisz;
+        pomocnicza1[i].innerHTML = opis;
+        pomocnicza00[i].innerHTML = nazwa;
         var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
-        var pomocnicza2 = 'utworzyl' + i;
-        document.getElementById(pomocnicza2).innerHTML = dodal;
+        
+        pomocnicza2[i].innerHTML = dodal;
 
         //ukrywanie zdjec
         var doZdj = server + '/admin/assets/';
@@ -122,10 +128,9 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         if (zdjArch != null) {
             zdjArch = zdjArch.imageName;
             zdjArch = doZdj + zdjArch;
-            var arch = 'arch';
-            console.log(zdjArch);
-            document.getElementById(arch + i + i).src = zdjArch;
-            document.getElementById(arch + i).href = zdjArch;
+            
+            arch0[i].src = zdjArch;
+            arch[i].href = zdjArch;
         }
         var zdj0 = myArr[i].recentPhotos[0];
         var zdj1 = myArr[i].recentPhotos[1];
@@ -134,51 +139,52 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         if (zdj0 != undefined) {
             zdj0 = zdj0.imageName;
             zdj0 = doZdj + zdj0;
-            var rec = 'recent2'
-            document.getElementById(rec + i + i).src = zdj0;
-            document.getElementById(rec + i).href = zdj0;
+
+            rec22[i].src = zdj0;
+            rec2[i].href = zdj0;
         }
 
         if (zdj1 != undefined) {
             zdj1 = zdj1.imageName;
             zdj1 = doZdj + zdj1;
-            var rec = 'recent1'
-            document.getElementById(rec + i + i).src = zdj1;
-            document.getElementById(rec + i).href = zdj1;
+            
+            rec11[i].src = zdj1;
+            rec1[i].href = zdj1;
         }
 
         if (zdj2 != undefined) {
             zdj2 = zdj2.imageName;
             zdj2 = doZdj + zdj2;
-            var rec = 'recent0'
-            document.getElementById(rec + i + i).src = zdj1;
-            document.getElementById(rec + i).href = zdj1;
+            
+            rec00[i].src = zdj1;
+            rec0[i].href = zdj1;
         }
-
-
+        console.log(myArr);
+        if(zdjArch==null && zdj0==zdj1==zdj2==undefined) {
+            console.log("aaaa");
+            brakZdjecNapis[i].innerHTML = 'Brak zdjęć!';
+        }
         
         var lat = myArr[i].latitude;
         var lng = myArr[i].longitude;
 
-        var mymap = L.map('mapid').setView([lat, lng], 18);
+        var mymap2 = L.map(mymap[i]).setView([lat, lng], 18);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-        var marker = L.marker([lat, lng]).addTo(mymap);
+        }).addTo(mymap2);
+        var marker = L.marker([lat, lng]).addTo(mymap2);
+        
+        maps.push(mymap2);
 
-
-
-        link = document.getElementById('k' + i);
-        link.style.display = 'inherit';
+        karty[i].style.display = 'inherit';
     }
 
     if (max < 12) {
         for (max; i < 12; i++) {
             if (iloscKartNaStronie < 12) {
                 for (var b = iloscKartNaStronie; b < 12; b++) {
-                    link = document.getElementById('k' + b);
-                    link.style.display = 'none';
+                    karty[b].style.display = 'none';
                 }
             }
         }
@@ -224,7 +230,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     }
 
     if(zapisHistorii == false || zapisHistorii == 2) {
-        var str = '/ostatnie/?page=' + strona;
+        var str = '/admin/noweZabytki/?page=' + strona;
         document.getElementById("nrStrony").textContent = "Obecna strona: " + strona;
         window.history.pushState(null, '', str);
     }
@@ -242,4 +248,26 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+
+function afterClick(wart2, i) {
+    event.preventDefault();
+    var widoczne = wart2.style.display;
+    if (widoczne == 'none') {
+        wart2.style.display = 'initial';
+        maps[i].invalidateSize();
+    }
+    else wart2.style.display = 'none';
+}
+
+var list = document.getElementsByClassName("mapa");
+var list2 = document.getElementsByClassName("pokaMapa");
+var accept = document.getElementsByClassName("akceptuj");
+var refuse = document.getElementsByClassName("odrzuc");
+for(var i=0; i<list.length; i++) {
+        list[i].addEventListener("click", afterClick.bind(this, list2[i], i), false);
+        accept[i].addEventListener("click", function() {akceptuj(0, true);}, false);
+        refuse[i].addEventListener("click", function() {akceptuj(0, false);}, false);
 }
