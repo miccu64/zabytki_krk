@@ -13,27 +13,6 @@ $('#add-form').submit(function(e) {
 
 var maps = new Array();
 
-function akceptuj(el, add) {
-    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
-    var url2 = server + '/api/v1/admin/acceptArtifact';
-    var token = localStorage.getItem('token');
-    var http = new XMLHttpRequest();
-    http.open('POST', url2, true);
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    http.setRequestHeader('Authorization', token);
-    http.onreadystatechange = function() { //Call a function when the state changes.
-        if (http.readyState == 4 && http.status == 200) {
-            alert(http.response);
-            location.reload();
-        } else if (http.readyState == 4) {
-            alert(http.response);
-        }
-    }
-    http.send('id=' + tablica2[el].id + '&accept=' + add);
-}
-
-
 
 $(window).on('popstate', function(e) {
     let par = new URLSearchParams(location.search);
@@ -56,7 +35,7 @@ function wyslij(oIle, czyRecznie) {
         else strona += oIle - 1;
     } else strona = oIle - 1;
     var rozmiar = '12';
-    var url2 = server + '/api/v1/admin/newArtifactsRequests?page=' + strona + '&size=' + rozmiar;
+    var url2 = server + '/api/v1/admin/newPhotosRequests?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
@@ -78,6 +57,7 @@ function wyslij(oIle, czyRecznie) {
     }
     http.send();
 }
+
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
 function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
@@ -108,6 +88,10 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     var karty = document.getElementsByClassName('k');
     var mymap = document.getElementsByClassName('mapid');
     var brakZdjecNapis = document.getElementsByClassName('brakZdjecNapis');
+    var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
+    var zdjNowe0 = document.getElementsByClassName('zdjDoAkcept2');
+    var zdjNoweInfo = document.getElementsByClassName('zdjDoAkceptDane');
+
 
     for (i = 0; i < max; i++) {
 
@@ -122,8 +106,16 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
         pomocnicza2[i].innerHTML = dodal;
 
+        var doZdj2 = server + '/admin/assets/';
+        var zdjNowe = myArr[i].requestPhotos;
+        zdjNowe = zdjNowe.imageName;
+        zdjNowe = doZdj2 + zdjNowe;
+        zdjNowe00[i].src = zdjNowe;
+        zdjNowe0[i].href = zdjNowe;
+        zdjNoweInfo[i].innerHTML = "Dodał: " + myArr[i].requestPhotos.addedBy.name + ", data dodania: " + myArr[i].requestPhotos.createdAt;
+
         //ukrywanie zdjec
-        var doZdj = server + '/admin/assets/';
+        var doZdj = server + '/assets/';
         var zdjArch = myArr[i].archivalPhoto;
         if (zdjArch != null) {
             zdjArch = zdjArch.imageName;
@@ -159,9 +151,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             rec00[i].src = zdj1;
             rec0[i].href = zdj1;
         }
-        console.log(myArr);
         if (zdjArch == null && zdj0 == zdj1 == zdj2 == undefined) {
-            console.log("aaaa");
             brakZdjecNapis[i].innerHTML = 'Brak zdjęć!';
         }
 
@@ -248,6 +238,31 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function akceptuj(el, add) {
+    var tablica2 = JSON.parse(localStorage.getItem('tablica'));
+    var url2 = server + '/api/v1/admin/acceptPhotos';
+    var token = localStorage.getItem('token');
+    var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
+    var nazwa = zdjNowe00[el].src;
+    var str = '/admin/assets/';
+    var num = nazwa.search(str);
+    nazwa = nazwa.slice(num + str.length);
+    var http = new XMLHttpRequest();
+    http.open('POST', url2, true);
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.setRequestHeader('Authorization', token);
+    http.onreadystatechange = function() { //Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+            alert(http.response);
+            location.reload();
+        } else if (http.readyState == 4) {
+            alert(http.response);
+        }
+    }
+    http.send('id=' + tablica2[el].id + '&accept=' + add + '&name=' + nazwa);
 }
 
 
