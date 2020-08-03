@@ -16,6 +16,7 @@ function edycja() {
     var obj = $('#add-form').serializeJSON();
     var id = localStorage.getItem("id");
     var url2 = server + '/api/v1/artifacts/by_id/' + id;
+    console.log(JSON.stringify(obj));
     $.ajax({
         url: url2,
         dataType: 'json',
@@ -33,6 +34,7 @@ function edycja() {
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";
             document.getElementById("czekaj").style.display = "none";
+            console.log(error);
             alert('Wystąpił błąd w edycji!');
         }
     });
@@ -50,7 +52,7 @@ function pobierz() {
             wypisz(response);
         },
         error: function(error) {
-            alert('Błąd połączenia!');            
+            alert('Błąd połączenia!');
         }
     });
 }
