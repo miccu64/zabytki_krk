@@ -1,4 +1,4 @@
-$('#add-form').submit(function () {
+$('#add-form').submit(function() {
     document.getElementById("przyciski").style.display = "none";
     document.getElementById("czekaj").style.display = "initial";
     if (confirm('Jesteś pewien, że chcesz przesłać zdjęcie?') == false) {
@@ -11,7 +11,7 @@ $('#add-form').submit(function () {
 });
 
 //do wyswietlania obrazow
-$(document).on('click', '[data-toggle="lightbox"]', function (event) {
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 });
@@ -35,11 +35,13 @@ function edycja() {
             headers: {
                 'Authorization': localStorage.getItem('token')
             },
-            success: function (data) {
+            success: function(data) {
                 alert('Pomyślnie dodano zdjęcie. Pojawi się, gdy administrator je zaakceptuje.');
-                window.history.back();
+                document.getElementById("przyciski").style.display = "initial";
+                document.getElementById("czekaj").style.display = "none";
+                //window.history.back();
             },
-            error: function (data) {
+            error: function(data) {
                 alert('Błąd - nie dodano zdjęcia archiwalnego.');
             }
         });
@@ -54,10 +56,10 @@ function pobierz() {
     $.ajax({
         url: url2,
         type: "GET",
-        success: function (response) {
+        success: function(response) {
             wypisz(response);
         },
-        error: function (error) {
+        error: function(error) {
             alert('Błąd połączenia!');
         }
     });

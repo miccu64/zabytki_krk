@@ -29,7 +29,9 @@ function edycja() {
         contentType: 'application/json',
         success: function(response) {
             alert('Pomyślnie edytowano zabytek. Edytowane wartości pojawią się po akceptacji przez administratora.');
-            window.history.back();
+            document.getElementById("przyciski").style.display = "initial";
+            document.getElementById("czekaj").style.display = "none";
+            //window.history.back();
         },
         error: function(error) {
             document.getElementById("przyciski").style.display = "initial";
