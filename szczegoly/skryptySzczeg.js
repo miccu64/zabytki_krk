@@ -58,6 +58,7 @@ function wyslij() {
         url: url2,
         type: "GET",
         success: function(response) {
+            console.log(response);
             wypisz(response);
         },
         error: function(error) {
@@ -78,16 +79,16 @@ function wypisz(myArr) {
     document.getElementById('city').value = myArr.city;
 
     var ilosc = myArr.description.length;
-    if(ilosc>1) {
+    if (ilosc > 1) {
         var tekst = "";
-        for(var a=1; a<ilosc; a++) {
+        for (var a = 1; a < ilosc; a++) {
             tekst += myArr.description[a].createdAt.slice(0, 10);
             tekst += '\n';
             tekst += myArr.description[a].description;
             tekst += '\n\n';
         }
         document.getElementById('poleTekstowe2').textContent = tekst;
-        document.getElementById('historia').style.display = 'initial'; 
+        document.getElementById('historia').style.display = 'initial';
     }
 
     var lat = document.getElementById("wspx").value;

@@ -138,9 +138,9 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             arch0[i].src = zdjArch;
             arch[i].href = zdjArch;
         }
-        var zdj0 = myArr[i].recentPhotos[0];
+        var zdj2 = myArr[i].recentPhotos[0];
         var zdj1 = myArr[i].recentPhotos[1];
-        var zdj2 = myArr[i].recentPhotos[2];
+        var zdj0 = myArr[i].recentPhotos[2];
 
         if (zdj0 != undefined) {
             zdj0 = zdj0.imageName;
@@ -162,8 +162,8 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             zdj2 = zdj2.imageName;
             zdj2 = doZdj + zdj2;
 
-            rec00[i].src = zdj1;
-            rec0[i].href = zdj1;
+            rec00[i].src = zdj2;
+            rec0[i].href = zdj2;
         }
         console.log(myArr);
         if (zdjArch == null && zdj0 == zdj1 == zdj2 == undefined) {

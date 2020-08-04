@@ -85,12 +85,52 @@
     </nav>
 
     <div class="container-xl justify-content-center align-items-center text-center mt-5">
-        <a class="mt-5" href="/admin/noweZabytki/?page=1"><h1>Nowe zabytki</h1></a>
+        <a class="mt-5" href="/admin/noweZabytki/?page=1">
+            <h1>Nowe zabytki</h1>
+        </a>
         <div class="mt-5"></div>
-        <a class="mt-5" href="/admin/noweOpisy/?page=1"><h1>Nowe opisy</h1></a>
+        <a class="mt-5" href="/admin/noweOpisy/?page=1">
+            <h1>Nowe opisy</h1>
+        </a>
         <div class="mt-5"></div>
-        <a class="mt-5" href="/admin/noweZdjecia/?page=1"><h1>Nowe zdjęcia</h1></a>
+        <a class="mt-5" href="/admin/noweZdjecia/?page=1">
+            <h1>Nowe zdjęcia</h1>
+        </a>
+        <div class="my-5"></div>
+        <a id="usun" class="mt-5" href="">
+            <h1>Usuń zabytek</h1>
+        </a>
+        <div id="usunWidoczne" style="display: none;">
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <h4>Brak komunikatu = poprawne usunięcie</h4>
+                        <label class="tekst odstep2" for="idZabytku">ID zabytku</label>
+                        <input class="form-control form-control-lg tekst" id="idZabytku" required>
+                    </div>
+                </div>
+            </div>
+            <div class="odstep"></div>
+            <button class="btn btn-primary btn-lg przycisk mb-3" onclick=usun();><b>Usuń zabytek</b></button>
+        </div>
+        <div class="mt-5"></div>
+        <a id="zbanuj" class="mt-5" href="">
+            <h1>Zbanuj użytkownika</h1>
+        </a>
+        <div id="zbanujWidoczne" style="display: none;">
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="tekst odstep2" for="nazwa">Nazwa lub e-mail użytkownika</label>
+                        <input class="form-control form-control-lg tekst" id="nazwa" required>
+                    </div>
+                </div>
+            </div>
+            <div class="odstep"></div>
+            <button onclick=zbanuj(); class="btn btn-primary btn-lg przycisk mb-3"><b>Zbanuj użytkownika</b></button>
+        </div>
     </div>
+    <script src="admin.js"></script>
     <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
 </body>
 
