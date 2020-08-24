@@ -28,14 +28,28 @@ function wyloguj() {
     alert('Wylogowano pomyślnie.');
 }
 
-if (localStorage.getItem('token') == null) {
+function checkAndReturnToken(redirect) {
+    let token = "";
+    const name = 'ZglosZabytekToken=';
+    const all = document.cookie.split(';');
+    for (let i = 0; i < all.length; i++) {
+      let el = all[i];
+      while (el.charAt(0) == ' ') {
+        el = el.substring(1, el.length);
+      }
+      if (el.indexOf(name) == 0) {
+        token = atob(el.substring(name.length, el.length));
+      }
+    }
+
+    if (token == "") {
+      return false;
+    } else return token;
+  }
+
+if (checkAndReturnToken() == false) {
     var link = document.getElementById('niezalogowany');
     link.style.display = 'none';
     link = document.getElementById('niezalogowany2');
     link.style.display = 'none';
-} else {
-    var link2 = document.getElementById('zalogowany2');
-    link2.style.display = 'none';
-    link2 = document.getElementById('zalogowany3');
-    link2.style.display = 'none';
 }
