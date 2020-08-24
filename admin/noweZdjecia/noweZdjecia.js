@@ -36,6 +36,11 @@ function wyslij(oIle, czyRecznie) {
     } else strona = oIle - 1;
     var rozmiar = '12';
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     var url2 = server + '/api/v1/admin/newPhotosRequests?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
@@ -97,14 +102,14 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
     for (i = 0; i < max; i++) {
 
-        var nazwa = "Nazwa: " + myArr[i].name + ", ID zabytku: " + myArr[i].id;
+       var nazwa = "Nazwa zabytku: " + myArr[i].name;
         var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
-        wypisz += ", Ulica: " + myArr[i].street + ", Numer budynku: " + myArr[i].building;
+        wypisz += ", Ulica: " + myArr[i].street;
         var opis = "Opis: " + myArr[i].description[0].description;
         pomocnicza0[i].innerHTML = wypisz;
         pomocnicza1[i].innerHTML = opis;
         pomocnicza00[i].innerHTML = nazwa;
-        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
+        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt + ", ID zabytku: " + myArr[i].id;
 
         pomocnicza2[i].innerHTML = dodal;
 
@@ -246,6 +251,11 @@ function akceptuj(el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptPhotos';
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
     var nazwa = zdjNowe00[el].src;
     var str = '/request/assets/';

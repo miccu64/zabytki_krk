@@ -18,6 +18,11 @@ function usun() {
     var id = document.getElementById("idZabytku").value;
     var url2 = server + '/api/v1/admin/deleteArtifact';
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     var http = new XMLHttpRequest();
     http.open('DELETE', url2, true);
     //Send the proper header information along with the request
@@ -39,6 +44,11 @@ function zbanuj() {
     var id = document.getElementById("nazwa").value;
     var url2 = server + '/api/v1/admin/banUser';
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     console.log(id);
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
@@ -55,4 +65,9 @@ function zbanuj() {
         }
     }
     http.send('name=' + id);
+}
+
+if (checkAndReturnToken() == false) {
+    alert("Musisz się zalogować.");
+    document.location.href = "/admin/logowanie/";
 }

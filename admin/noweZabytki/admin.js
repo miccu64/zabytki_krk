@@ -17,6 +17,11 @@ function akceptuj(el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptArtifact';
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
     //Send the proper header information along with the request
@@ -56,6 +61,11 @@ function wyslij(oIle, czyRecznie) {
         else strona += oIle - 1;
     } else strona = oIle - 1;
     var token = checkAndReturnToken();
+    if (token == false) {
+        alert("Musisz się zalogować.");
+        document.location.href = "/admin/logowanie/";
+        return;
+    }
     var rozmiar = '12';
     var url2 = server + '/api/v1/admin/newArtifactsRequests?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
@@ -113,14 +123,14 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
     for (i = 0; i < max; i++) {
 
-        var nazwa = "Nazwa: " + myArr[i].name + ", ID zabytku: " + myArr[i].id;
+       var nazwa = "Nazwa zabytku: " + myArr[i].name;
         var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
-        wypisz += ", Ulica: " + myArr[i].street + ", Numer budynku: " + myArr[i].building;
+        wypisz += ", Ulica: " + myArr[i].street;
         var opis = "Opis: " + myArr[i].description[0].description;
         pomocnicza0[i].innerHTML = wypisz;
         pomocnicza1[i].innerHTML = opis;
         pomocnicza00[i].innerHTML = nazwa;
-        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
+        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt + ", ID zabytku: " + myArr[i].id;
 
         pomocnicza2[i].innerHTML = dodal;
 
