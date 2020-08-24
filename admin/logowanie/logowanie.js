@@ -7,8 +7,6 @@ $('#add-form').submit(function() {
     return false;
 });
 
-czyNiezalogowany();
-
 function klik() {
     var poczta = document.getElementById("poczta").value;
     var haslo = document.getElementById("haslo").value;
@@ -20,7 +18,7 @@ function klik() {
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     http.onreadystatechange = function() { //Call a function when the state changes.
         if (http.readyState == 4 && http.status == 200) {
-            document.cookie = `${tokenName}=${btoa(this.text)};expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax`;
+            document.cookie = `ZglosZabytekToken=${btoa(http.responseText)};expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax`;
             alert('Zalogowano pomyślnie!');
             window.location.assign("/admin/");
         } else if (http.readyState == 4) {

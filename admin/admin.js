@@ -17,7 +17,7 @@ document.getElementById("zbanuj").addEventListener("click", function() {
 function usun() {
     var id = document.getElementById("idZabytku").value;
     var url2 = server + '/api/v1/admin/deleteArtifact';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     var http = new XMLHttpRequest();
     http.open('DELETE', url2, true);
     //Send the proper header information along with the request
@@ -38,7 +38,7 @@ function usun() {
 function zbanuj() {
     var id = document.getElementById("nazwa").value;
     var url2 = server + '/api/v1/admin/banUser';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     console.log(id);
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);

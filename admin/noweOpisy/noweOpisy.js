@@ -16,7 +16,7 @@ var maps = new Array();
 function akceptuj(el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptDescription';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     console.log(el);
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
@@ -58,7 +58,8 @@ function wyslij(oIle, czyRecznie) {
     } else strona = oIle - 1;
     var rozmiar = '12';
     var url2 = server + '/api/v1/admin/newDescriptionsRequests?page=' + strona + '&size=' + rozmiar;
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
+    console.log(token);
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request

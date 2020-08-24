@@ -35,7 +35,7 @@ function wyslij(oIle, czyRecznie) {
         else strona += oIle - 1;
     } else strona = oIle - 1;
     var rozmiar = '12';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     var url2 = server + '/api/v1/admin/newPhotosRequests?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
@@ -245,7 +245,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 function akceptuj(el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptPhotos';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
     var nazwa = zdjNowe00[el].src;
     var str = '/request/assets/';

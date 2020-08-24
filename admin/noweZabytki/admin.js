@@ -16,7 +16,7 @@ var maps = new Array();
 function akceptuj(el, add) {
     var tablica2 = JSON.parse(localStorage.getItem('tablica'));
     var url2 = server + '/api/v1/admin/acceptArtifact';
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
     //Send the proper header information along with the request
@@ -55,7 +55,7 @@ function wyslij(oIle, czyRecznie) {
             strona = parseInt(document.getElementById("b3").textContent) - 1;
         else strona += oIle - 1;
     } else strona = oIle - 1;
-    var token = localStorage.getItem('token');
+    var token = checkAndReturnToken();
     var rozmiar = '12';
     var url2 = server + '/api/v1/admin/newArtifactsRequests?page=' + strona + '&size=' + rozmiar;
     var http = new XMLHttpRequest();
