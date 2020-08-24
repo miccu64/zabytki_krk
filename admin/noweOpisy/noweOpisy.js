@@ -5,9 +5,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 });
 
 $('#add-form').submit(function(e) {
-    var numer = parseInt(document.getElementById("recznie2").value);
-    wyslij(numer, 2);
-
+    wyslij();
     e.preventDefault();
 });
 
@@ -22,7 +20,13 @@ function akceptuj(el, add) {
         document.location.href = "/admin/logowanie/";
         return;
     }
-    console.log(el);
+    let info;
+    if (add == true) {
+        info = 'Jesteś pewien, że chcesz ZAAKCEPTOWAĆ opis?';
+    } else info = 'Jesteś pewien, że chcesz ODRZUCIĆ opis?';
+    if (confirm('Jesteś pewien, że chcesz zaakceptować zabytek?') == false) {
+        return false;
+    }
     var http = new XMLHttpRequest();
     http.open('POST', url2, true);
     //Send the proper header information along with the request
@@ -36,33 +40,15 @@ function akceptuj(el, add) {
             alert(http.response);
         }
     }
-    http.send('id=' + tablica2[el].id + '&accept=' + add);
+    http.send('id=' + tablica2[0].id + "&idDesc=" + tablica2[0].descriptionRequest[el].id + '&accept=' + add);
 }
 
+wyslij();
 
-
-$(window).on('popstate', function(e) {
-    let par = new URLSearchParams(location.search);
-    wyslij(parseInt(par.get('page')), true);
-});
-
-
-let par = new URLSearchParams(location.search);
-wyslij(parseInt(par.get('page')), true);
-
-function wyslij(oIle, czyRecznie) {
+function wyslij() {
     let params = new URLSearchParams(location.search);
     var strona = params.get('page');
-    if (czyRecznie == false) {
-        strona = parseInt(strona);
-        if ((oIle == -2) || (oIle == 0))
-            strona = 0;
-        else if (oIle == 2)
-            strona = parseInt(document.getElementById("b3").textContent) - 1;
-        else strona += oIle - 1;
-    } else strona = oIle - 1;
-    var rozmiar = '12';
-    var url2 = server + '/api/v1/admin/newDescriptionsRequests?page=' + strona + '&size=' + rozmiar;
+    var url2 = server + '/api/v1/admin/newDescriptionsRequests?page=0&size=1';
     var token = checkAndReturnToken();
     if (token == false) {
         alert("Musisz się zalogować.");
@@ -80,10 +66,9 @@ function wyslij(oIle, czyRecznie) {
             myArr = JSON.parse(this.responseText);
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
-            var iloscStron = myArr.totalPages;
             if (myArr.empty == true) {
                 document.getElementById('pusto').style.display = 'initial';
-            } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
+            } else wypisz(myArr.content, strona + 1, iloscKart);
 
         } else if (http.readyState == 4) {
             alert('Niewłaściwy numer strony lub błąd połączenia!');
@@ -93,9 +78,8 @@ function wyslij(oIle, czyRecznie) {
 }
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
-function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
+function wypisz(myArr, strona, iloscKart) {
     var iloscKartNaStronie = iloscKart % 12;
-    var link;
 
     if (strona * 12 <= iloscKart) {
         var max = 12;
@@ -122,21 +106,27 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     var mymap = document.getElementsByClassName('mapid');
     var brakZdjecNapis = document.getElementsByClassName('brakZdjecNapis');
     var nowyOpis = document.getElementsByClassName('nowyOpis');
+    var nowyOpis2 = document.getElementsByClassName('nowyOpis2');
 
-    for (i = 0; i < max; i++) {
+    const i = 0;
+    let k = 0;
+    let mymax = myArr[i].descriptionRequest.length;
+    if (mymax > 12) mymax = 12;
+    for (k; k < mymax; k++) {
 
        var nazwa = "Nazwa zabytku: " + myArr[i].name;
         var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
         wypisz += ", Ulica: " + myArr[i].street;
-        var opis = "Opis: " + myArr[i].description[0].description;
-        pomocnicza0[i].innerHTML = wypisz;
-        pomocnicza1[i].innerHTML = opis;
-        pomocnicza00[i].innerHTML = nazwa;
-        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt + ", ID zabytku: " + myArr[i].id;
+        var opis = "Obecny opis: " + myArr[i].description[0].description;
+        pomocnicza0[k].innerHTML = wypisz;
+        pomocnicza1[k].innerHTML = opis;
+        pomocnicza00[k].innerHTML = nazwa;
+        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
 
-        pomocnicza2[i].innerHTML = dodal;
+        pomocnicza2[k].innerHTML = dodal;
 
-        nowyOpis[i].textContent = myArr[i].descriptionRequest[0].description;
+        nowyOpis[k].textContent = 'Dodał: ' + myArr[i].descriptionRequest[k].createdBy.name + ", data dodania: " + myArr[i].descriptionRequest[k].createdAt;
+        nowyOpis2[k].textContent = myArr[i].descriptionRequest[k].description;
 
         //ukrywanie zdjec
         var doZdj = server + '/assets/';
@@ -145,8 +135,8 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             zdjArch = zdjArch.imageName;
             zdjArch = doZdj + zdjArch;
 
-            arch0[i].src = zdjArch;
-            arch[i].href = zdjArch;
+            arch0[k].src = zdjArch;
+            arch[k].href = zdjArch;
         }
         var zdj2 = myArr[i].recentPhotos[0];
         var zdj1 = myArr[i].recentPhotos[1];
@@ -156,35 +146,35 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             zdj0 = zdj0.imageName;
             zdj0 = doZdj + zdj0;
 
-            rec22[i].src = zdj0;
-            rec2[i].href = zdj0;
+            rec22[k].src = zdj0;
+            rec2[k].href = zdj0;
         }
 
         if (zdj1 != undefined) {
             zdj1 = zdj1.imageName;
             zdj1 = doZdj + zdj1;
 
-            rec11[i].src = zdj1;
-            rec1[i].href = zdj1;
+            rec11[k].src = zdj1;
+            rec1[k].href = zdj1;
         }
 
         if (zdj2 != undefined) {
             zdj2 = zdj2.imageName;
             zdj2 = doZdj + zdj2;
 
-            rec00[i].src = zdj2;
-            rec0[i].href = zdj2;
+            rec00[k].src = zdj2;
+            rec0[k].href = zdj2;
         }
         console.log(myArr);
         if (zdjArch == null && zdj0 == zdj1 == zdj2 == undefined) {
             console.log("aaaa");
-            brakZdjecNapis[i].innerHTML = 'Brak zdjęć!';
+            brakZdjecNapis[k].innerHTML = 'Brak zdjęć!';
         }
 
         var lat = myArr[i].latitude;
         var lng = myArr[i].longitude;
 
-        var mymap2 = L.map(mymap[i]).setView([lat, lng], 18);
+        var mymap2 = L.map(mymap[k]).setView([lat, lng], 18);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -193,11 +183,11 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
         maps.push(mymap2);
 
-        karty[i].style.display = 'inherit';
+        karty[k].style.display = 'inherit';
     }
 
     if (max < 12) {
-        for (max; i < 12; i++) {
+        for (max; k < 12; k++) {
             if (iloscKartNaStronie < 12) {
                 for (var b = iloscKartNaStronie; b < 12; b++) {
                     karty[b].style.display = 'none';
@@ -206,59 +196,8 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
         }
     }
 
-    document.getElementById("b1").textContent = strona - 1;
-    document.getElementById("b2").textContent = strona + 1;
-    document.getElementById("b3").textContent = iloscStron;
-    if (strona == 1) {
-        document.getElementById("b0").style.display = "none";
-        document.getElementById("b1").style.display = "none";
-        document.getElementById("b2").style.display = "initial";
-        document.getElementById("b3").style.display = "initial";
-        document.getElementById("przerwa1").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-        document.getElementById("przerwa3").style.display = "initial";
-    } else if (strona == iloscStron) {
-        document.getElementById("b0").style.display = "initial";
-        document.getElementById("b1").style.display = "initial";
-        document.getElementById("b2").style.display = "none";
-        document.getElementById("b3").style.display = "none";
-        document.getElementById("przerwa1").style.display = "initial";
-        document.getElementById("przerwa2").style.display = "none";
-        document.getElementById("przerwa3").style.display = "none";
-    } else {
-        document.getElementById('b0').style.display = 'initial';
-        document.getElementById('b1').style.display = 'initial';
-        document.getElementById("b2").style.display = "initial";
-        document.getElementById("b3").style.display = "initial";
-        document.getElementById("przerwa1").style.display = "initial";
-        document.getElementById("przerwa2").style.display = "initial";
-        document.getElementById("przerwa3").style.display = "initial";
-    }
-
-    if (strona == iloscStron - 1) {
-        document.getElementById("b2").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-    }
-
-    if (strona == 2) {
-        document.getElementById("b1").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-    }
-
-    if (zapisHistorii == false || zapisHistorii == 2) {
-        var str = '/admin/noweZabytki/?page=' + strona;
-        document.getElementById("nrStrony").textContent = "Obecna strona: " + strona;
-        window.history.pushState(null, '', str);
-    }
-    document.getElementById("recznie").textContent = "Wpisz numer strony (od 1 do " + iloscStron + "):";
-    $("#recznie2").attr({
-        "max": iloscStron,
-        "min": 1
-    });
-
-    if (iloscStron < 2)
-        document.getElementById("jednaStrona").style.display = 'none';
-
+    document.getElementById("oczekujace").innerText += ' ' + iloscKart;
+    document.getElementById("idZabytku").innerText += ' ' + myArr[0].id;
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
 

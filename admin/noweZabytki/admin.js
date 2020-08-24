@@ -257,7 +257,7 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
-
+    document.getElementById("oczekujace").innerText = 'Łączna liczba oczekujących na akceptację zabytków: ' + iloscKart;
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

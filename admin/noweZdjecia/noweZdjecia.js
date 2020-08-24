@@ -1,62 +1,40 @@
 //do wyswietlania obrazow
-$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+$(document).on('click', '[data-toggle="lightbox"]', function (event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 });
 
-$('#add-form').submit(function(e) {
+$('#add-form').submit(function (e) {
     var numer = parseInt(document.getElementById("recznie2").value);
-    wyslij(numer, 2);
+    wyslij();
 
     e.preventDefault();
 });
 
 var maps = new Array();
 
-
-$(window).on('popstate', function(e) {
-    let par = new URLSearchParams(location.search);
-    wyslij(parseInt(par.get('page')), true);
-});
-
-
-let par = new URLSearchParams(location.search);
-wyslij(parseInt(par.get('page')), true);
-
-function wyslij(oIle, czyRecznie) {
-    let params = new URLSearchParams(location.search);
-    var strona = params.get('page');
-    if (czyRecznie == false) {
-        strona = parseInt(strona);
-        if ((oIle == -2) || (oIle == 0))
-            strona = 0;
-        else if (oIle == 2)
-            strona = parseInt(document.getElementById("b3").textContent) - 1;
-        else strona += oIle - 1;
-    } else strona = oIle - 1;
-    var rozmiar = '12';
+function wyslij() {
     var token = checkAndReturnToken();
     if (token == false) {
         alert("Musisz się zalogować.");
         document.location.href = "/admin/logowanie/";
         return;
     }
-    var url2 = server + '/api/v1/admin/newPhotosRequests?page=' + strona + '&size=' + rozmiar;
+    var url2 = server + '/api/v1/admin/newPhotosRequests?page=0&size=1';
     var http = new XMLHttpRequest();
     http.open('GET', url2, true);
     //Send the proper header information along with the request
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     http.setRequestHeader('Authorization', token);
-    http.onreadystatechange = function() { //Call a function when the state changes.
+    http.onreadystatechange = function () { //Call a function when the state changes.
         if (http.readyState == 4 && http.status == 200) {
             var myArr = this.responseText;
             myArr = JSON.parse(this.responseText);
             localStorage.setItem('tablica', JSON.stringify(myArr.content));
             var iloscKart = myArr.totalElements;
-            var iloscStron = myArr.totalPages;
             if (myArr.empty == true) {
                 document.getElementById('pusto').style.display = 'initial';
-            } else wypisz(myArr.content, strona + 1, iloscKart, iloscStron, czyRecznie);
+            } else wypisz(myArr.content, iloscKart);
 
         } else if (http.readyState == 4) {
             alert('Niewłaściwy numer strony lub błąd połączenia!');
@@ -65,15 +43,10 @@ function wyslij(oIle, czyRecznie) {
     http.send();
 }
 
+wyslij();
 
 //ukrywanie zbednych kart i przyciskow w zaleznosci od liczby elementow
-function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
-    var iloscKartNaStronie = iloscKart % 12;
-    var link;
-
-    if (strona * 12 <= iloscKart) {
-        var max = 12;
-    } else var max = iloscKartNaStronie;
+function wypisz(myArr, iloscKart) {
 
     for (a in maps) {
         maps[a].remove();
@@ -98,28 +71,31 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
     var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
     var zdjNowe0 = document.getElementsByClassName('zdjDoAkcept2');
     var zdjNoweInfo = document.getElementsByClassName('zdjDoAkceptDane');
+    console.log(myArr);
+    const i = 0;
+    let max = myArr[i].requestPhotos.length;
+    if (max > 12) max = 12;
+    let k = 0;
+    for (k; k < max; k++) {
 
-
-    for (i = 0; i < max; i++) {
-
-       var nazwa = "Nazwa zabytku: " + myArr[i].name;
+        var nazwa = "Nazwa zabytku: " + myArr[i].name;
         var wypisz = "Typ: " + myArr[i].type + ", Miejscowość: " + myArr[i].city;
         wypisz += ", Ulica: " + myArr[i].street;
         var opis = "Opis: " + myArr[i].description[0].description;
-        pomocnicza0[i].innerHTML = wypisz;
-        pomocnicza1[i].innerHTML = opis;
-        pomocnicza00[i].innerHTML = nazwa;
-        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt + ", ID zabytku: " + myArr[i].id;
+        pomocnicza0[k].innerHTML = wypisz;
+        pomocnicza1[k].innerHTML = opis;
+        pomocnicza00[k].innerHTML = nazwa;
+        var dodal = "Dodał: " + myArr[i].createdBy.name + ", data dodania: " + myArr[i].createdAt;
 
-        pomocnicza2[i].innerHTML = dodal;
+        pomocnicza2[k].innerHTML = dodal;
 
         var doZdj2 = server + '/request/assets/';
-        var zdjNowe = myArr[i].requestPhotos;
+        var zdjNowe = myArr[i].requestPhotos[k];
         zdjNowe = zdjNowe.imageName;
         zdjNowe = doZdj2 + zdjNowe;
-        zdjNowe00[i].src = zdjNowe;
-        zdjNowe0[i].href = zdjNowe;
-        zdjNoweInfo[i].innerHTML = "Dodał: " + myArr[i].requestPhotos.addedBy.name + ", data dodania: " + myArr[i].requestPhotos.createdAt;
+        zdjNowe00[k].src = zdjNowe;
+        zdjNowe0[k].href = zdjNowe;
+        zdjNoweInfo[k].innerHTML = "Dodał: " + myArr[i].requestPhotos[k].addedBy.name + ", data dodania: " + myArr[i].requestPhotos[k].createdAt;
 
         //ukrywanie zdjec
         var doZdj = server + '/assets/';
@@ -128,8 +104,8 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             zdjArch = zdjArch.imageName;
             zdjArch = doZdj + zdjArch;
 
-            arch0[i].src = zdjArch;
-            arch[i].href = zdjArch;
+            arch0[k].src = zdjArch;
+            arch[k].href = zdjArch;
         }
         var zdj2 = myArr[i].recentPhotos[0];
         var zdj1 = myArr[i].recentPhotos[1];
@@ -139,33 +115,33 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
             zdj0 = zdj0.imageName;
             zdj0 = doZdj + zdj0;
 
-            rec22[i].src = zdj0;
-            rec2[i].href = zdj0;
+            rec22[k].src = zdj0;
+            rec2[k].href = zdj0;
         }
 
         if (zdj1 != undefined) {
             zdj1 = zdj1.imageName;
             zdj1 = doZdj + zdj1;
 
-            rec11[i].src = zdj1;
-            rec1[i].href = zdj1;
+            rec11[k].src = zdj1;
+            rec1[k].href = zdj1;
         }
 
         if (zdj2 != undefined) {
             zdj2 = zdj2.imageName;
             zdj2 = doZdj + zdj2;
 
-            rec00[i].src = zdj2;
-            rec0[i].href = zdj2;
+            rec00[k].src = zdj2;
+            rec0[k].href = zdj2;
         }
         if (zdjArch == null && zdj0 == zdj1 == zdj2 == undefined) {
-            brakZdjecNapis[i].innerHTML = 'Brak zdjęć!';
+            brakZdjecNapis[k].innerHTML = 'Brak zdjęć!';
         }
 
         var lat = myArr[i].latitude;
         var lng = myArr[i].longitude;
 
-        var mymap2 = L.map(mymap[i]).setView([lat, lng], 18);
+        var mymap2 = L.map(mymap[k]).setView([lat, lng], 18);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -174,75 +150,19 @@ function wypisz(myArr, strona, iloscKart, iloscStron, zapisHistorii) {
 
         maps.push(mymap2);
 
-        karty[i].style.display = 'inherit';
+        karty[k].style.display = 'inherit';
     }
 
     if (max < 12) {
-        for (max; i < 12; i++) {
-            if (iloscKartNaStronie < 12) {
-                for (var b = iloscKartNaStronie; b < 12; b++) {
-                    karty[b].style.display = 'none';
-                }
-            }
+        for (k; k < 12; k++) {
+            karty[k].style.display = 'none';
         }
     }
 
-    document.getElementById("b1").textContent = strona - 1;
-    document.getElementById("b2").textContent = strona + 1;
-    document.getElementById("b3").textContent = iloscStron;
-    if (strona == 1) {
-        document.getElementById("b0").style.display = "none";
-        document.getElementById("b1").style.display = "none";
-        document.getElementById("b2").style.display = "initial";
-        document.getElementById("b3").style.display = "initial";
-        document.getElementById("przerwa1").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-        document.getElementById("przerwa3").style.display = "initial";
-    } else if (strona == iloscStron) {
-        document.getElementById("b0").style.display = "initial";
-        document.getElementById("b1").style.display = "initial";
-        document.getElementById("b2").style.display = "none";
-        document.getElementById("b3").style.display = "none";
-        document.getElementById("przerwa1").style.display = "initial";
-        document.getElementById("przerwa2").style.display = "none";
-        document.getElementById("przerwa3").style.display = "none";
-    } else {
-        document.getElementById('b0').style.display = 'initial';
-        document.getElementById('b1').style.display = 'initial';
-        document.getElementById("b2").style.display = "initial";
-        document.getElementById("b3").style.display = "initial";
-        document.getElementById("przerwa1").style.display = "initial";
-        document.getElementById("przerwa2").style.display = "initial";
-        document.getElementById("przerwa3").style.display = "initial";
-    }
-
-    if (strona == iloscStron - 1) {
-        document.getElementById("b2").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-    }
-
-    if (strona == 2) {
-        document.getElementById("b1").style.display = "none";
-        document.getElementById("przerwa2").style.display = "none";
-    }
-
-    if (zapisHistorii == false || zapisHistorii == 2) {
-        var str = '/admin/noweZabytki/?page=' + strona;
-        document.getElementById("nrStrony").textContent = "Obecna strona: " + strona;
-        window.history.pushState(null, '', str);
-    }
-    document.getElementById("recznie").textContent = "Wpisz numer strony (od 1 do " + iloscStron + "):";
-    $("#recznie2").attr({
-        "max": iloscStron,
-        "min": 1
-    });
-
-    if (iloscStron < 2)
-        document.getElementById("jednaStrona").style.display = 'none';
-
     //pokazuje po wypelnieniu
     document.getElementById("ukryj").style.visibility = "visible";
-
+    document.getElementById("oczekujace").innerText += ' ' + iloscKart;
+    document.getElementById("idZabytku").innerText += ' ' + myArr[0].id;
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
@@ -256,17 +176,14 @@ function akceptuj(el, add) {
         document.location.href = "/admin/logowanie/";
         return;
     }
-    var zdjNowe00 = document.getElementsByClassName('zdjDoAkcept3');
-    var nazwa = zdjNowe00[el].src;
-    var str = '/request/assets/';
-    var num = nazwa.search(str);
-    nazwa = nazwa.slice(num + str.length);
     var http = new XMLHttpRequest();
+    console.log(tablica2[0].id);
+    console.log(tablica2[0].requestPhotos[el].id);
     http.open('POST', url2, true);
     //Send the proper header information along with the request
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     http.setRequestHeader('Authorization', token);
-    http.onreadystatechange = function() { //Call a function when the state changes.
+    http.onreadystatechange = function () { //Call a function when the state changes.
         if (http.readyState == 4 && http.status == 200) {
             alert(http.response);
             location.reload();
@@ -274,7 +191,7 @@ function akceptuj(el, add) {
             alert(http.response);
         }
     }
-    http.send('id=' + tablica2[el].id + '&accept=' + add + '&name=' + nazwa);
+    http.send('id=' + tablica2[0].id + '&idPhoto=' + tablica2[0].requestPhotos[el].id + '&accept=' + add);
 }
 
 

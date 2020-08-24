@@ -38,12 +38,12 @@
         </ul>
         <ul class="navbar-nav flex-row">
             <li class="nav-item">
-                <a class="nav-link linki" style="margin-left: 10px;" href="/admin/noweZdjecia/?page=1">Zdjęcia</a>
+                <a class="nav-link linki" style="margin-left: 10px;" href="/admin/noweZdjecia">Zdjęcia</a>
             </li>
         </ul>
         <ul class="navbar-nav flex-row">
             <li class="nav-item">
-                <a class="nav-link linki" style="margin-left: 10px;" href="/admin/noweOpisy/?page=1">Opisy</a>
+                <a class="nav-link linki" style="margin-left: 10px;" href="/admin/noweOpisy">Opisy</a>
             </li>
         </ul>
         <ul class="navbar-nav flex-row">
@@ -71,6 +71,8 @@
             <h3>Brak nowych niezaakceptowanych zdjęć zabytków.</h3>
         </div>
         <input id="glowna" class="btn btn-info przycisk2 mb-4" type="button" value="Powrót" onclick="window.location.assign('/admin/');">
+        <h3 id="oczekujace">Łączna liczba oczekujących na akceptację zdjęć:</h3>
+        <h3 id="idZabytku">Zdjęcia dla zabytku o ID:</h3>
     </div>
 
     <div id="ukryj" class="container-lg justify-content-left align-items-left text-left p-4">
@@ -1144,35 +1146,7 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="justify-content-center align-items-center text-center my-2">
-            <div class="row">
-                <div class="col-12">
-                    <div id="jednaStrona">
-                        <div class="pb-3">
-                            <h2 id="nrStrony" class="mb-3">Obecna strona: 1</h2>
-                            <button id="b0" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-2,false);>1</button>
-                            <a id="przerwa1" class="ml-5"></a>
-                            <button id="b1" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(-1,false);>-1</button>
-                            <a id="przerwa2" class="ml-4"></a>
-                            <button id="b2" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(1,false);>+1</button>
-                            <a id="przerwa3" class="ml-5"></a>
-                            <button id="b3" class="btn btn-success strony px-4 py-2" type="button" onclick=wyslij(2,false);>Ost</button>
-                        </div>
-                        <form id="add-form" class=mb-5>
-                            <label id="recznie" for="recznie2" class="wieksze"></label>
-                            <br>
-                            <div class="input-group justify-content-center align-items-center text-center">
-                                <input class="mr-2 wieksze3" id="recznie2" style="max-width: 70px;" name="recznie2" type="number" min="1" max="9999" size="4">
-                                <input id="recznie3" class="btn btn-info wieksze" type="submit" value="Przejdź">
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        <div class="odstep3"></div>
     </div>
     <div class="footer">2020 © Wszelkie prawa zastrzeżone.</div>
     <script src="noweZdjecia.js"></script>
